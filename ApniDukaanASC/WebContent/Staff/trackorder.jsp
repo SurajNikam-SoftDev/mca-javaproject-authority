@@ -5,7 +5,7 @@
 <head>
 	<meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-   	<title>ApniDukaanASC :: Staff Panel</title>
+   	<title>ApniDukaanASC :: Track Order</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
 	<!-- Bootstrap CSS -->
@@ -17,8 +17,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
         
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/home.css">
-    
+    <link rel="stylesheet" href="./assets/css/form.css">
+    <link rel="stylesheet" href="./assets/css/trackorder.css">
     
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -149,73 +149,102 @@ datalist{
         </div>
 
         <!--========== CONTENTS ==========-->
-        <div class = "container-fluid">
-        	<div class="row">
-	            <div class="col-md-4">
-	                <div class="row">
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Total Products</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bx-abacus header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Buy Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bx-donate-blood header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-4">
-	                <div class="row">
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Process Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bx-trip header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Pending Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bxs-truck header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-4">
-	                <div class="row">
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Cancel Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bxs-diamond header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                    <div class="col" style="padding:5px;">
-	               			
-	                    </div>
-	                </div>
-	            </div>
-	            
-	         </div>
+        <div class = "container-fluid page-header text-center">
+        	<b>Track Order</b>
+        
+        </div>
+        <div class = "container-fluid form-container">
+        	
+	        <form class = "form-body">
+	            <div class="form-group">
+		        	<label for="" class="control-label text-center">Track Id</label>
+		            <div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="Track Order ID" aria-label="Track Order ID" aria-describedby="basic-addon2">
+						<div class="input-group-append">
+							<button type="button" class="btn btn-primary form-control"  data-toggle="modal" data-target="#exampleModalCenter" style = "font-size: 12px;font-weight: bolder;" ><i class="bx bx-search" style = "font-weight:bolder;"></i></button>
+						</div>
+					</div>
+		         </div>
+		     </form>     
+           	<hr>
+           	<br>
+           	<div class = "trackorder-container">
+           		<div class="row justify-content-center">
+				    <div class="col-10">
+				    	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text">Item accepted by Courier</b><small>Nov 27, 2020 02:06 PM</small> 
+		            	</p>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text">Collected</b><small>Nov 27, 2020 02:06 PM</small> 
+		            	</p>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text">Shipped</b><small>Nov 27, 2020 02:06 PM</small> 
+		            	</p>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text">In-Transit</b><small>Nov 27, 2020 02:06 PM</small> 
+		            	</p>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line" style = "height:100px;"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text">Arrived At Destination</b><small>Nov 27, 2020 02:06 PM</small> 
+		            	</p>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text">Out For Delivery</b><small>Nov 27, 2020 02:06 PM</small> 
+		            	</p>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text">Ready To PickUp</b><small>Nov 27, 2020 02:06 PM</small> 
+		            	</p>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text">Delivered</b><small>Nov 27, 2020 02:06 PM</small> 
+		            	</p>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		   
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text">PickUp</b><small>Nov 27, 2020 02:06 PM</small> 
+		            	</p>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line-process"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text">Unsuccessfully Delivery Arrived</b><small>Nov 27, 2020 02:06 PM</small> 
+		            	</p>
+				    </div>
+				</div>
+           	</div>
         </div>
         
-	<div class = "main-footer" style = "margin-top:50px;font-size:x-small;font-weight:bolder;text-align:center;bottom:0;">
+     <div class = "main-footer" style = "margin-top:50px;font-size:x-small;font-weight:bolder;text-align:center;bottom:0;">
 		<p class = "main-footer-text">Copyright @ 2021 All Rights Reserved. Terms of Use | Privacy Policy AND Website Design and Developed By <b style = "font-style:oblique;font-weight:bolder;">Suraj Nikam</b></p>
 	</div>
 	
@@ -228,5 +257,42 @@ datalist{
     
     <script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    <script type="text/javascript">
+	//	$('.myDataTable').DataTable();
+		
+        var table = $('.myDataTable').DataTable({
+            scrollY: 400,
+            scrollX: true,
+            scrollCollapse: true,
+            
+        });
+
+        $('.myDataTable thead .search-col').each(function(){
+            var title = $(this).text();
+            $(this).jsp('<input type = "text" placeholder = "Search '+title+'" />');
+        });
+        
+        table.columns().every(function(){
+            var that = this;
+            $('input', this.header()).on('keyup change', function(){
+                if(that.search() !== this.value)
+                {
+                    that.search(this.value).draw();
+                } 
+            });
+        });
+		
+   
+        function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+        }
+        
+        
+        
+
+        
+        </script>
 </body>
 </html>

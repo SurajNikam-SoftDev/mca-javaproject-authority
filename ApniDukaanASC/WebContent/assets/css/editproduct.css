@@ -1,0 +1,32 @@
+.page-header{
+	background-color: white;
+	box-shadow:1px 1px 1px 1px lightgrey;
+	padding:10px 0px;
+	border-radius:8px;
+}
+
+.editproduct-container{
+	border-top:4px solid #007bff;
+	padding:25px;
+	margin-top:15px;
+	background-color: white;
+	box-shadow:1px 1px 1px 1px lightgrey;
+	border-radius:8px; 
+}
+
+p{
+	font-size:12px;
+	font-weight:bolder;
+}
+
+label{
+	 font-size: 12px;    
+}
+
+.notice-container{
+	background-color: lightgreen;
+    border-radius: 8px;
+    padding:10px 0px 1px 0px; 
+    color: darkgreen;
+    font-weight:normal;
+}

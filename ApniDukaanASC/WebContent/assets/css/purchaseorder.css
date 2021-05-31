@@ -1,0 +1,43 @@
+.page-header{
+	background-color: white;
+	box-shadow:1px 1px 1px 1px lightgrey;
+	padding:10px 0px;
+	border-radius:8px;
+}
+
+.purchaseorder-container{
+	border-top:4px solid #007bff;
+	padding:0px 15px;
+	margin-top:15px;
+	background-color: white;
+	box-shadow:1px 1px 1px 1px lightgrey;
+	border-radius:8px; 
+}
+
+.purchase-bar{
+    padding: 10px;
+    border-bottom: 1px solid lightgray;
+}
+
+.purchase-img{
+    height: 75px;
+    width: 75px;
+    border:0.5px solid lightgray;
+    border-radius: 5px;
+}
+
+.header-title{
+    font-size: medium;
+    color:#002060;
+}
+
+.header-subtitle{
+    color:lightgray;
+    font-size: small;
+    font-weight: bolder;
+}
+
+.price-title{
+	font-size: x-small;
+    font-weight: bolder;
+}

@@ -1,0 +1,14 @@
+.grouplist-container{
+	border-top:4px solid #007bff;
+	margin-top:15px;
+	background-color: white;
+	box-shadow:1px 1px 1px 1px lightgrey;
+	border-radius:8px; 
+	padding: 0px 0px;
+}
+
+.list-group li{
+	font-size: 14px;
+	font-weight:bolder;
+}
+

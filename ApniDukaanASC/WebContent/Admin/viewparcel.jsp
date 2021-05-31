@@ -5,7 +5,7 @@
 <head>
 	<meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-   	<title>ApniDukaanASC :: Admin Panel</title>
+   	<title>ApniDukaanASC :: View Parcel</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
 	<!-- Bootstrap CSS -->
@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
         
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/home.css">
+    <link rel="stylesheet" href="./assets/css/form.css">
+    <link rel="stylesheet" href="./assets/css/parcel.css">
     
    
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
@@ -30,6 +31,11 @@
 
 datalist{
 	max-height: 100px;
+}
+
+input[type=date], input[type=file]{
+    font-size: 12px;   
+    outline: none;  
 }
 </style>
 <body>
@@ -124,7 +130,7 @@ datalist{
                                 </a>
 								<div class="nav__dropdown-collapse">
                                     <div class="nav__dropdown-content">
-                                        <a href="NewProductList" class="nav__dropdown-item">New Product List</a>
+                                        <a href="NewAddedProductList" class="nav__dropdown-item">New Product List</a>
                                         <a href="ProductDetails" class="nav__dropdown-item">Product Details</a>
                                     </div>
                                 </div>
@@ -177,91 +183,116 @@ datalist{
                 </a>
             </nav>
         </div>
-
         <!--========== CONTENTS ==========-->
         
-        <div class = "container-fluid">
-        	<div class="row">
-        		<div class="col-md-12">
-	                <div class="row">
-	                    <div class="col-md-4" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Total Staff">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Total Staff</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bx-buildings header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                    <div class="col-md-4" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Total Shops And Custmers">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Total Shop&Cust.</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bxs-group header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                    <div class="col-md-4" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Total Products">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Total Products</div>
-							  <div class="card-body">
-							   	<b class="card-image"><i class='bx bx-box header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-6">
-	                <div class="row">
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Item Accept By Courier">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Buy Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bx-abacus header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div> 
-							</div>
-	                    </div>
-	                	<div class="col" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Collected">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Process Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bx-donate-blood header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	               </div>
-	           </div>
-	           <div class="col-md-6">
-	                <div class="row">
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Shipped">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Pending Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bx-trip header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="In-Transit">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Cancel Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bxs-truck header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                </div>
-	            </div>
-	         </div>
+         <div class = "container-fluid page-header text-center">
+        	<b>View Parcel</b>
+        
         </div>
         
-	
-	
+        <div class="container-fluid parcel-container">	
+			<form>
+				<div class="parcel-sub-container">
+					<b class = "parcel-header">Track ID: 505604168988</b>
+				</div>
+				<br>
+	        	<div class = "row">
+	        		<div class = "col-md-6">
+	        			<div class = "parcel-card">
+	        				<b>Sender Information</b>
+			              	<div class="form-group">
+			                	<label for="" class="control-label">Name</label>
+			                	<input type="text" name="sender_name" id="" class="form-control form-control-sm" value="John Smith" required="">
+			              	</div>
+			              	<div class="form-group">
+			                	<label for="" class="control-label">Address</label>
+			                	<input type="text" name="sender_address" id="" class="form-control form-control-sm" value="Sample" required="">
+			              	</div>
+			              	<div class="form-group">
+			                	<label for="" class="control-label">Contact #</label>
+			                	<input type="text" name="sender_contact" id="" class="form-control form-control-sm" value="+123456" required="">
+			              	</div>	
+	        			</div>
+	        		</div>
+	        		<div class = "col-md-6">
+	        			<div class = "parcel-card">
+	        				<b>Recipient Information</b>
+			              	<div class="form-group">
+			                	<label for="" class="control-label">Name</label>
+			                	<input type="text" name="recipient_name" id="" class="form-control form-control-sm" value="Sample" required="">
+			              	</div>
+			              	<div class="form-group">
+			                	<label for="" class="control-label">Address</label>
+			                	<input type="text" name="recipient_address" id="" class="form-control form-control-sm" value="Sample" required="">
+			              	</div>
+			              	<div class="form-group">
+			                	<label for="" class="control-label">Contact #</label>
+			                	<input type="text" name="recipient_contact" id="" class="form-control form-control-sm" value="+12345" required="">
+			              	</div>	
+	        			</div>
+	        		</div>
+	        	</div>
+	        	<div class="parcel-sub-container mt-4">
+					<b class = "parcel-header">Parcel Details:</b>
+					
+					<div class = "row mt-2">
+						<div class = "col-md-2">
+							<div class="form-group">
+			                	<label for="" class="control-label">Weight</label>
+			                	<input type="text" name="weight" id="" class="form-control form-control-sm" placeholder="Weight" required="">
+			              	</div>
+						</div>
+						<div class = "col-md-2">
+							<div class="form-group">
+			                	<label for="" class="control-label">Height</label>
+			                	<input type="text" name="height" id="" class="form-control form-control-sm" placeholder="Height" required="">
+			              	</div>
+						</div>
+						<div class = "col-md-2">
+							<div class="form-group">
+			                	<label for="" class="control-label">Width</label>
+			                	<input type="text" name="width" id="" class="form-control form-control-sm" value="Width" required="">
+			              	</div>
+						</div>
+						<div class = "col-md-2">
+							<div class="form-group">
+			                	<label for="" class="control-label">Length</label>
+			                	<input type="text" name="length" id="" class="form-control form-control-sm" value="Length" required="">
+			              	</div>
+						</div>
+						<div class = "col-md-2">
+							<div class="form-group">
+			                	<label for="" class="control-label">Price</label>
+			                	<input type="text" name="price" id="" class="form-control form-control-sm" value="Price" required="">
+			              	</div>
+						</div>
+						<div class = "col-md-2">
+							<div class="form-group">
+			                	<label for="" class="control-label">Type</label>
+			                	<input type="text" name="type" id="" class="form-control form-control-sm" value="Type" required="">
+			              	</div>
+						</div>
+						<div class = "col-md-12">
+							<div class="form-group">
+			                	<label for="" class="control-label">Branch Accepted the Parcel:</label>
+			                	<p class = "parcel-address">Sample, Sample, Sample, 123456, Philippines</p>
+			              	</div>
+			              	<div class="form-group">
+			                	<label for="" class="control-label">Nearest Branch to Recipient for Pickup:</label>
+			                	<p class = "parcel-address">Branch 1 St., Quiapo, Manila, Metro Manila, 1001, Philippines</p>
+			              	</div>
+						</div>
+					</div>
+				</div>
+				<div class="parcel-sub-container">
+					<b class = "parcel-header">Status: <span class = "parcel-status">Delivered</span></b>
+					
+				</div>
+				
+	            </form>
+	        </div>   
+        
+        
 	<div class = "main-footer" style = "margin-top:50px;font-size:x-small;font-weight:bolder;text-align:center;bottom:0;">
 		<p class = "main-footer-text">Copyright @ 2021 All Rights Reserved. Terms of Use | Privacy Policy AND Website Design and Developed By <b style = "font-style:oblique;font-weight:bolder;">Suraj Nikam</b></p>
 	</div>

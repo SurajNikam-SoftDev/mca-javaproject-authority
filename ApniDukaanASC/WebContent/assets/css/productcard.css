@@ -1,0 +1,17 @@
+.form-container{
+	border-top:4px solid #007bff;
+	padding:25px;
+	margin-top:15px;
+	background-color: white;
+	box-shadow:1px 1px 1px 1px lightgrey;
+	border-radius:8px; 
+}
+
+.product-cards-container{
+	margin-top:15px;
+	
+}
+
+.btn-group nav__icon{
+	left:50%;
+}

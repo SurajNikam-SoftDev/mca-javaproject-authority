@@ -5,7 +5,7 @@
 <head>
 	<meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-   	<title>ApniDukaanASC :: Admin Panel</title>
+   	<title>ApniDukaanASC :: View New Added Product</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
 	<!-- Bootstrap CSS -->
@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
         
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/home.css">
+    <link rel="stylesheet" href="./assets/css/viewproduct.css">
     
    
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
@@ -30,6 +30,11 @@
 
 datalist{
 	max-height: 100px;
+}
+
+input[type=date], input[type=file]{
+    font-size: 12px;   
+    outline: none;  
 }
 </style>
 <body>
@@ -124,7 +129,7 @@ datalist{
                                 </a>
 								<div class="nav__dropdown-collapse">
                                     <div class="nav__dropdown-content">
-                                        <a href="NewProductList" class="nav__dropdown-item">New Product List</a>
+                                        <a href="NewAddedProductList" class="nav__dropdown-item">New Product List</a>
                                         <a href="ProductDetails" class="nav__dropdown-item">Product Details</a>
                                     </div>
                                 </div>
@@ -177,91 +182,150 @@ datalist{
                 </a>
             </nav>
         </div>
-
         <!--========== CONTENTS ==========-->
         
-        <div class = "container-fluid">
-        	<div class="row">
-        		<div class="col-md-12">
-	                <div class="row">
-	                    <div class="col-md-4" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Total Staff">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Total Staff</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bx-buildings header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                    <div class="col-md-4" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Total Shops And Custmers">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Total Shop&Cust.</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bxs-group header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                    <div class="col-md-4" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Total Products">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Total Products</div>
-							  <div class="card-body">
-							   	<b class="card-image"><i class='bx bx-box header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-6">
-	                <div class="row">
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Item Accept By Courier">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Buy Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bx-abacus header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div> 
-							</div>
-	                    </div>
-	                	<div class="col" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Collected">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Process Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bx-donate-blood header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	               </div>
-	           </div>
-	           <div class="col-md-6">
-	                <div class="row">
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Shipped">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Pending Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bx-trip header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="In-Transit">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Cancel Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bxs-truck header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                </div>
-	            </div>
-	         </div>
-        </div>
+         <div class = "container-fluid page-header text-center">
+        	<b>View New Added Product</b>
         
-	
-	
+         </div>
+        
+         <div class = "container-fluid viewproduct-container">
+         	<div class="row">
+		        <div class="col-md-5">
+		          <div class="carousel-container position-relative">
+		  			<div id="myCarousel" class="carousel slide" data-ride="carousel">
+		              <div class="carousel-inner">
+		                <div class="carousel-item active" data-slide-number="0">
+		                  <img src="https://source.unsplash.com/Pn6iimgM-wo/1600x900/" class="d-block w-100" alt="..." data-remote="https://source.unsplash.com/Pn6iimgM-wo/" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+		                </div>
+		                <div class="carousel-item" data-slide-number="1">
+		                  <img src="https://source.unsplash.com/tXqVe7oO-go/1600x900/" class="d-block w-100" alt="..." data-remote="https://source.unsplash.com/tXqVe7oO-go/" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+		                </div>
+		                <div class="carousel-item" data-slide-number="2">
+		                  <img src="https://source.unsplash.com/qlYQb7B9vog/1600x900/" class="d-block w-100" alt="..." data-remote="https://source.unsplash.com/qlYQb7B9vog/" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+		                </div>
+		                <div class="carousel-item" data-slide-number="3">
+		                  <img src="https://source.unsplash.com/QfEfkWk1Uhk/1600x900/" class="d-block w-100" alt="..." data-remote="https://source.unsplash.com/QfEfkWk1Uhk/" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+		                </div>
+		                <div class="carousel-item" data-slide-number="4">
+		                  <img src="https://source.unsplash.com/CSIcgaLiFO0/1600x900/" class="d-block w-100" alt="..." data-remote="https://source.unsplash.com/CSIcgaLiFO0/" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+		                </div>
+		                <div class="carousel-item" data-slide-number="5">
+		                  <img src="https://source.unsplash.com/a_xa7RUKzdc/1600x900/" class="d-block w-100" alt="..." data-remote="https://source.unsplash.com/a_xa7RUKzdc/" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+		                </div>
+		                <div class="carousel-item" data-slide-number="6">
+		                  <img src="https://source.unsplash.com/uanoYn1AmPs/1600x900/" class="d-block w-100" alt="..." data-remote="https://source.unsplash.com/uanoYn1AmPs/" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+		                </div>
+		                <div class="carousel-item" data-slide-number="7">
+		                  <img src="https://source.unsplash.com/_snqARKTgoc/1600x900/" class="d-block w-100" alt="..." data-remote="https://source.unsplash.com/_snqARKTgoc/" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+		                </div>
+		                <div class="carousel-item" data-slide-number="8">
+		                  <img src="https://source.unsplash.com/M9F8VR0jEPM/1600x900/" class="d-block w-100" alt="..." data-remote="https://source.unsplash.com/M9F8VR0jEPM/" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+		                </div>
+		                <div class="carousel-item" data-slide-number="9">
+		                  <img src="https://source.unsplash.com/Q1p7bh3SHj8/1600x900/" class="d-block w-100" alt="..." data-remote="https://source.unsplash.com/Q1p7bh3SHj8/" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+		                </div>
+		              </div>
+		            </div>
+		            
+		            <!-- Carousel Navigation -->
+		            <div id="carousel-thumbs" class="carousel slide" data-ride="carousel">
+		              <div class="carousel-inner">
+		                <div class="carousel-item active">
+		                  <div class="row mx-0">
+		                    <div id="carousel-selector-0" class="thumb col-4 col-sm-2 px-1 py-2 selected" data-target="#myCarousel" data-slide-to="0">
+		                      <img src="https://source.unsplash.com/Pn6iimgM-wo/600x400/" class="img-fluid" alt="...">
+		                    </div>
+		                    <div id="carousel-selector-1" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="1">
+		                      <img src="https://source.unsplash.com/tXqVe7oO-go/600x400/" class="img-fluid" alt="...">
+		                    </div>
+		                    <div id="carousel-selector-2" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="2">
+		                      <img src="https://source.unsplash.com/qlYQb7B9vog/600x400/" class="img-fluid" alt="...">
+		                    </div>
+		                    <div id="carousel-selector-3" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="3">
+		                      <img src="https://source.unsplash.com/QfEfkWk1Uhk/600x400/" class="img-fluid" alt="...">
+		                    </div>
+		                    <div id="carousel-selector-4" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="4">
+		                      <img src="https://source.unsplash.com/CSIcgaLiFO0/600x400/" class="img-fluid" alt="...">
+		                    </div>
+		                    <div id="carousel-selector-5" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="5">
+		                      <img src="https://source.unsplash.com/a_xa7RUKzdc/600x400/" class="img-fluid" alt="...">
+		                    </div>
+		                  </div>
+		                </div>
+		                <div class="carousel-item">
+		                  <div class="row mx-0">
+		                    <div id="carousel-selector-6" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="6">
+		                      <img src="https://source.unsplash.com/uanoYn1AmPs/600x400/" class="img-fluid" alt="...">
+		                    </div>
+		                    <div id="carousel-selector-7" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="7">
+		                      <img src="https://source.unsplash.com/_snqARKTgoc/600x400/" class="img-fluid" alt="...">
+		                    </div>
+		                    <div id="carousel-selector-8" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="8">
+		                      <img src="https://source.unsplash.com/M9F8VR0jEPM/600x400/" class="img-fluid" alt="...">
+		                    </div>
+		                    <div id="carousel-selector-9" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="9">
+		                      <img src="https://source.unsplash.com/Q1p7bh3SHj8/600x400/" class="img-fluid" alt="...">
+		                    </div>
+		                    <div class="col-2 px-1 py-2"></div>
+		                    <div class="col-2 px-1 py-2"></div>
+		                  </div>
+		                </div>
+		              </div>
+		              <a class="carousel-control-prev" href="#carousel-thumbs" role="button" data-slide="prev">
+		                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		                <span class="sr-only">Previous</span>
+		              </a>
+		              <a class="carousel-control-next" href="#carousel-thumbs" role="button" data-slide="next">
+		                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		                <span class="sr-only">Next</span>
+		              </a>
+		            </div>
+		            
+		          </div>
+		        </div>
+		        <div class="col-md-7">
+		          <br>
+		          <b class="product-title">Product Title</b>
+		          <p class="product-subtitle">Product Subtitle</p>
+		          <div class="rating-section">
+		              <span class="fa fa-star checked staricon"></span>
+		              <span class="fa fa-star checked staricon"></span>
+		              <span class="fa fa-star checked staricon"></span>
+		              <span class="fa fa-star staricon"></span>
+		              <span class="fa fa-star staricon"></span>
+		              3/5.
+		          </div>
+		          <b class="price">650.00</b>
+		          <p class="delivery">+ Free Delivery</p>
+		          <div class="policies">
+		            <b>Prepaid Available</b>
+		            <p>No return Policy</p>
+		          </div>
+		          
+		        </div>
+		      </div>
+         
+        </div>
+        <div class = "shopname-container">
+	      <p>Sold By:</p>
+	      <h6>Shop Name</h6>
+	    </div>
+	    
+	    <div class = "product-description-bar">
+	      <b>Product Description</b>
+	      <p class = "product-description pt-2">
+	        Triple rear camera setup- Main Camera 12MP Dual Pixel + Ultra Wide 12MP Camera + Tele1 3X 64MP Camera | 10MP front Dual Pixel Camera
+	        <br>
+	        (6.7-inch) Dynamic AMOLED 2X Display, FHD+ resolution with 2400 X 1080 pixels resolution, 394 PPI with 16M colours
+	        <br>
+	        8GB RAM | 128GB internal Storage | Dual SIM (nano+nano) dual-standby (5G+5G)
+	        <br>
+	        Android Pie v10.0 operating system with 2.9GHz Exynos 2100 octa core processor
+	        <br>
+	        4800mAH lithium-ion battery, 1 year manufacturer warranty for device and 6 months manufacturer warranty for in-box accessories including batteries from the date of purchase
+      		</p>
+    	</div>
 	<div class = "main-footer" style = "margin-top:50px;font-size:x-small;font-weight:bolder;text-align:center;bottom:0;">
 		<p class = "main-footer-text">Copyright @ 2021 All Rights Reserved. Terms of Use | Privacy Policy AND Website Design and Developed By <b style = "font-style:oblique;font-weight:bolder;">Suraj Nikam</b></p>
 	</div>

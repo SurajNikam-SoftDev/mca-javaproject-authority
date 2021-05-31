@@ -19,6 +19,17 @@ input[type=text], select{
     outline: none;  
 }
 
+input[type=date], input[type=file]{
+    font-size: 12px;   
+    outline: none;  
+}
+
+input[type=email], input[type=password]{
+    font-size: 12px;   
+    outline: none;   
+}
+
+
 label{
 	font-size: 14px;
 	font-weight: bolder; 

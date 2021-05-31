@@ -5,7 +5,7 @@
 <head>
 	<meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-   	<title>ApniDukaanASC :: Staff Panel</title>
+   	<title>ApniDukaanASC :: Payments</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
 	<!-- Bootstrap CSS -->
@@ -17,8 +17,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
         
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/home.css">
-    
+    <link rel="stylesheet" href="./assets/css/payments.css">
     
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -149,73 +148,68 @@ datalist{
         </div>
 
         <!--========== CONTENTS ==========-->
-        <div class = "container-fluid">
-        	<div class="row">
-	            <div class="col-md-4">
-	                <div class="row">
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Total Products</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bx-abacus header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Buy Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bx-donate-blood header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-4">
-	                <div class="row">
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Process Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bx-trip header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Pending Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bxs-truck header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-4">
-	                <div class="row">
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Cancel Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bxs-diamond header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                    <div class="col" style="padding:5px;">
-	               			
-	                    </div>
-	                </div>
-	            </div>
-	            
-	         </div>
-        </div>
+        <div class = "container-fluid page-header text-center">
+        	<b>Payment</b>
         
-	<div class = "main-footer" style = "margin-top:50px;font-size:x-small;font-weight:bolder;text-align:center;bottom:0;">
+        </div>
+        <div class = "container-fluid payment-container">
+        	<div class = "row mypayment-bar mt-2">
+	            <div class = "col-3 text-left pt-2 pm-2" style = "display:block;margin-left: auto;margin-right: auto;">
+	                <img src = "assets/img/2.jpg" class = "mypayment-img" alt="Product Img"/>
+	            </div> 
+	            <div class = "col-9 mypayment-header pt-2 pm-2" >
+	                <b class = "header-title">Order Id : 16651132-6256350-63560332 </b>
+	                <p class = "header-subtitle">Pending</p>
+	            </div>
+	        </div>
+	        <div class = "row mypayment-bar">
+	            <div class = "col-3 text-left pt-2 pm-2" style = "display:block;margin-left: auto;margin-right: auto;">
+	                <img src = "assets/img/2.jpg" class = "mypayment-img" alt="Product Img"/>
+	            </div> 
+	            <div class = "col-9 mypayment-header pt-2 pm-2" >
+	                <b class = "header-title">Order Id : 16651132-6256350-63560332 </b>
+	                <p class = "header-subtitle">Pending</p>
+	            </div>
+	        </div>
+	        <div class = "row mypayment-bar">
+	            <div class = "col-3 text-left pt-2 pm-2" style = "display:block;margin-left: auto;margin-right: auto;">
+	                <img src = "assets/img/2.jpg" class = "mypayment-img" alt="Product Img"/>
+	            </div> 
+	            <div class = "col-9 mypayment-header pt-2 pm-2" >
+	                <b class = "header-title">Order Id : 16651132-6256350-63560332 </b>
+	                <p class = "header-subtitle">Paid</p>
+	            </div>
+	        </div>
+	        <div class = "row mypayment-bar">
+	            <div class = "col-3 text-left pt-2 pm-2" style = "display:block;margin-left: auto;margin-right: auto;">
+	                <img src = "assets/img/2.jpg" class = "mypayment-img" alt="Product Img"/>
+	            </div> 
+	            <div class = "col-9 mypayment-header pt-2 pm-2" >
+	                <b class = "header-title">Order Id : 16651132-6256350-63560332 </b>
+	                <p class = "header-subtitle">Pending</p>
+	            </div>
+	        </div>
+	        <div class = "row mypayment-bar">
+	            <div class = "col-3 text-left pt-2 pm-2" style = "display:block;margin-left: auto;margin-right: auto;">
+	                <img src = "assets/img/2.jpg" class = "mypayment-img" alt="Product Img"/>
+	            </div> 
+	            <div class = "col-9 mypayment-header pt-2 pm-2" >
+	                <b class = "header-title">Order Id : 16651132-6256350-63560332 </b>
+	                <p class = "header-subtitle">Paid</p>
+	            </div>
+	        </div>
+	        <div class = "row mypayment-bar">
+	            <div class = "col-3 text-left pt-2 pm-2" style = "display:block;margin-left: auto;margin-right: auto;">
+	                <img src = "assets/img/2.jpg" class = "mypayment-img" alt="Product Img"/>
+	            </div> 
+	            <div class = "col-9 mypayment-header pt-2 pm-2" >
+	                <b class = "header-title">Order Id : 16651132-6256350-63560332 </b>
+	                <p class = "header-subtitle">Pending</p>
+	            </div>
+	        </div>
+        
+        </div>
+     <div class = "main-footer" style = "margin-top:50px;font-size:x-small;font-weight:bolder;text-align:center;bottom:0;">
 		<p class = "main-footer-text">Copyright @ 2021 All Rights Reserved. Terms of Use | Privacy Policy AND Website Design and Developed By <b style = "font-style:oblique;font-weight:bolder;">Suraj Nikam</b></p>
 	</div>
 	
@@ -228,5 +222,42 @@ datalist{
     
     <script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    <script type="text/javascript">
+	//	$('.myDataTable').DataTable();
+		
+        var table = $('.myDataTable').DataTable({
+            scrollY: 400,
+            scrollX: true,
+            scrollCollapse: true,
+            
+        });
+
+        $('.myDataTable thead .search-col').each(function(){
+            var title = $(this).text();
+            $(this).jsp('<input type = "text" placeholder = "Search '+title+'" />');
+        });
+        
+        table.columns().every(function(){
+            var that = this;
+            $('input', this.header()).on('keyup change', function(){
+                if(that.search() !== this.value)
+                {
+                    that.search(this.value).draw();
+                } 
+            });
+        });
+		
+   
+        function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+        }
+        
+        
+        
+
+        
+        </script>
 </body>
 </html>

@@ -1,0 +1,43 @@
+.page-header{
+	background-color: white;
+	box-shadow:1px 1px 1px 1px lightgrey;
+	padding:10px 0px;
+	border-radius:8px;
+}
+
+.address-container{
+	padding:0px 0px;
+	border-radius: 8px;
+} 
+
+.card{
+	border-radius: 8px;
+	box-shadow:2px 2px 2px 2px lightgrey;
+	border:none;
+}
+
+.card:hover{
+	border-radius: 8px;
+	box-shadow:2px 2px 2px 2px grey;
+	border:none;
+} 
+
+.deletebutton{
+	border-radius: 0px 0px 0px 8px;
+	border:none;
+}
+
+.editbutton{
+	border-radius: 0px 0px 8px 0px;
+	border:none;
+} 
+
+.card-header{
+	padding:15px 0px;
+	font-size:medium;
+	font-weight:bolder;
+	background-color: #002060;
+	color:white;
+	border-radius: 8px 8px 0px 0px;
+}	
+

@@ -5,7 +5,7 @@
 <head>
 	<meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-   	<title>ApniDukaanASC :: Staff Panel</title>
+   	<title>ApniDukaanASC :: Manage Account</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
 	<!-- Bootstrap CSS -->
@@ -17,8 +17,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
         
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/home.css">
-    
+    <link rel="stylesheet" href="./assets/css/form.css">
+    <link rel="stylesheet" href="./assets/css/filtertable.css">
     
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -149,73 +149,71 @@ datalist{
         </div>
 
         <!--========== CONTENTS ==========-->
-        <div class = "container-fluid">
-        	<div class="row">
-	            <div class="col-md-4">
-	                <div class="row">
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Total Products</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bx-abacus header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Buy Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bx-donate-blood header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-4">
-	                <div class="row">
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Process Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bx-trip header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Pending Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bxs-truck header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-4">
-	                <div class="row">
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Cancel Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bxs-diamond header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                    <div class="col" style="padding:5px;">
-	               			
-	                    </div>
-	                </div>
-	            </div>
-	            
-	         </div>
-        </div>
+        <div class = "container-fluid page-header text-center">
+        	<b>Manage Account</b>
         
-	<div class = "main-footer" style = "margin-top:50px;font-size:x-small;font-weight:bolder;text-align:center;bottom:0;">
+        </div>
+        <div class = "container-fluid form-container">
+        <div class = "row justify-content-center">
+        	<div class="col-6">
+        		<form class = "form-body ">
+		            <div class="form-row justify-content-center">
+		            	<div class="form-group col-md-4">
+		                    <label for="firstname">First Name</label>
+		                    <input type="text" class="form-control" name="firstname" placeholder="First Name">
+		                </div>
+		                <div class="form-group col-md-4">
+		                    <label for="middlename">Middle Name</label>
+		                    <input type="text" class="form-control" name="middlename" placeholder="Middle Name">
+		                </div>
+		                <div class="form-group col-md-4">
+		                    <label for="lastname">Last Name</label>
+		                    <input type="text" class="form-control" name="lastname" placeholder="Last Name">
+		                </div>
+		            </div>
+		            <div class="form-group">
+		                <label for="inputAddress">Email</label>
+		                <input type="email" class="form-control" name="email" placeholder="Email">
+		            </div>
+		           	<div class="form-group">
+		                <label for="inputAddress">Password</label>
+		                <input type="password" class="form-control" name="password" placeholder="Password">
+		            </div>
+		            
+					
+		            <div class = "text-center">
+		                <!-- Button trigger modal -->
+		                <button type="button" class="btn btn-primary form-control"  data-toggle="modal" data-target="#exampleModalCenter" style = "font-size: 12px;font-weight: bolder;" >Submit</button>
+		            </div>
+		            
+		            <!-- Modal -->
+		            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		                <div class="modal-dialog modal-dialog-centered" role="document">
+		                <div class="modal-content">
+		                    <div class="modal-header text-center">
+		                    <h5 class="modal-title" id="exampleModalLongTitle">Confirmation</h5>
+		                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		                        <span aria-hidden="true">&times;</span>
+		                    </button>
+		                    </div>
+		                    <div class="modal-body text-center">
+		                   		You Want To Save Data
+		                    </div>
+		                    <div class="modal-footer">
+		                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button> -->
+		                        <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">No</button>
+		                        <button type="button" class="btn btn-primary" >Yes</button>
+		                    </div>
+		                </div>
+		                </div>
+		            </div>
+		            
+		        </form>
+        	</div>
+        </div>	
+	        
+        </div>
+     <div class = "main-footer" style = "margin-top:50px;font-size:x-small;font-weight:bolder;text-align:center;bottom:0;">
 		<p class = "main-footer-text">Copyright @ 2021 All Rights Reserved. Terms of Use | Privacy Policy AND Website Design and Developed By <b style = "font-style:oblique;font-weight:bolder;">Suraj Nikam</b></p>
 	</div>
 	
@@ -228,5 +226,42 @@ datalist{
     
     <script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    <script type="text/javascript">
+	//	$('.myDataTable').DataTable();
+		
+        var table = $('.myDataTable').DataTable({
+            scrollY: 400,
+            scrollX: true,
+            scrollCollapse: true,
+            
+        });
+
+        $('.myDataTable thead .search-col').each(function(){
+            var title = $(this).text();
+            $(this).jsp('<input type = "text" placeholder = "Search '+title+'" />');
+        });
+        
+        table.columns().every(function(){
+            var that = this;
+            $('input', this.header()).on('keyup change', function(){
+                if(that.search() !== this.value)
+                {
+                    that.search(this.value).draw();
+                } 
+            });
+        });
+		
+   
+        function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+        }
+        
+        
+        
+
+        
+        </script>
 </body>
 </html>

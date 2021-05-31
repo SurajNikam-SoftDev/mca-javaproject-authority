@@ -5,7 +5,7 @@
 <head>
 	<meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-   	<title>ApniDukaanASC :: Admin Panel</title>
+   	<title>ApniDukaanASC :: Address</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
 	<!-- Bootstrap CSS -->
@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
         
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/home.css">
+    <link rel="stylesheet" href="./assets/css/address.css">
     
    
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
@@ -30,6 +30,11 @@
 
 datalist{
 	max-height: 100px;
+}
+
+input[type=date], input[type=file]{
+    font-size: 12px;   
+    outline: none;  
 }
 </style>
 <body>
@@ -124,7 +129,7 @@ datalist{
                                 </a>
 								<div class="nav__dropdown-collapse">
                                     <div class="nav__dropdown-content">
-                                        <a href="NewProductList" class="nav__dropdown-item">New Product List</a>
+                                        <a href="NewAddedProductList" class="nav__dropdown-item">New Product List</a>
                                         <a href="ProductDetails" class="nav__dropdown-item">Product Details</a>
                                     </div>
                                 </div>
@@ -177,91 +182,76 @@ datalist{
                 </a>
             </nav>
         </div>
-
         <!--========== CONTENTS ==========-->
         
-        <div class = "container-fluid">
-        	<div class="row">
-        		<div class="col-md-12">
-	                <div class="row">
-	                    <div class="col-md-4" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Total Staff">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Total Staff</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bx-buildings header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                    <div class="col-md-4" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Total Shops And Custmers">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Total Shop&Cust.</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bxs-group header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                    <div class="col-md-4" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Total Products">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Total Products</div>
-							  <div class="card-body">
-							   	<b class="card-image"><i class='bx bx-box header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-6">
-	                <div class="row">
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Item Accept By Courier">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Buy Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bx-abacus header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div> 
-							</div>
-	                    </div>
-	                	<div class="col" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Collected">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Process Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bx-donate-blood header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	               </div>
-	           </div>
-	           <div class="col-md-6">
-	                <div class="row">
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Shipped">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Pending Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bx-trip header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="In-Transit">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Cancel Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bxs-truck header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                </div>
-	            </div>
-	         </div>
-        </div>
+         <div class = "container-fluid page-header text-center">
+        	<b>Address</b>
+         </div>
         
-	
-	
+         <div class="container-fluid address-container">
+	        <div class="row">
+	            <div class="col-md-4 pt-3">
+	                <div class="card ">
+	                    <div class="card-header text-center">
+	                        Address 1
+	                    </div>
+	                    <div class="card-body">
+	                        <b>Customer Name</b>
+	                        <address>
+	                            Box 564, Disneyland<br>
+	                            USA
+	                        </address>
+	                        <input type = "radio" name ="defaultaddress"><b style = "font-size:smaller;padding-top:-5px;"> Default Address</b>
+	                    </div>
+	                    <div class="btn-group" role="group" aria-label="Basic example">
+	                        <button type="button" class="btn btn-danger deletebutton"  data-toggle="tooltip" data-placement="top" title="Delete Address"  href="javascript:void(0)" onclick="location.href='DeleteAddress'"><i class="material-icons nav__icon pt-2" style ="color:white;">delete</i></button>
+	                        <button type="button" class="btn btn-warning defaultbutton"  data-toggle="tooltip" data-placement="top" title="Default Address" href="javascript:void(0)" onclick="location.href='SetDefaultAddress'" onclick="defaultaddress()"><i class="material-icons nav__icon pt-2" style ="color:white;">pin_drop</i></button>	
+	                        <button type="button" class="btn btn-success editbutton"  data-toggle="tooltip" data-placement="top" title="Edit Address" href="javascript:void(0)" onclick="location.href='EditAddress'"><i class="material-icons nav__icon pt-2" style ="color:white;">draw</i></button>
+	                    </div>
+	                </div>   
+	            </div>
+	            <div class="col-md-4 pt-3">
+	                <div class="card">
+	                    <div class="card-header text-center">
+	                        Address 2
+	                    </div>
+	                    <div class="card-body">
+	                        <b>Customer Name</b>
+	                        <address>
+	                            Box 564, Disneyland<br>
+	                            USA
+	                        </address>
+	                        <input type = "radio" name ="defaultaddress"><b style = "font-size:smaller;padding-top:-5px;"> Default Address</b>
+	                    </div>
+	                    <div class="btn-group" role="group" aria-label="Basic example">
+	                        <button type="button" class="btn btn-danger deletebutton"  data-toggle="tooltip" data-placement="top" title="Delete Address"  href="javascript:void(0)" onclick="location.href='DeleteAddress'"><i class="material-icons nav__icon pt-2" style ="color:white;">delete</i></button>
+	                        <button type="button" class="btn btn-warning defaultbutton"  data-toggle="tooltip" data-placement="top" title="Default Address" href="javascript:void(0)" onclick="location.href='SetDefaultAddress'" onclick="defaultaddress()"><i class="material-icons nav__icon pt-2" style ="color:white;">pin_drop</i></button>	
+	                        <button type="button" class="btn btn-success editbutton"  data-toggle="tooltip" data-placement="top" title="Edit Address" href="javascript:void(0)" onclick="location.href='EditAddress'"><i class="material-icons nav__icon pt-2" style ="color:white;">draw</i></button>
+	                    </div>
+	                </div>  
+	            </div>
+	            <div class="col-md-4 pt-3">
+	                <div class="card">
+	                    <div class="card-header text-center">
+	                        Address 3
+	                    </div>
+	                    <div class="card-body">
+	                        <b>Customer Name</b>
+	                        <address>
+	                            Box 564, Disneyland<br>
+	                            USA
+	                        </address>
+	                        <input type = "radio" name ="defaultaddress"><b style = "font-size:smaller;padding-top:-5px;"> Default Address</b>
+	                    </div>
+	                    <div class="btn-group" role="group" aria-label="Basic example">
+	                        <button type="button" class="btn btn-danger deletebutton"  data-toggle="tooltip" data-placement="top" title="Delete Address"  href="javascript:void(0)" onclick="location.href='DeleteAddress'"><i class="material-icons nav__icon pt-2" style ="color:white;">delete</i></button>
+	                        <button type="button" class="btn btn-warning defaultbutton"  data-toggle="tooltip" data-placement="top" title="Default Address" href="javascript:void(0)" onclick="location.href='SetDefaultAddress'" onclick="defaultaddress()"><i class="material-icons nav__icon pt-2" style ="color:white;">pin_drop</i></button>	
+	                        <button type="button" class="btn btn-success editbutton"  data-toggle="tooltip" data-placement="top" title="Edit Address" href="javascript:void(0)" onclick="location.href='EditAddress'"><i class="material-icons nav__icon pt-2" style ="color:white;">draw</i></button>
+	                    </div>
+	                </div>  
+	            </div>
+	        </div>
+	    </div>
 	<div class = "main-footer" style = "margin-top:50px;font-size:x-small;font-weight:bolder;text-align:center;bottom:0;">
 		<p class = "main-footer-text">Copyright @ 2021 All Rights Reserved. Terms of Use | Privacy Policy AND Website Design and Developed By <b style = "font-style:oblique;font-weight:bolder;">Suraj Nikam</b></p>
 	</div>

@@ -1,0 +1,116 @@
+.page-header{
+	background-color: white;
+	box-shadow:1px 1px 1px 1px lightgrey;
+	padding:10px 0px;
+	border-radius:8px;
+}
+
+.viewproduct-container{
+	border-top:4px solid #007bff;
+	padding:25px;
+	margin-top:15px;
+	background-color: white;
+	box-shadow:1px 1px 1px 1px lightgrey;
+	border-radius:8px; 
+}
+
+.carousel {
+    position: relative;
+  }
+  .carousel-item img {
+    object-fit: cover;
+  }
+  #carousel-thumbs {
+    /* background: rgba(255,255,255,.3); */
+    background-color: transparent;
+    bottom: 0;
+    left: 0;
+    padding: 0 25px;
+    right: 0;
+  }
+  #carousel-thumbs img {
+    border: 5px solid transparent;
+    cursor: pointer;
+  }
+  #carousel-thumbs img:hover {
+    border-color: rgba(255,255,255,.3);
+  }
+  #carousel-thumbs .selected img {
+    border-color: #fff;
+  }
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 40px;
+  }
+  @media all and (max-width: 767px) {
+    .carousel-container #carousel-thumbs img {
+      border-width: 3px;
+    }
+  }
+  @media all and (min-width: 576px) {
+    .carousel-container #carousel-thumbs {
+      position: absolute;
+    }
+  }
+  @media all and (max-width: 576px) {
+    .carousel-container #carousel-thumbs {
+      background: #eee;
+    }
+  }
+  
+  
+.product-title{
+  font-size: 14px;
+  font-weight: bolder;
+
+}
+
+.product-subtitle{
+  font-size: 12px; 
+}
+
+.rating-section{
+  background-color: white;
+}
+
+.staricon{
+  font-size:25px;
+}
+
+.checked {
+  color: orange;
+}
+
+.price{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: xx-large;
+  font-weight: bolder;
+}
+
+.policies{
+  padding-top: 15px;
+  font-size: small;
+}
+
+.shopname-container{
+	border-top:4px solid #007bff;
+	padding:15px;
+	margin-top:15px;
+	background-color: white;
+	box-shadow:1px 1px 1px 1px lightgrey;
+	border-radius:8px; 
+}
+
+.product-description-bar {
+ 	border-top:4px solid #007bff;
+	padding:25px;
+	margin-top:15px;
+	background-color: white;
+	box-shadow:1px 1px 1px 1px lightgrey;
+	border-radius:8px; 
+	font-size:14px;
+}
+
+.product-description { 
+ 	font-size:12px;	 
+}

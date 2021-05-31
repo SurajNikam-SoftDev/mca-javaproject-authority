@@ -5,7 +5,7 @@
 <head>
 	<meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-   	<title>ApniDukaanASC :: Admin Panel</title>
+   	<title>ApniDukaanASC :: Reports</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
 	<!-- Bootstrap CSS -->
@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
         
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/home.css">
+    <link rel="stylesheet" href="./assets/css/form.css">
+    <link rel="stylesheet" href="./assets/css/filtertable.css">
     
    
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
@@ -124,7 +125,7 @@ datalist{
                                 </a>
 								<div class="nav__dropdown-collapse">
                                     <div class="nav__dropdown-content">
-                                        <a href="NewProductList" class="nav__dropdown-item">New Product List</a>
+                                        <a href="NewAddedProductList" class="nav__dropdown-item">New Product List</a>
                                         <a href="ProductDetails" class="nav__dropdown-item">Product Details</a>
                                     </div>
                                 </div>
@@ -177,91 +178,167 @@ datalist{
                 </a>
             </nav>
         </div>
-
         <!--========== CONTENTS ==========-->
         
-        <div class = "container-fluid">
-        	<div class="row">
-        		<div class="col-md-12">
-	                <div class="row">
-	                    <div class="col-md-4" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Total Staff">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Total Staff</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bx-buildings header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                    <div class="col-md-4" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Total Shops And Custmers">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Total Shop&Cust.</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bxs-group header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                    <div class="col-md-4" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Total Products">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Total Products</div>
-							  <div class="card-body">
-							   	<b class="card-image"><i class='bx bx-box header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-6">
-	                <div class="row">
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Item Accept By Courier">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Buy Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bx-abacus header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div> 
-							</div>
-	                    </div>
-	                	<div class="col" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Collected">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Process Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bx-donate-blood header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	               </div>
-	           </div>
-	           <div class="col-md-6">
-	                <div class="row">
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Shipped">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Pending Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bx-trip header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                    <div class="col" style="padding:5px;">
-	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="In-Transit">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Cancel Order</div>
-							  <div class="card-body">
-							    <b class="card-image"><i class='bx bxs-truck header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
-							  </div>
-							</div>
-	                    </div>
-	                </div>
-	            </div>
-	         </div>
+         <div class = "container-fluid page-header text-center">
+        	<b>Reports</b>
+        
         </div>
         
-	
-	
+        <div class="container-fluid filter-container" style= "" >
+			<form class = "form-body">
+	            <div class="form-row">
+	                <div class="form-group col-md-6">
+	                    <label for="productprice">Select Category</label>
+	                    <select name="category" class="form-control" style = "font-size: 12px;">
+		                    <option selected>Choose Category...</option>
+		                    <option>Name</option>
+		                    <option>Shop Name</option>
+		                    <option>Email ID</option>
+		                    <option>Mobile No</option>
+	                    </select>
+	                </div>
+	                <div class="form-group col-md-6">
+	                    <label for="productprice">Search Here</label>
+	                    <input type="text" class="form-control" name="search" placeholder="Search...">
+	                </div>
+	            </div>
+	            <div class = "text-right">
+	                <!-- Button trigger modal -->
+	                <button type="button" class="btn btn-primary"  style = "font-size: 12px;font-weight: bolder;" >Search</button>
+	            </div>
+        	</form>
+        
+		</div>   
+    
+
+		<div class="container-fluid table-container" style= "" >
+			
+        <table class="table table-striped table-bordered myDataTable" style = "width: 100%;">
+            <thead>
+                <tr>
+                    <th class = "search-col">#</th>
+                    <th class = "search-col">Date</th>
+                    <th class = "search-col">Sender Name</th>
+                    <th class = "search-col">Recipient Name</th>
+                    <th class = "search-col">Amount</th>
+                    <th class = "search-col" >Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>suraj</td>
+                    <td>gajanan</td>
+                    <td>nikam</td>
+                    <td>8788451215</td>
+                    <td>suraj123@gmail.com</td>
+                    <td>Delivered</td>
+                    	
+                </tr>
+                <tr>
+                    <td>akshay</td>
+                    <td>gajanan</td>
+                    <td>nikam</td>
+                    <td>1846524121</td>
+                    <td>akshay123@gmail.com</td>
+                    <td>Delivered</td>	
+                    	
+                </tr>
+                <tr>
+                    <td>mayur</td> 
+                    <td>a</td>
+                    <td>pawale</td>
+                    <td>2541251215</td>
+                    <td>mayur123@gmail.com</td>
+                    <td>Delivered</td>
+                    	
+                </tr>
+                <tr>
+                    <td>suresh</td>
+                    <td>k</td>
+                    <td>choudhary</td>
+                    <td>2463541515</td>
+                    <td>suresh123@gmail.com</td>
+                    <td>Delivered</td>
+                    	
+                </tr>
+                <tr>
+                    <td>vishal</td>
+                    <td>j</td>
+                    <td>chillal</td>
+                    <td>2168574122</td>
+                    <td>vishal123@gmail.com</td>
+                    <td>Delivered</td>
+                    	
+                </tr>
+                <tr>
+                    <td>ajay</td>
+                    <td>g</td>
+                    <td>shinde</td>
+                    <td>13525010652</td>
+                    <td>ajay123@gmail.com</td>
+                    <td>Delivered</td>
+                    	
+                </tr>
+                <tr>
+                    <td>akash</td>
+                    <td>n</td>
+                    <td>shinde</td>
+                    <td>8416524121</td>
+                    <td>akash123@gmail.com</td>
+                    <td>Delivered</td>
+                    	
+                </tr>
+                <tr>
+                    <td>aniket</td> 
+                    <td>a</td>
+                    <td>mandavkar</td>
+                    <td>7524151215</td>
+                    <td>akash123@gmail.com</td>
+                    <td>Delivered</td>
+                    	
+                </tr>
+                <tr>
+                    <td>sumesh</td>
+                    <td>k</td>
+                    <td>ojha</td>
+                    <td>8653541515</td>
+                    <td>sumesh123@gmail.com</td>
+                    <td>Delivered</td>
+                    	
+                </tr>
+                <tr>
+                    <td>gaurav</td>
+                    <td>n</td>
+                    <td>kaveri</td>
+                    <td>6118574122</td>
+                    <td>gaurav123@gmail.com</td>
+                    <td>Delivered</td>
+                    	
+                </tr>
+                <tr>
+                    <td>shubham</td>
+                    <td>p</td>
+                    <td>pawar</td>
+                    <td>8755251215</td>
+                    <td>shubham123@gmail.com</td>
+                    <td>Delivered</td>
+                    	
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th class = "search-col">#</th>
+                    <th class = "search-col">Reference Number</th>
+                    <th class = "search-col">Sender Name</th>
+                    <th class = "search-col">Recipient Name</th>
+                    <th class = "search-col">Status</th>
+                    <th class = "search-col" >Action</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div> 
+    
 	<div class = "main-footer" style = "margin-top:50px;font-size:x-small;font-weight:bolder;text-align:center;bottom:0;">
 		<p class = "main-footer-text">Copyright @ 2021 All Rights Reserved. Terms of Use | Privacy Policy AND Website Design and Developed By <b style = "font-style:oblique;font-weight:bolder;">Suraj Nikam</b></p>
 	</div>
@@ -276,5 +353,51 @@ datalist{
     
     <script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    <script src="./assets/js/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    
+    <script src="./assets/js/main.js"></script>
+    
+    <script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    <script type="text/javascript">
+	//	$('.myDataTable').DataTable();
+		
+        var table = $('.myDataTable').DataTable({
+            scrollY: 400,
+            scrollX: true,
+            scrollCollapse: true,
+            
+        });
+
+        $('.myDataTable thead .search-col').each(function(){
+            var title = $(this).text();
+            $(this).jsp('<input type = "text" placeholder = "Search '+title+'" />');
+        });
+        
+        table.columns().every(function(){
+            var that = this;
+            $('input', this.header()).on('keyup change', function(){
+                if(that.search() !== this.value)
+                {
+                    that.search(this.value).draw();
+                } 
+            });
+        });
+		
+   
+        function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+        }
+        
+        
+        
+
+        
+        </script>
 </body>
 </html>
