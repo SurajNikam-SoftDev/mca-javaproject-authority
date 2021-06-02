@@ -1,3 +1,5 @@
+<%@page import="com.apnidukaanasc.admin.dao.StaffDao"%>
+<%@page import="com.apnidukaanasc.admin.bean.StaffBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isErrorPage="true"%>
 <!DOCTYPE html>
@@ -22,6 +24,41 @@
    
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
+    <script type = "text/javascript">
+    function validation(){
+    		var zippattern="/^\d{6}$/";	//	pincode
+            var mobilepattern='/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/';	//  mobile number
+            //var email=/^([a-z A-Z 0-9 _\.\-])+\@(([a-z A-Z 0-9\-])+\.)+([a-z A-z 0-9]{3,3})+$/;	//	email
+            
+            
+            if(document.form.name.value=='')
+    		{
+    			document.getElementById("errorspan").innerHTML = "Enter Name";  
+    			return false;
+    		}
+    		else if(document.form.category.value== '-1' )
+    		{
+    			document.getElementById("errorspan").innerHTML = "Select category";  
+    			return false;
+    		}
+    		else if(document.form.email.value==''){
+    			document.getElementById("errorspan").innerHTML = "Enter Email Id";  
+    			return false;
+    		}
+    		else if(document.form.password.value==''){
+    			document.getElementById("errorspan").innerHTML = "Enter Password";  
+    			return false;
+    		}
+    		else
+    		{
+    			document.getElementById("errorspan").innerHTML = "";
+    			return true;
+    		}
+    		 
+    	} 
+    </script>
+    
 </head>
 <style>
 [list]::-webkit-calendar-picker-indicator {
@@ -33,11 +70,25 @@ datalist{
 }
 </style>
 <body>
+<%
+	if(session.getAttribute("emailid")==null)
+	{
+		response.sendRedirect("./LogIn");
+	}	
+
+
+String key = request.getParameter("key")!=null || request.getParameter("key")!="" ? request.getParameter("key") : "undefined" ;
+key = key.isEmpty()?"undefined":key;
+
+//System.out.println("Key :: "+key);
+StaffBean sb = StaffDao.getAllRecordsById(key);
+
+%>
 	<!--========== HEADER ==========-->
         <header class="header">
             <div class="header__container">
 				
-                <a href="AdminPanel" class="header__logo" style = "text-decoration:none;">ApniDukaanASC - Admin Panel</a>
+                <a href="AdminPanel" class="header__logo" style = "text-decoration:none;">ApniDukaanASC - Admin Panel |<small> Welcome, <%= session.getAttribute("emailid") %></small></a>
     
                 <div class="header__search">
                     <input list="browsers" name="browser" id="browser" placeholder="Search" class="header__input"><i class='bx bx-search header__icon'></i>
@@ -167,6 +218,7 @@ datalist{
                                 <i class='bx bx-compass nav__icon' ></i>
                                 <span class="nav__name">Manage Account</span>
                             </a>
+                            <small class="nav__subtitle" style = "font-size:12px;"> Welcome, <b style = "text-transform:lowercase;"><%= session.getAttribute("emailid") %></b></small>
                         </div>
                     </div>
                 </div>
@@ -185,66 +237,42 @@ datalist{
         </div>
         <div class = "container-fluid form-container">
         	
-        <form class = "form-body">
+        <form class = "form-body" name = "form" action = "./EditStaff" method = "POST">
             
-           
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="productprice">First Name</label>
-                    <input type="text" class="form-control" name="firstname" placeholder="First Name">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="productprice">Last Name</label>
-                    <input type="text" class="form-control" name="lastname" placeholder="Last Name">
-                </div>
+            <input type = "hidden" name="key" value = "<%= key %>">
+            <div class="form-group">
+                    <label for="productprice">Name</label>
+                    <input type="text" class="form-control" name="name" value = "<%= sb.getName()%>" placeholder="Full Name" style = "text-transform:uppercase;" >
             </div>
             <div class="form-group">
                 <label for="inputAddress">Category</label>
                 <select name="category" class="form-control" style = "font-size: 12px;">
-                    <option selected>Choose Category...</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
+                    <option value = "-1" selected>Choose Category...</option>
+                    <option style = "background-color:lightgrey;font-weight:bolder;" selected><%= sb.getPosition() %></option>
+                    <option>Manager</option>
+                    <option>Product - Back Office</option>
+                    <option>Parcel - Back Office</option>
+                    <option>Customer Care</option>
                 </select>
             </div>
 			<div class="form-group">
                 <label for="inputAddress">Email</label>
-                <input type="text" class="form-control" name="email" placeholder="Email">
+                <input type="email" class="form-control" name="email" value = "<%= sb.getEmail() %>" placeholder="Email">
             </div>
             <div class="form-group">
                 <label for="inputAddress">Password</label>
-                <input type="text" class="form-control" name="password" placeholder="Password">
+                <input type="password" class="form-control" name="password" value = "<%= sb.getPassword() %>" placeholder="Password">
             </div>
             
             
             <div class = "text-center">
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary form-control"  data-toggle="modal" data-target="#exampleModalCenter" style = "font-size: 12px;font-weight: bolder;" >Submit</button>
+                <button type="submit" class="btn btn-primary form-control" style = "font-size: 12px;font-weight: bolder;" onclick = "return validation()">Submit</button>
             </div>
-            
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header text-center">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Confirmation</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>
-                    <div class="modal-body text-center">
-                   		You Want To Save Data
-                    </div>
-                    <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button> -->
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">No</button>
-                        <button type="button" class="btn btn-primary" >Yes</button>
-                    </div>
-                </div>
-                </div>
-            </div>
-            
         </form>
+        	<div class = "text-center p-2">
+	        	<span id = "errorspan" style = "font-size:small;font-weight:bolder;color:red"></span>
+	        </div>
         
         
         </div>

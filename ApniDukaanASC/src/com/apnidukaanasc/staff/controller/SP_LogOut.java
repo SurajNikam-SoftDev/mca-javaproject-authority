@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class SP_LogOut
@@ -27,7 +28,14 @@ public class SP_LogOut extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-geRnerated method stub
-		response.sendRedirect("./LogIn");
+		HttpSession session=request.getSession();  
+        session.invalidate(); 
+        session=null;
+        
+//        System.out.println("LogOut Successfully");  
+        
+        
+        response.sendRedirect("./LogIn");
 	}
 
 	/**

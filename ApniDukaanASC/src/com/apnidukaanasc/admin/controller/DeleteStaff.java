@@ -1,24 +1,27 @@
 package com.apnidukaanasc.admin.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import com.apnidukaanasc.admin.dao.StaffDao;
 
 /**
- * Servlet implementation class LogOut
+ * Servlet implementation class DeleteStaff
  */
-@WebServlet("/LogOut")
-public class LogOut extends HttpServlet {
+@WebServlet("/DeleteStaff")
+public class DeleteStaff extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogOut() {
+    public DeleteStaff() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,14 +31,28 @@ public class LogOut extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session=request.getSession();  
-        session.invalidate(); 
-        session=null;
-        
-//        System.out.println("LogOut Successfully");  
-        
-        
-        response.sendRedirect("./LogIn");
+		String key = request.getParameter("key")!=null || request.getParameter("key")!="" ? request.getParameter("key") : "undefined" ;
+		key = key.isEmpty()?"undefined":key;
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		
+		System.out.println(key);
+		
+		int status = StaffDao.delete(Integer.parseInt(key));
+
+		if (status == 1) {
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Data Is Deleted');");
+			out.println("</script>");
+			response.sendRedirect("./StaffList");
+		} else { 
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Data Is Not Deleted');");
+			out.println("</script>");
+			response.sendRedirect("./StaffList");
+		}
 	}
 
 	/**
