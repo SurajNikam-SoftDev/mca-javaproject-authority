@@ -22,6 +22,83 @@
    
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script type = "text/javascript">
+        
+    	function validation(){
+    		
+    		var contactexp = /^\d{10}$/;
+			var emailexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+			var zipexp = /^\d{6}$/;
+			var letterexp = /^[A-Za-z]+$/;
+    		
+			if(document.form.firstname.value == '')
+    		{
+    			document.getElementById("errorspan").innerHTML = "Enter First Name";  
+    			return false;
+    		}
+    		else if(!document.form.firstname.value.match(letterexp))
+    		{
+    			document.getElementById("errorspan").innerHTML = "Enter Letters Only";  
+    			return false;
+    		} 
+    		else if(document.form.middlename.value == '')
+    		{
+    			document.getElementById("errorspan").innerHTML = "Enter Middle Name";  
+    			return false;
+    		}
+    		else if(!document.form.middlename.value.match(letterexp))
+    		{
+    			document.getElementById("errorspan").innerHTML = "Enter Letters Only";  
+    			return false;
+    		}
+    		else if(document.form.lastname.value == '')
+    		{
+    			document.getElementById("errorspan").innerHTML = "Enter Last Name";  
+    			return false;
+    		}
+    		else if(!document.form.lastname.value.match(letterexp))
+    		{
+    			document.getElementById("errorspan").innerHTML = "Enter Letters Only";  
+    			return false;
+    		}
+    		else if(document.form.contactno.value == '')
+    		{
+    			document.getElementById("errorspan").innerHTML = "Enter Contact Number";  
+    			return false;
+    		}
+    		else if(!document.form.contactno.value.match(contactexp))
+    		{
+    			document.getElementById("errorspan").innerHTML = "Enter Correct Contact Number";  
+    			return false;
+    		}
+    		else if(document.form.rank.value == -1)
+    		{
+    			document.getElementById("errorspan").innerHTML = "Select Rank";  
+    			return false;
+    		}
+    		else if(document.form.startdatetime.value == '')
+    		{
+    			document.getElementById("errorspan").innerHTML = "Select Start Date & Time";  
+    			return false;
+    		}
+    		else if(document.form.enddatetime.value == '')
+    		{
+    			document.getElementById("errorspan").innerHTML = "Select End Date & Time";  
+    			return false;
+    		}
+    		else if(document.form.uploadimage.value == '')
+    		{
+    			document.getElementById("errorspan").innerHTML = "Select Advertisement Image";  
+    			return false;
+    		}
+    		else 
+    		{
+    			document.getElementById("errorspan").innerHTML = "";
+    			return true;
+    		}
+			
+    	} 
+    </script>
 </head>
 <style>
 [list]::-webkit-calendar-picker-indicator {
@@ -197,18 +274,18 @@ input[type=date], input[type=file]{
         </div>
         <div class = "container-fluid form-container">
         	
-        <form class = "form-body">
+        <form class = "form-body" name = "form">
             
            
             <div class="form-row">
-            	<div class="form-group col-md-12">
-                    <label for="productprice">Owner Name</label>
+            	<div class="col-md-12">
+                    <label for="productprice">Owner Name<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
                 </div>
                 <div class="form-group col-md-4">
                     <input type="text" class="form-control" name="firstname" placeholder="First Name">
                 </div>
                 <div class="form-group col-md-4">
-                    <input type="text" class="form-control" name="lastname" placeholder="Last Name">
+                    <input type="text" class="form-control" name="middlename" placeholder="Middle Name">
                 </div>
                 <div class="form-group col-md-4">
                     <input type="text" class="form-control" name="lastname" placeholder="Last Name">
@@ -216,13 +293,13 @@ input[type=date], input[type=file]{
             </div>
             <div class="form-row">
 	            <div class="form-group col-md-6">
-	                <label for="inputAddress">Contact No</label>
+	                <label for="inputAddress">Contact No<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
 	                <input type="text" class="form-control" name="contactno" placeholder="Contact No">
 	            </div>
 	            <div class="form-group col-md-6">
-	                <label for="inputAddress">Advertisement Rank</label>
-	                 <select name="category" class="form-control" style = "font-size: 12px;">
-	                    <option selected>Choose Ranking...</option>
+	                <label for="inputAddress">Advertisement Rank<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
+	                 <select name="rank" class="form-control" style = "font-size: 12px;">
+	                    <option value = "-1" selected>Choose Ranking...</option>
 	                    <option>1</option>
 	                    <option>2</option>
 	                    <option>3</option>
@@ -231,49 +308,28 @@ input[type=date], input[type=file]{
             </div>
             <div class="form-row">
             	<div class="form-group col-md-6">
-	                <label for="inputAddress">Start DateTime</label>
+	                <label for="inputAddress">Start DateTime<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
 	                <input type="date" class="form-control" name="startdatetime">
 	            </div>
 	            <div class="form-group col-md-6">
-	                <label for="inputAddress">End DateTime</label>
+	                <label for="inputAddress">End DateTime<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
 	                <input type="date" class="form-control" name="enddatetime">
 	            </div>
             </div>
 			<div class="form-group">
-	            <label for="inputAddress">Upload Advertisement Image</label>
-	            <input type="file" class="form-control" name="enddatetime">
+	            <label for="inputAddress">Upload Advertisement Image<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
+	            <input type="file" class="form-control" name="uploadimage">
 	        </div>
             
             
             <div class = "text-center">
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary form-control"  data-toggle="modal" data-target="#exampleModalCenter" style = "font-size: 12px;font-weight: bolder;" >Submit</button>
+                <button type="submit" class="btn btn-primary form-control" style = "font-size: 12px;font-weight: bolder;" onclick = "return validation()">Submit</button>
             </div>
-            
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header text-center">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Confirmation</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>
-                    <div class="modal-body text-center">
-                   		You Want To Save Data
-                    </div>
-                    <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button> -->
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">No</button>
-                        <button type="button" class="btn btn-primary" >Yes</button>
-                    </div>
-                </div>
-                </div>
-            </div>
-            
         </form>
-        
+        <div class = "text-center mt-2">
+		   	<b><span id = "errorspan" style = "font-size:small;font-weight:bolder;color:red"></span></b>
+		</div>
         
         </div>
 	

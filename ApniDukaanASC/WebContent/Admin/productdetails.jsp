@@ -196,15 +196,21 @@ datalist{
 			<form class = "form-body">
 	            <div class="form-row">
 	                <div class="form-group col-md-4">
-	                    <label for="productprice">Select Product Category</label>
+	                	<label for="productprice">Select Product Category<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
 	                    <select name="productcategory" class="form-control" style = "font-size: 12px;">
-		                    <option selected>Choose Product Category...</option>
-		                    <option>1</option>
-		                    <option>2</option>
-		                    <option>3</option>
-		                    <option>4</option>
+		                    <option selected>All</option>
+		                    <option>Fashion</option>
+		                    <option>Electronics</option>
+		                    <option>Home Appliances</option>
+		                    <option>Grocery</option>
+		                    <option>Mobile's</option>
+		                    <option>Women's Beauty</option>
+		                    <option>Men's Footwear</option>
+		                    <option>Baby & Kids</option>
+		                    <option>Health Care Essentials</option>
 	                    </select>
 	                </div>
+	                
 	                <div class="form-group col-md-4">
 	                    <label for="datefrom">Date From</label>
 	                    <input type="date" class="form-control" name="datefrom">
@@ -213,22 +219,11 @@ datalist{
 	                    <label for="dateto">Date To</label>
 	                    <input type="date" class="form-control" name="dateto">
 	                </div>
-	                <div class="form-group col-md-4">
-	                    <label for="productprice">Select Search By</label>
-	                    <select name="productcategory" class="form-control" style = "font-size: 12px;">
-		                    <option selected>Choose Category...</option>
-		                    <option>Product Name</option>
-		                    <option>Shop Name</option>
-	                    </select>
-	                </div>
-	                <div class="form-group col-md-4">
-	                    <label for="">Search Object</label>
+	                <div class="form-group col-md-9">
 	                    <input type="text" class="form-control" name="productsearch" placeholder = "Search...">
 	                </div>
-	                <div class="form-group col-md-4">
-	                    <div class = "text-right mt-4" >
-			                <!-- Button trigger modal -->
-			                <label for=""> </label>
+	                <div class="form-group col-md-3">
+	                    <div class = "text-right" >
 			                <button type="button" class="btn btn-primary"  style = "font-size: 12px;font-weight: bolder;" >Search</button>
 			            </div>
 	                </div>

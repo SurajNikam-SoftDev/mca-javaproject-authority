@@ -23,6 +23,28 @@
    
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script type = "text/javascript">
+        
+    	function validation(){
+    		
+    		if(document.form.datefrom.value == '')
+    		{
+    			document.getElementById("errorspan").innerHTML = "Select Date From";  
+    			return false;
+    		}
+    		else if(document.form.dateto.value == '')
+    		{
+    			document.getElementById("errorspan").innerHTML = "Select Date To";  
+    			return false;
+    		}
+    		else 
+    		{
+    			document.getElementById("errorspan").innerHTML = "";
+    			return true;
+    		}
+			
+    	} 
+    </script>
 </head>
 <style>
 [list]::-webkit-calendar-picker-indicator {
@@ -193,26 +215,28 @@ datalist{
         </div>
         
         <div class="container-fluid filter-container" style= "" >
-			<form class = "form-body">
+			<form class = "form-body" name = "form">
 	            <div class="form-row">
-	                <div class="form-group col-md-5">
-	                    <label for="datefrom">Date From</label>
+	                <div class="form-group col-md-6">
+	                    <label for="datefrom">Date From<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
 	                    <input type="date" class="form-control" name="datefrom">
 	                </div>
-	                <div class="form-group col-md-5">
-	                    <label for="dateto">Date To</label>
+	                <div class="form-group col-md-6">
+	                    <label for="dateto">Date To<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
 	                    <input type="date" class="form-control" name="dateto">
 	                </div>
-	                <div class="form-group col-md-2">
-	                    <div class = "text-right mt-4">
+	                <div class="form-group col-md-8">
+	                    <b><span id = "errorspan" style = "font-size:small;font-weight:bolder;color:red"></span></b>
+	                </div>
+	                <div class="form-group col-md-4">
+	                    <div class = "text-right">
 			                <!-- Button trigger modal -->
-			                <button type="button" class="btn btn-primary"  style = "font-size: 12px;font-weight: bolder;" >Search</button>
+			                <button type="button" class="btn btn-primary" onclick = "return validation()" style = "font-size: 12px;font-weight: bolder;" >Search</button>
 			            </div>
 	                </div> 
 	            </div>
 	            
         	</form>
-        
 		</div>   
     
 

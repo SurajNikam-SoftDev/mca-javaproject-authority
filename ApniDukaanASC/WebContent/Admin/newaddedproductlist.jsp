@@ -23,6 +23,33 @@
    
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script type = "text/javascript">
+        
+    	function validation(){
+    		
+    		var contactexp = /^\d{10}$/;
+			var emailexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+			var zipexp = /^\d{6}$/;
+			var letterexp = /^[A-Za-z]+$/;
+    		
+			if(document.form.datefrom.value == '')
+    		{
+    			document.getElementById("errorspan").innerHTML = "Select Date From";  
+    			return false;
+    		} 
+    		else if(document.form.dateto.value == '')
+    		{
+    			document.getElementById("errorspan").innerHTML = "Select Date To";  
+    			return false;
+    		}
+    		else 
+    		{
+    			document.getElementById("errorspan").innerHTML = "";
+    			return true;
+    		}
+			
+    	} 
+    </script>
 </head>
 <style>
 [list]::-webkit-calendar-picker-indicator {
@@ -192,33 +219,40 @@ datalist{
         </div>
         
         <div class="container-fluid filter-container" style= "" >
-			<form class = "form-body">
+			<form class = "form-body" name = "form">
 	            <div class="form-row">
 	                <div class="form-group col-md-4">
-	                    <label for="productprice">Select Product Category</label>
+	                    <label for="productprice">Select Product Category<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
 	                    <select name="productcategory" class="form-control" style = "font-size: 12px;">
-		                    <option selected>Choose Product Category...</option>
-		                    <option>1</option>
-		                    <option>2</option>
-		                    <option>3</option>
-		                    <option>4</option>
+		                    <option selected>All</option>
+		                    <option>Fashion</option>
+		                    <option>Electronics</option>
+		                    <option>Home Appliances</option>
+		                    <option>Grocery</option>
+		                    <option>Mobile's</option>
+		                    <option>Women's Beauty</option>
+		                    <option>Men's Footwear</option>
+		                    <option>Baby & Kids</option>
+		                    <option>Health Care Essentials</option>
 	                    </select>
 	                </div>
 	                <div class="form-group col-md-4">
-	                    <label for="datefrom">Date From</label>
+	                    <label for="datefrom">Date From<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
 	                    <input type="date" class="form-control" name="datefrom">
 	                </div>
 	                <div class="form-group col-md-4">
-	                    <label for="dateto">Date To</label>
+	                    <label for="dateto">Date To<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
 	                    <input type="date" class="form-control" name="dateto">
 	                </div>
 	            </div>
 	            <div class = "text-right">
 	                <!-- Button trigger modal -->
-	                <button type="button" class="btn btn-primary"  style = "font-size: 12px;font-weight: bolder;" >Search</button>
+	                <button type="submit" class="btn btn-primary"  style = "font-size: 12px;font-weight: bolder;" onclick = "return validation()" >Search</button>
 	            </div>
         	</form>
-        
+        	<div class = "text-center mt-2">
+		   		<b><span id = "errorspan" style = "font-size:small;font-weight:bolder;color:red"></span></b>
+			</div>
 		</div>   
     
 

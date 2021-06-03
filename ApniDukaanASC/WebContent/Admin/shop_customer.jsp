@@ -23,6 +23,33 @@
    
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script type = "text/javascript">
+        
+    	function validation(){
+    		
+    		var contactexp = /^\d{10}$/;
+			var emailexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+			var zipexp = /^\d{6}$/;
+			var letterexp = /^[A-Za-z]+$/;
+    		
+			if(document.form.searchby.value == -1)
+    		{
+    			document.getElementById("errorspan").innerHTML = "Select Search By";  
+    			return false;
+    		} 
+			else if(document.form.searchhere.value == '')
+    		{
+    			document.getElementById("errorspan").innerHTML = "Enter Search Here";  
+    			return false;
+    		}
+    		else 
+    		{
+    			document.getElementById("errorspan").innerHTML = "";
+    			return true;
+    		}
+			
+    	} 
+    </script>
 </head>
 <style>
 [list]::-webkit-calendar-picker-indicator {
@@ -193,29 +220,30 @@ datalist{
          </div>
         
         <div class="container-fluid filter-container" style= "" >
-			<form class = "form-body">
+			<form class = "form-body" name = "form">
 	            <div class="form-row">
 	                <div class="form-group col-md-6">
-	                    <label for="productprice">Search By</label>
-	                    <select name="category" class="form-control" style = "font-size: 12px;">
-	                    <option selected>Choose Search...</option>
-	                    <option>Owner Name</option>
-	                    <option>Shop Name</option>
-	                    <option>Email ID</option>
-	                    <option>Mobile No</option>
+	                    <label for="searchby">Shop & Customer Search By<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
+	                    <select name="searchby" class="form-control" style = "font-size: 12px;">
+		                    <option value = "-1" selected>Choose Search...</option>
+		                    <option>Owner Name</option>
+		                    <option>Shop Name</option>
+		                    <option>Email ID</option>
+		                    <option>Mobile No</option>
 	                    </select>
 	                </div>
 	                <div class="form-group col-md-6">
-	                    <label for="productprice">Search Here</label>
-	                    <input type="text" class="form-control" name="search" placeholder="Search...">
+	                    <label for="searchhere">Search Here<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
+	                    <input type="text" class="form-control" name="searchhere" placeholder="Search...">
 	                </div>
-	            </div>
-	            <div class = "text-right">
-	                <!-- Button trigger modal -->
-	                <button type="button" class="btn btn-primary"  style = "font-size: 12px;font-weight: bolder;" >Search</button>
-	            </div>
+	                <div class="form-group col-md-8">
+	                	<b><span id = "errorspan" style = "font-size:small;font-weight:bolder;color:red"></span></b>
+	                </div>
+	                <div class="form-group col-md-4 text-right">
+	                	<button type="submit" class="btn btn-primary" style = "font-size: 12px;font-weight: bolder;" onclick = "return validation()">Submit</button>
+	                </div>
+	            </div>	
         	</form>
-        
 		</div>   
     
 

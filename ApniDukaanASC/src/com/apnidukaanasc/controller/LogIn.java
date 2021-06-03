@@ -44,7 +44,6 @@ public class LogIn extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		
 		String email_id = request.getParameter("email_id")!=null || request.getParameter("email_id")!="" ? request.getParameter("email_id") : "undefined" ;
 		email_id = email_id.isEmpty()?"undefined":email_id;
 		

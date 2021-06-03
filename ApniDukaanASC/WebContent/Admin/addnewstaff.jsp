@@ -25,14 +25,20 @@
     
     <script type = "text/javascript">
     function validation(){
-    		var zippattern="/^\d{6}$/";	//	pincode
-            var mobilepattern='/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/';	//  mobile number
-            //var email=/^([a-z A-Z 0-9 _\.\-])+\@(([a-z A-Z 0-9\-])+\.)+([a-z A-z 0-9]{3,3})+$/;	//	email
-            
+    		
+	    	var contactexp = /^\d{10}$/;
+			var emailexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+			var zipexp = /^\d{6}$/;
+			var letterexp = /^[A-Za-z]+$/;
             
             if(document.form.firstname.value=='')
     		{
     			document.getElementById("errorspan").innerHTML = "Enter First Name";  
+    			return false;
+    		}
+            else if(!document.form.firstname.value.match(letterexp))
+    		{
+    			document.getElementById("errorspan").innerHTML = "Enter Letters Only";  
     			return false;
     		}
     		else if(document.form.middlename.value=='')
@@ -40,11 +46,21 @@
     			document.getElementById("errorspan").innerHTML = "Enter Middle Name";  
     			return false;
     		}
+    		else if(!document.form.middlename.value.match(letterexp))
+     		{
+     			document.getElementById("errorspan").innerHTML = "Enter Letters Only";  
+     			return false;
+     		}
     		else if(document.form.lastname.value=='')
     		{
     			document.getElementById("errorspan").innerHTML = "Enter Last Name";  
     			return false;
     		} 
+    		else if(!document.form.lastname.value.match(letterexp))
+     		{
+     			document.getElementById("errorspan").innerHTML = "Enter Letters Only";  
+     			return false;
+     		}
     		else if(document.form.category.value== '-1' )
     		{
     			document.getElementById("errorspan").innerHTML = "Select category";  
@@ -54,6 +70,11 @@
     			document.getElementById("errorspan").innerHTML = "Enter Email Id";  
     			return false;
     		}
+    		else if(!document.form.email.value.match(emailexp))
+     		{
+     			document.getElementById("errorspan").innerHTML = "Enter Correct Email Id";  
+     			return false;
+     		}
     		else if(document.form.password.value==''){
     			document.getElementById("errorspan").innerHTML = "Enter Password";  
     			return false;
@@ -241,20 +262,20 @@ datalist{
            
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <label for="productprice">First Name</label>
+                    <label for="productprice">First Name<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
                     <input type="text" class="form-control" name="firstname" placeholder="First Name" style = "text-transform:uppercase;" >
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="productprice">Middle Name</label>
+                    <label for="productprice">Middle Name<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
                     <input type="text" class="form-control" name="middlename" placeholder="Middle Name" style = "text-transform:uppercase;">
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="productprice">Last Name</label>
+                    <label for="productprice">Last Name<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
                     <input type="text" class="form-control" name="lastname" placeholder="Last Name" style = "text-transform:uppercase;">
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputAddress">Category</label>
+                <label for="inputAddress">Category<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
                 <select name="category" class="form-control" style = "font-size: 12px;">
                     <option value = "-1" selected>Choose Category...</option>
                     <option>Manager</option>
@@ -264,11 +285,11 @@ datalist{
                 </select>
             </div>
 			<div class="form-group">
-                <label for="inputAddress">Email</label>
+                <label for="inputAddress">Email<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
                 <input type="email" class="form-control" name="email" placeholder="Email">
             </div>
             <div class="form-group">
-                <label for="inputAddress">Password</label>
+                <label for="inputAddress">Password<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
                 <input type="password" class="form-control" name="password" placeholder="Password">
             </div>
             
