@@ -1,3 +1,8 @@
+<%@page import="com.apnidukaanasc.dao.UserDao"%>
+<%@page import="com.apnidukaanasc.bean.UserBean"%>
+<%@page import="com.apnidukaanasc.dao.ProductDao"%>
+<%@page import="com.apnidukaanasc.bean.ProductBean"%>
+<%@page import="java.net.InetAddress"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isErrorPage="true"%>
 <!DOCTYPE html>
@@ -43,6 +48,17 @@ input[type=date], input[type=file]{
 	{
 		response.sendRedirect("./LogIn");
 	}	
+
+	String key = request.getParameter("key") != null || request.getParameter("key") != ""
+	? request.getParameter("key")
+	: "undefined";
+	key = key.isEmpty() ? "undefined" : key; 
+	
+	InetAddress IP=InetAddress.getLocalHost();
+
+//	System.out.println("key :: "+key +", IP Address ::"+IP);
+
+	ProductBean pb = ProductDao.getProductDetailsById(key);
 %>
 	<!--========== HEADER ==========-->
         <header class="header">
@@ -199,139 +215,243 @@ input[type=date], input[type=file]{
          <div class = "container-fluid viewproduct-container">
          	<div class="row">
 		        <div class="col-md-5">
-		          <div class="carousel-container position-relative">
-		  			<div id="myCarousel" class="carousel slide" data-ride="carousel">
-		              <div class="carousel-inner">
-		                <div class="carousel-item active" data-slide-number="0">
-		                  <img src="https://source.unsplash.com/Pn6iimgM-wo/1600x900/" class="d-block w-100" alt="..." data-remote="https://source.unsplash.com/Pn6iimgM-wo/" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
-		                </div>
-		                <div class="carousel-item" data-slide-number="1">
-		                  <img src="https://source.unsplash.com/tXqVe7oO-go/1600x900/" class="d-block w-100" alt="..." data-remote="https://source.unsplash.com/tXqVe7oO-go/" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
-		                </div>
-		                <div class="carousel-item" data-slide-number="2">
-		                  <img src="https://source.unsplash.com/qlYQb7B9vog/1600x900/" class="d-block w-100" alt="..." data-remote="https://source.unsplash.com/qlYQb7B9vog/" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
-		                </div>
-		                <div class="carousel-item" data-slide-number="3">
-		                  <img src="https://source.unsplash.com/QfEfkWk1Uhk/1600x900/" class="d-block w-100" alt="..." data-remote="https://source.unsplash.com/QfEfkWk1Uhk/" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
-		                </div>
-		                <div class="carousel-item" data-slide-number="4">
-		                  <img src="https://source.unsplash.com/CSIcgaLiFO0/1600x900/" class="d-block w-100" alt="..." data-remote="https://source.unsplash.com/CSIcgaLiFO0/" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
-		                </div>
-		                <div class="carousel-item" data-slide-number="5">
-		                  <img src="https://source.unsplash.com/a_xa7RUKzdc/1600x900/" class="d-block w-100" alt="..." data-remote="https://source.unsplash.com/a_xa7RUKzdc/" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
-		                </div>
-		                <div class="carousel-item" data-slide-number="6">
-		                  <img src="https://source.unsplash.com/uanoYn1AmPs/1600x900/" class="d-block w-100" alt="..." data-remote="https://source.unsplash.com/uanoYn1AmPs/" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
-		                </div>
-		                <div class="carousel-item" data-slide-number="7">
-		                  <img src="https://source.unsplash.com/_snqARKTgoc/1600x900/" class="d-block w-100" alt="..." data-remote="https://source.unsplash.com/_snqARKTgoc/" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
-		                </div>
-		                <div class="carousel-item" data-slide-number="8">
-		                  <img src="https://source.unsplash.com/M9F8VR0jEPM/1600x900/" class="d-block w-100" alt="..." data-remote="https://source.unsplash.com/M9F8VR0jEPM/" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
-		                </div>
-		                <div class="carousel-item" data-slide-number="9">
-		                  <img src="https://source.unsplash.com/Q1p7bh3SHj8/1600x900/" class="d-block w-100" alt="..." data-remote="https://source.unsplash.com/Q1p7bh3SHj8/" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
-		                </div>
-		              </div>
-		            </div>
-		            
-		            <!-- Carousel Navigation -->
-		            <div id="carousel-thumbs" class="carousel slide" data-ride="carousel">
-		              <div class="carousel-inner">
-		                <div class="carousel-item active">
-		                  <div class="row mx-0">
-		                    <div id="carousel-selector-0" class="thumb col-4 col-sm-2 px-1 py-2 selected" data-target="#myCarousel" data-slide-to="0">
-		                      <img src="https://source.unsplash.com/Pn6iimgM-wo/600x400/" class="img-fluid" alt="...">
-		                    </div>
-		                    <div id="carousel-selector-1" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="1">
-		                      <img src="https://source.unsplash.com/tXqVe7oO-go/600x400/" class="img-fluid" alt="...">
-		                    </div>
-		                    <div id="carousel-selector-2" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="2">
-		                      <img src="https://source.unsplash.com/qlYQb7B9vog/600x400/" class="img-fluid" alt="...">
-		                    </div>
-		                    <div id="carousel-selector-3" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="3">
-		                      <img src="https://source.unsplash.com/QfEfkWk1Uhk/600x400/" class="img-fluid" alt="...">
-		                    </div>
-		                    <div id="carousel-selector-4" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="4">
-		                      <img src="https://source.unsplash.com/CSIcgaLiFO0/600x400/" class="img-fluid" alt="...">
-		                    </div>
-		                    <div id="carousel-selector-5" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="5">
-		                      <img src="https://source.unsplash.com/a_xa7RUKzdc/600x400/" class="img-fluid" alt="...">
-		                    </div>
-		                  </div>
-		                </div>
-		                <div class="carousel-item">
-		                  <div class="row mx-0">
-		                    <div id="carousel-selector-6" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="6">
-		                      <img src="https://source.unsplash.com/uanoYn1AmPs/600x400/" class="img-fluid" alt="...">
-		                    </div>
-		                    <div id="carousel-selector-7" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="7">
-		                      <img src="https://source.unsplash.com/_snqARKTgoc/600x400/" class="img-fluid" alt="...">
-		                    </div>
-		                    <div id="carousel-selector-8" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="8">
-		                      <img src="https://source.unsplash.com/M9F8VR0jEPM/600x400/" class="img-fluid" alt="...">
-		                    </div>
-		                    <div id="carousel-selector-9" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="9">
-		                      <img src="https://source.unsplash.com/Q1p7bh3SHj8/600x400/" class="img-fluid" alt="...">
-		                    </div>
-		                    <div class="col-2 px-1 py-2"></div>
-		                    <div class="col-2 px-1 py-2"></div>
-		                  </div>
-		                </div>
-		              </div>
-		              <a class="carousel-control-prev" href="#carousel-thumbs" role="button" data-slide="prev">
-		                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-		                <span class="sr-only">Previous</span>
-		              </a>
-		              <a class="carousel-control-next" href="#carousel-thumbs" role="button" data-slide="next">
-		                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-		                <span class="sr-only">Next</span>
-		              </a>
-		            </div>
-		            
-		          </div>
+		        	<div class="carousel-container position-relative">
+			            <!-- Sorry! Lightbox doesn't work - yet. -->
+			            <div id="myCarousel" class="carousel slide" data-ride="carousel" style = "height:400px;">
+			              <div class="carousel-inner justify-content-center" style = "height:300px;width:100%;">
+			              <div class = "inner-minimized mx-auto" style = "height:100%;width:100%;">
+			              	<%
+			                	if(pb.getProdimg1().equals("undefined")){}
+			                	else{
+			                %>
+			                <div class="carousel-item active " style = "height:100%;" data-slide-number="0">
+			                  <img src="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg1() %>" class="mx-auto d-block" alt="..." data-remote="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg1() %>" style = "height:100%;width:100%;eight:100%;width:100%;object-fit:contain" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+			                </div>
+			                <%
+			                	}
+			                	if(pb.getProdimg2().equals("undefined")){}
+			                	else{
+			                %>
+			                <div class="carousel-item" style = "height:100%;" data-slide-number="1">
+			                  <img src="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg2() %>" class="mx-auto d-block" alt="..." data-remote="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg2() %>" style = "height:100%;width:100%;object-fit:contain" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+			                </div>
+			                <%
+			                	}
+			                	if(pb.getProdimg3().equals("undefined")){}
+			                	else{
+			                %> 
+			                <div class="carousel-item" style = "height:100%;" data-slide-number="2">
+			                  <img src="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg3() %>" class="mx-auto d-block" alt="..." data-remote="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg3() %>" style = "height:100%;width:100%;object-fit:contain" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+			                </div>
+			                <%
+			                	}
+			                	if(pb.getProdimg4().equals("undefined")){}
+			                	else{
+			                %>
+			                <div class="carousel-item" style = "height:100%;" data-slide-number="3">
+			                  <img src="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg4() %>" class="mx-auto d-block" alt="..." data-remote="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg4() %>" style = "height:100%;width:100%;object-fit:contain" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+			                </div>
+			                <%
+			                	}
+			                	if(pb.getProdimg5().equals("undefined")){}
+			                	else{
+			                %>
+			                <div class="carousel-item" style = "height:100%;" data-slide-number="4">
+			                  <img src="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg5() %>" class="mx-auto d-block" alt="..." data-remote="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg5() %>" style = "height:100%;width:100%;object-fit:contain" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+			                </div>
+			                <%
+			                	}
+			                	if(pb.getProdimg6().equals("undefined")){}
+			                	else{
+			                %>
+			                <div class="carousel-item" style = "height:100%;" data-slide-number="5">
+			                  <img src="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg6() %>" class="mx-auto d-block" alt="..." data-remote="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg6() %>" style = "height:100%;width:100%;object-fit:contain" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+			                </div>
+			                <%
+			                	}
+			                	if(pb.getProdimg7().equals("undefined")){}
+			                	else{
+			                %>
+			                <div class="carousel-item" style = "height:100%;" data-slide-number="6">
+			                  <img src="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg7() %>" class="mx-auto d-block" alt="..." data-remote="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg7() %>" style = "height:100%;width:100%;object-fit:contain" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+			                </div>
+			                <%
+			                	}
+			                	if(pb.getProdimg8().equals("undefined")){}
+			                	else{
+			                %>
+			                <div class="carousel-item" style = "height:100%;" data-slide-number="7">
+			                  <img src="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg8() %>" class="mx-auto d-block" alt="..." data-remote="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg8() %>" style = "height:100%;width:100%;object-fit:contain" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+			                </div>
+			                <%
+			                	}
+			                	if(pb.getProdimg9().equals("undefined")){}
+			                	else{
+			                %>
+			                <div class="carousel-item" style = "height:100%;" data-slide-number="8">
+			                  <img src="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg9() %>" class="mx-auto d-block" alt="..." data-remote="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg9() %>" style = "height:100%;width:100%;object-fit:contain" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+			                </div>
+			                <%
+			                	}
+			                	if(pb.getProdimg10().equals("undefined")){}
+			                	else{
+			                %>
+			                <div class="carousel-item" style = "height:100%;" data-slide-number="9">
+			                  <img src="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg10() %>" class="mx-auto d-block" alt="..." data-remote="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg10() %>" style = "height:100%;width:100%;object-fit:contain" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+			                </div>
+			                <%
+			                	}
+			                %>
+			              </div>
+			                
+			              </div>
+			            </div>
+			             
+			            <!-- Carousel Navigation -->
+			            <div id="carousel-thumbs" class="carousel slide" data-ride="carousel">
+			              <div class="carousel-inner" style = "height:100px;">
+			                <div class="carousel-item active" >
+			                  <div class="row mx-0">
+			                  	<%
+			                		if(pb.getProdimg1().equals("undefined")){}
+				                	else{
+				                %>
+			                    <div id="carousel-selector-0" class="thumb col-4 col-sm-2 px-1 py-2 selected" data-target="#myCarousel" data-slide-to="0">
+			                      <img src="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg1() %>" class="img-fluid"  alt="...">
+			                    </div>
+			                    <% 
+				                	}
+			                    	if(pb.getProdimg2().equals("undefined")){}
+				                	else{
+				                %>
+			                    <div id="carousel-selector-1" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="1">
+			                      <img src="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg2() %>" class="img-fluid" alt="...">
+			                    </div>
+			                    <%
+				                	}
+			                		if(pb.getProdimg3().equals("undefined")){}
+				                	else{
+				                %>
+			                    <div id="carousel-selector-2" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="2">
+			                      <img src="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg3() %>" class="img-fluid" alt="...">
+			                    </div>
+			                    <%
+				                	}
+				                	if(pb.getProdimg4().equals("undefined")){}
+				                	else{
+				                %>
+			                    <div id="carousel-selector-3" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="3">
+			                      <img src="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg4() %>" class="img-fluid" alt="...">
+			                    </div>
+			                    <%
+				                	}
+				                	if(pb.getProdimg4().equals("undefined")){}
+				                	else{
+				                %>
+			                    <div id="carousel-selector-4" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="4">
+			                      <img src="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg1() %>" class="img-fluid" alt="...">
+			                    </div>
+			                    <%
+				                	}
+				                	if(pb.getProdimg4().equals("undefined")){}
+				                	else{
+				                %>
+			                    <div id="carousel-selector-5" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="5">
+			                      <img src="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg1() %>" class="img-fluid" alt="...">
+			                    </div>
+			                    <%
+				                	
+			                    %>
+			                  </div>
+			                </div>
+			                <div class="carousel-item">
+			                  <div class="row mx-0">
+			                  	<%
+				                	}
+				                	if(pb.getProdimg4().equals("undefined")){}
+				                	else{
+				                %>
+			                    <div id="carousel-selector-6" class="thumb col-4 col-sm-2 px-1 py-2" style = "height:80px;width:80px" data-target="#myCarousel" data-slide-to="6">
+			                      <img src="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg1() %>" class="img-fluid" alt="...">
+			                    </div>
+			                    <%
+				                	}
+				                	if(pb.getProdimg4().equals("undefined")){}
+				                	else{
+				                %>
+			                    <div id="carousel-selector-7" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="7">
+			                      <img src="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg1() %>" class="img-fluid" alt="...">
+			                    </div>
+			                    <%
+				                	}
+				                	if(pb.getProdimg4().equals("undefined")){}
+				                	else{
+				                %>
+			                    <div id="carousel-selector-8" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="8">
+			                      <img src="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg1() %>" class="img-fluid" alt="...">
+			                    </div>
+			                    <%
+				                	}
+				                	if(pb.getProdimg4().equals("undefined")){}
+				                	else{
+				                %>
+			                    <div id="carousel-selector-9" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="9">
+			                      <img src="http://<%=IP.getHostAddress() %>/uploads/<%= pb.getProdimg1() %>" class="img-fluid" alt="...">
+			                    </div>
+			                    <%
+				                	}
+			                    %>
+			                    <div class="col-2 px-1 py-2"></div>
+			                    <div class="col-2 px-1 py-2"></div>
+			                  </div>
+			                </div>
+			              </div>
+			              <a class="carousel-control-prev" href="#carousel-thumbs" role="button" data-slide="prev">
+			                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			                <span class="sr-only">Previous</span>
+			              </a>
+			              <a class="carousel-control-next" href="#carousel-thumbs" role="button" data-slide="next">
+			                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			                <span class="sr-only">Next</span>
+			              </a>
+			            </div>
+            
+			          </div>
 		        </div>
 		        <div class="col-md-7">
 		          <br>
-		          <b class="product-title">Product Title</b>
-		          <p class="product-subtitle">Product Subtitle</p>
-		          <div class="rating-section">
-		              <span class="fa fa-star checked staricon"></span>
-		              <span class="fa fa-star checked staricon"></span>
-		              <span class="fa fa-star checked staricon"></span>
-		              <span class="fa fa-star staricon"></span>
-		              <span class="fa fa-star staricon"></span>
-		              3/5.
-		          </div>
-		          <b class="price">650.00</b>
-		          <p class="delivery">+ Free Delivery</p>
-		          <div class="policies">
-		            <b>Prepaid Available</b>
-		            <p>No return Policy</p>
-		          </div>
-		          
+		          <b class="product-title"><%= pb.getProductname() %></b>
+			          <p class="product-subtitle"><%= pb.getProductsubtitle().equals("undefined")?"<br>":pb.getProductsubtitle() %></p>
+			          <div class="rating-section">
+			              <span class="fa fa-star checked staricon"></span>
+			              <span class="fa fa-star checked staricon"></span>
+			              <span class="fa fa-star checked staricon"></span>
+			              <span class="fa fa-star staricon"></span>
+			              <span class="fa fa-star staricon"></span>
+			              3/5.
+			          </div>
+			          
+			          <p class="delivery"><%= pb.getCashondelivery() %></p>
+			          <div class="policies">
+			            <b>Prepaid Available</b>
+			            <p><%= pb.getAllowreturn().equals("Allow Return") && pb.getReturnperiod().equals("0")? "Not Allowed Return" :pb.getAllowreturn() +" "+ pb.getReturnperiod() %> Days.</p>
+			          </div>
+			          
 		        </div>
 		      </div>
-         
-        </div>
+	      </div>
+<%
+	UserBean ub = UserDao.getShopDetailById(pb.getUserid());
+%>       
         <div class = "shopname-container">
 	      <p>Sold By:</p>
-	      <h6>Shop Name</h6>
+	      <h6><%= ub.getShopname().equals("undefined")?"":ub.getShopname() %> <small>(Owner Name <%= ub.getName() %>)</small></h6>
 	    </div>
 	    
 	    <div class = "product-description-bar">
 	      <b>Product Description</b>
 	      <p class = "product-description pt-2">
-	        Triple rear camera setup- Main Camera 12MP Dual Pixel + Ultra Wide 12MP Camera + Tele1 3X 64MP Camera | 10MP front Dual Pixel Camera
-	        <br>
-	        (6.7-inch) Dynamic AMOLED 2X Display, FHD+ resolution with 2400 X 1080 pixels resolution, 394 PPI with 16M colours
-	        <br>
-	        8GB RAM | 128GB internal Storage | Dual SIM (nano+nano) dual-standby (5G+5G)
-	        <br>
-	        Android Pie v10.0 operating system with 2.9GHz Exynos 2100 octa core processor
-	        <br>
-	        4800mAH lithium-ion battery, 1 year manufacturer warranty for device and 6 months manufacturer warranty for in-box accessories including batteries from the date of purchase
-      		</p>
+	       <%= pb.getDescription() %>
     	</div>
 	<div class = "main-footer" style = "margin-top:50px;font-size:x-small;font-weight:bolder;text-align:center;bottom:0;">
 		<p class = "main-footer-text">Copyright @ 2021 All Rights Reserved. Terms of Use | Privacy Policy AND Website Design and Developed By <b style = "font-style:oblique;font-weight:bolder;">Suraj Nikam</b></p>

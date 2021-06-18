@@ -1,3 +1,10 @@
+<%@page import="com.apnidukaanasc.bean.PlaceOrderBean"%>
+<%@page import="com.apnidukaanasc.bean.PurchaseOrderBean"%>
+<%@page import="com.apnidukaanasc.dao.UserDao"%>
+<%@page import="com.apnidukaanasc.dao.PlaceOrderDao"%>
+<%@page import="com.apnidukaanasc.dao.ProductDao"%>
+<%@page import="com.apnidukaanasc.bean.ProductBean"%>
+<%@page import="java.net.InetAddress"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isErrorPage="true"%>
 <!DOCTYPE html>
@@ -42,6 +49,18 @@ input[type=date], input[type=file]{
 	{
 		response.sendRedirect("./LogIn");
 	}	
+
+	String key = request.getParameter("key") != null || request.getParameter("key") != ""
+	? request.getParameter("key")
+	: "undefined";
+	key = key.isEmpty() ? "undefined" : key; 
+	
+	String userid = request.getParameter("userid") != null || request.getParameter("userid") != ""
+			? request.getParameter("userid")
+			: "undefined";
+	userid = userid.isEmpty() ? "undefined" : userid;
+
+	InetAddress IP = InetAddress.getLocalHost();
 %>
 	<!--========== HEADER ==========-->
         <header class="header">
@@ -197,7 +216,7 @@ input[type=date], input[type=file]{
         <div class="shop-section">
             <p>Sold By :
             <br />    
-            <b style = "font-size: 13px;">Shop Name</b>
+            <b style = "font-size: 13px;"><%= PlaceOrderDao.getShopNameByOrderId(key) %></b>
             </p>     
         </div>
         <div class="rating-section">
@@ -287,32 +306,36 @@ input[type=date], input[type=file]{
         
         	<div class="orderdetails-section">
 	            <p>Your Order
-	            <br />    
-	            <b style = "font-size: 13px;">Order ID : 1646156-16545526-1641546</b>
+	            <br /> 
+<%
+	PurchaseOrderBean pob = PlaceOrderDao.getPurchaseOrderRecordByReceipantIdAndPid(userid, key);
+%>  
+	            <b style = "font-size: 13px;">Order ID : <%= pob.getReferenceno() %></b>
 	            </p> 
 	            <div class = "row orderdetails-bar">
 	                <div class = "col-3 text-left " style = "display:block;margin-left: auto;margin-right: auto;">
-	                    <img src = "assets/img/2.jpg" class = "orderdetails-img" alt="Product Img"/>
+	                    <img src = "http://<%=IP.getHostAddress() %>/uploads/<%= pob.getProdimg1() %>" class = "orderdetails-img" alt="Product Img"/>
 	                </div>
 	                <div class = "col-9 orderdetails-header" >
-	                    <b class = "header-title">Delivered</b>
-	                    <p class = "header-subtitle">Product Title and Subtitle</p>
-	                    <p class = "price-title mt-0">Cash On Delivery: Rs. 650.00 </p>
+	                    <b class = "header-title"><%= pob.getOpstatus() %></b>
+		                <p class = "header-subtitle"><%= pob.getProducttitle() %></p>
+		                <p class = "price-title mt-0"><%= pob.getPaymenttype() %>: Rs. <%= pob.getPrice() %></p>
 	                </div>
 	            </div>
 	        </div>
-	
+<%
+	PlaceOrderBean pob2 = PlaceOrderDao.getOrderDetailByUserIdAndOrderId(pob.getReferenceno(), key);
+%> 
 	        <div class="address-section">
 	            <div class = "address-bar">
 	                <p>Delivery Address
 	                    <br />    
-	                    <b style = "font-size: 13px;">Customer Name</b>
+	                    <b style = "font-size: 13px;"><%= pob2.getReceipantname() %></b>
 	                    </p> 
 	                    <address>
-	                        Sr no 130, Dandekar Bridge, Pune - 30<br>
-	                        IND
-	                    </address>
-	                    <b>Ph. no.: 9898989898.</b>
+		                    <%= pob2.getReceipantaddress() %>
+		                </address>
+		                <b>Ph. no.: <%= pob2.getReceipantcontact() %>.</b>
 	            </div>
 	             
 	        </div>

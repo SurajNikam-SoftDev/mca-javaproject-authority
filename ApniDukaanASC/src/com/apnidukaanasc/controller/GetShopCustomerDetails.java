@@ -1,4 +1,4 @@
-package com.apnidukaanasc.admin.controller;
+package com.apnidukaanasc.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,29 +8,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class NewAddedProductList
+ * Servlet implementation class GetShopCustomerDetails
  */
-@WebServlet("/NewAddedProductList")
-public class NewAddedProductList extends HttpServlet {
+@WebServlet("/GetShopCustomerDetails")
+public class GetShopCustomerDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NewAddedProductList() {
+    public GetShopCustomerDetails() {
         super();
         // TODO Auto-generated constructor stub
-    } 
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("Admin/newaddedproductlist.jsp").forward(request, response);
+		request.getRequestDispatcher("ASOperation/getshopcustomerdetails.jsp").forward(request, response); 
 	}
 
-	/** 
+	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -14,11 +14,11 @@
 	border-radius:8px; 
 }
 
-.carousel {
+ .carousel {
     position: relative;
   }
   .carousel-item img {
-    object-fit: cover;
+    object-fit: contain;
   }
   #carousel-thumbs {
     /* background: rgba(255,255,255,.3); */
@@ -26,17 +26,22 @@
     bottom: 0;
     left: 0;
     padding: 0 25px;
-    right: 0;
+    right: 0; 
+    border-radius:15px;
+   
   }
   #carousel-thumbs img {
     border: 5px solid transparent;
     cursor: pointer;
+    
   }
   #carousel-thumbs img:hover {
     border-color: rgba(255,255,255,.3);
+    
   }
   #carousel-thumbs .selected img {
     border-color: #fff;
+   
   }
   .carousel-control-prev,
   .carousel-control-next {
@@ -45,19 +50,25 @@
   @media all and (max-width: 767px) {
     .carousel-container #carousel-thumbs img {
       border-width: 3px;
+      
     }
+    
+    
   }
   @media all and (min-width: 576px) {
     .carousel-container #carousel-thumbs {
       position: absolute;
     }
+    
+     
   }
   @media all and (max-width: 576px) {
     .carousel-container #carousel-thumbs {
       background: #eee;
     }
+    
+     
   }
-  
   
 .product-title{
   font-size: 14px;
@@ -88,7 +99,7 @@
 }
 
 .policies{
-  padding-top: 15px;
+  padding-top: 15px; 
   font-size: small;
 }
 

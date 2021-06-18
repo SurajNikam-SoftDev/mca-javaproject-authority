@@ -1,3 +1,7 @@
+<%@page import="java.net.InetAddress"%>
+<%@page import="com.apnidukaanasc.dao.ProductDao"%>
+<%@page import="com.apnidukaanasc.bean.ProductBean"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isErrorPage="true"%>
 <!DOCTYPE html>
@@ -44,6 +48,16 @@ input[type=date], input[type=file]{
 	{
 		response.sendRedirect("./LogIn");
 	}	
+
+	String key = request.getParameter("key") != null || request.getParameter("key") != ""
+	? request.getParameter("key")
+	: "undefined";
+	key = key.isEmpty() ? "undefined" : key; 
+	
+//	System.out.println("key :: "+key);
+	
+	InetAddress IP=InetAddress.getLocalHost();
+	List<ProductBean> list = ProductDao.getAllRecordsProductsById(key);
 %>
 	<!--========== HEADER ==========-->
         <header class="header">
@@ -199,324 +213,56 @@ input[type=date], input[type=file]{
         
         <div class="container-fluid product-cards-container">
 	        <div class="row">
-	            <div class="col-md-4">
-	                <div class="row">
-	                    <div class="col" style="padding:5px;">
-	                        <div class = "card product-card" style="background-color: white;border-radius:18px;">
-	                            <img class="card-img-top" src="assets/img/2.jpg" alt="Card image cap" style = "border-radius:18px;">
-	                            <div class="card-body" style = "border-radius:18px;">
-	                                
-	                                <p class="card-text text-left"><b>Product Title </b></p>
-	                                <p class="card-text text-right inr-price">Rs. 650.00</p>
-	                            </div>
-	                            <div class="btn-group" role="group" aria-label="Basic example" >
-	                                <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="View Product" style = "border-radius:0px 0px 0px 18px;"  onclick="location.href='ViewProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">visibility</i></button>
-	                                <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete Product" onclick="location.href='DeleteProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">delete</i></button>
-	                                <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit Product" style = "border-radius:0px 0px 18px 0px;font-size:13px;"  onclick="location.href='EditProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style="color:white;">draw</i></button>
-	                            </div>
-	                        </div>
-	                    </div> 
-	                    <div class="col" style="padding:5px;">
-	                        <div class = "card product-card" style="background-color: white;border-radius:18px;">
-	                            <img class="card-img-top" src="assets/img/2.jpg" alt="Card image cap" style = "border-radius:18px;">
-	                            <div class="card-body" style = "border-radius:18px;">
-	                                
-	                                <p class="card-text text-left"><b>Product Title </b></p>
-	                                <p class="card-text text-right inr-price">Rs. 650.00</p>
-	                            </div>
-	                            <div class="btn-group" role="group" aria-label="Basic example" >
-	                                <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="View Product" style = "border-radius:0px 0px 0px 18px;" onclick="location.href='ViewProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">visibility</i></button>
-	                                <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete Product" onclick="location.href='DeleteProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">delete</i></button>
-	                                <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit Product" style = "border-radius:0px 0px 18px 0px;font-size:13px;" onclick="location.href='EditProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style="color:white;">draw</i></button>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>      
-	            </div>
-	            <div class="col-md-4">
-	                <div class="row">
-	                    <div class="col" style="padding:5px;">
-	                        <div class = "card product-card" style="background-color: white;border-radius:18px;">
-	                            <img class="card-img-top" src="assets/img/2.jpg" alt="Card image cap" style = "border-radius:18px;">
-	                            <div class="card-body" style = "border-radius:18px;">
-	                                
-	                                <p class="card-text text-left"><b>Product Title </b></p>
-	                                <p class="card-text text-right inr-price">Rs. 650.00</p>
-	                            </div>
-	                            <div class="btn-group" role="group" aria-label="Basic example" >
-	                                <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="View Product" style = "border-radius:0px 0px 0px 18px;" onclick="location.href='ViewProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">visibility</i></button>
-	                                <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete Product" onclick="location.href='DeleteProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">delete</i></button>
-	                                <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit Product" style = "border-radius:0px 0px 18px 0px;font-size:13px;" onclick="location.href='EditProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style="color:white;">draw</i></button>
-	                            </div>
-	                        </div>
-	                    </div> 
-	                    <div class="col" style="padding:5px;">
-	                        <div class = "card product-card" style="background-color: white;border-radius:18px;">
-	                            <img class="card-img-top" src="assets/img/2.jpg" alt="Card image cap" style = "border-radius:18px;">
-	                            <div class="card-body" style = "border-radius:18px;">
-	                                
-	                                <p class="card-text text-left"><b>Product Title </b></p>
-	                                <p class="card-text text-right inr-price">Rs. 650.00</p>
-	                            </div>
-	                            <div class="btn-group" role="group" aria-label="Basic example" >
-	                                <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="View Product" style = "border-radius:0px 0px 0px 18px;" onclick="location.href='ViewProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">visibility</i></button>
-	                                <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete Product" onclick="location.href='DeleteProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">delete</i></button>
-	                                <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit Product" style = "border-radius:0px 0px 18px 0px;font-size:13px;" onclick="location.href='EditProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style="color:white;">draw</i></button>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>      
-	            </div> 
-	            <div class="col-md-4">
-	                <div class="row">
-	                    <div class="col" style="padding:5px;">
-	                        <div class = "card product-card" style="background-color: white;border-radius:18px;">
-	                            <img class="card-img-top" src="assets/img/2.jpg" alt="Card image cap" style = "border-radius:18px;">
-	                            <div class="card-body" style = "border-radius:18px;">
-	                                
-	                                <p class="card-text text-left"><b>Product Title </b></p>
-	                                <p class="card-text text-right inr-price">Rs. 650.00</p>
-	                            </div>
-	                            <div class="btn-group" role="group" aria-label="Basic example" >
-	                                <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="View Product" style = "border-radius:0px 0px 0px 18px;" onclick="location.href='ViewProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">visibility</i></button>
-	                                <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete Product" onclick="location.href='DeleteProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">delete</i></button>
-	                                <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit Product" style = "border-radius:0px 0px 18px 0px;font-size:13px;" onclick="location.href='EditProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style="color:white;">draw</i></button>
-	                            </div>
-	                        </div>
-	                    </div> 
-	                    <div class="col" style="padding:5px;">
-	                        <div class = "card product-card" style="background-color: white;border-radius:18px;">
-	                            <img class="card-img-top" src="assets/img/2.jpg" alt="Card image cap" style = "border-radius:18px;">
-	                            <div class="card-body" style = "border-radius:18px;">
-	                                
-	                                <p class="card-text text-left"><b>Product Title </b></p>
-	                                <p class="card-text text-right inr-price">Rs. 650.00</p>
-	                            </div>
-	                            <div class="btn-group" role="group" aria-label="Basic example" >
-	                                <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="View Product" style = "border-radius:0px 0px 0px 18px;" onclick="location.href='ViewProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">visibility</i></button>
-	                                <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete Product" onclick="location.href='DeleteProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">delete</i></button>
-	                                <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit Product" style = "border-radius:0px 0px 18px 0px;font-size:13px;" onclick="location.href='EditProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style="color:white;">draw</i></button>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>      
-	            </div>
-	            <div class="col-md-4">
-	                <div class="row">
-	                    <div class="col" style="padding:5px;">
-	                        <div class = "card product-card" style="background-color: white;border-radius:18px;">
-	                            <img class="card-img-top" src="assets/img/2.jpg" alt="Card image cap" style = "border-radius:18px;">
-	                            <div class="card-body" style = "border-radius:18px;">
-	                                
-	                                <p class="card-text text-left"><b>Product Title </b></p>
-	                                <p class="card-text text-right inr-price">Rs. 650.00</p>
-	                            </div>
-	                            <div class="btn-group" role="group" aria-label="Basic example" >
-	                                <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="View Product" style = "border-radius:0px 0px 0px 18px;" onclick="location.href='ViewProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">visibility</i></button>
-	                                <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete Product" onclick="location.href='DeleteProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">delete</i></button>
-	                                <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit Product" style = "border-radius:0px 0px 18px 0px;font-size:13px;" onclick="location.href='EditProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style="color:white;">draw</i></button>
-	                            </div>
-	                        </div>
-	                    </div> 
-	                    <div class="col" style="padding:5px;">
-	                        <div class = "card product-card" style="background-color: white;border-radius:18px;">
-	                            <img class="card-img-top" src="assets/img/2.jpg" alt="Card image cap" style = "border-radius:18px;">
-	                            <div class="card-body" style = "border-radius:18px;">
-	                                
-	                                <p class="card-text text-left"><b>Product Title </b></p>
-	                                <p class="card-text text-right inr-price">Rs. 650.00</p>
-	                            </div>
-	                            <div class="btn-group" role="group" aria-label="Basic example" >
-	                                <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="View Product" style = "border-radius:0px 0px 0px 18px;" onclick="location.href='ViewProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">visibility</i></button>
-	                                <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete Product" onclick="location.href='DeleteProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">delete</i></button>
-	                                <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit Product" style = "border-radius:0px 0px 18px 0px;font-size:13px;" onclick="location.href='EditProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style="color:white;">draw</i></button>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>      
-	            </div>
-	            <div class="col-md-4">
-	                <div class="row">
-	                    <div class="col" style="padding:5px;">
-	                        <div class = "card product-card" style="background-color: white;border-radius:18px;">
-	                            <img class="card-img-top" src="assets/img/2.jpg" alt="Card image cap" style = "border-radius:18px;">
-	                            <div class="card-body" style = "border-radius:18px;">
-	                                
-	                                <p class="card-text text-left"><b>Product Title </b></p>
-	                                <p class="card-text text-right inr-price">Rs. 650.00</p>
-	                            </div>
-	                            <div class="btn-group" role="group" aria-label="Basic example" >
-	                                <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="View Product" style = "border-radius:0px 0px 0px 18px;" onclick="location.href='ViewProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">visibility</i></button>
-	                                <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete Product" onclick="location.href='DeleteProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">delete</i></button>
-	                                <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit Product" style = "border-radius:0px 0px 18px 0px;font-size:13px;" onclick="location.href='EditProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style="color:white;">draw</i></button>
-	                            </div>
-	                        </div>
-	                    </div> 
-	                    <div class="col" style="padding:5px;">
-	                        <div class = "card product-card" style="background-color: white;border-radius:18px;">
-	                            <img class="card-img-top" src="assets/img/2.jpg" alt="Card image cap" style = "border-radius:18px;">
-	                            <div class="card-body" style = "border-radius:18px;">
-	                                
-	                                <p class="card-text text-left"><b>Product Title </b></p>
-	                                <p class="card-text text-right inr-price">Rs. 650.00</p>
-	                            </div>
-	                            <div class="btn-group" role="group" aria-label="Basic example" >
-	                                <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="View Product" style = "border-radius:0px 0px 0px 18px;" onclick="location.href='ViewProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">visibility</i></button>
-	                                <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete Product" onclick="location.href='DeleteProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">delete</i></button>
-	                                <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit Product" style = "border-radius:0px 0px 18px 0px;font-size:13px;" onclick="location.href='EditProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style="color:white;">draw</i></button>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>      
-	            </div> 
-	            <div class="col-md-4">
-	                <div class="row">
-	                    <div class="col" style="padding:5px;">
-	                        <div class = "card product-card" style="background-color: white;border-radius:18px;">
-	                            <img class="card-img-top" src="assets/img/2.jpg" alt="Card image cap" style = "border-radius:18px;">
-	                            <div class="card-body" style = "border-radius:18px;">
-	                                
-	                                <p class="card-text text-left"><b>Product Title </b></p>
-	                                <p class="card-text text-right inr-price">Rs. 650.00</p>
-	                            </div>
-	                            <div class="btn-group" role="group" aria-label="Basic example" >
-	                                <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="View Product" style = "border-radius:0px 0px 0px 18px;" onclick="location.href='ViewProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">visibility</i></button>
-	                                <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete Product" onclick="location.href='DeleteProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">delete</i></button>
-	                                <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit Product" style = "border-radius:0px 0px 18px 0px;font-size:13px;" onclick="location.href='EditProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style="color:white;">draw</i></button>
-	                            </div>
-	                        </div>
-	                    </div> 
-	                    <div class="col" style="padding:5px;">
-	                        <div class = "card product-card" style="background-color: white;border-radius:18px;">
-	                            <img class="card-img-top" src="assets/img/2.jpg" alt="Card image cap" style = "border-radius:18px;">
-	                            <div class="card-body" style = "border-radius:18px;">
-	                                
-	                                <p class="card-text text-left"><b>Product Title </b></p>
-	                                <p class="card-text text-right inr-price">Rs. 650.00</p>
-	                            </div>
-	                            <div class="btn-group" role="group" aria-label="Basic example" >
-	                                <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="View Product" style = "border-radius:0px 0px 0px 18px;" onclick="location.href='ViewProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">visibility</i></button>
-	                                <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete Product" onclick="location.href='DeleteProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">delete</i></button>
-	                                <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit Product" style = "border-radius:0px 0px 18px 0px;font-size:13px;" onclick="location.href='EditProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style="color:white;">draw</i></button>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>      
-	            </div>
-	            <div class="col-md-4">
-	                <div class="row">
-	                    <div class="col" style="padding:5px;">
-	                        <div class = "card product-card" style="background-color: white;border-radius:18px;">
-	                            <img class="card-img-top" src="assets/img/2.jpg" alt="Card image cap" style = "border-radius:18px;">
-	                            <div class="card-body" style = "border-radius:18px;">
-	                                
-	                                <p class="card-text text-left"><b>Product Title </b></p>
-	                                <p class="card-text text-right inr-price">Rs. 650.00</p>
-	                            </div>
-	                            <div class="btn-group" role="group" aria-label="Basic example" >
-	                                <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="View Product" style = "border-radius:0px 0px 0px 18px;" onclick="location.href='ViewProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">visibility</i></button>
-	                                <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete Product" onclick="location.href='DeleteProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">delete</i></button>
-	                                <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit Product" style = "border-radius:0px 0px 18px 0px;font-size:13px;" onclick="location.href='EditProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style="color:white;">draw</i></button>
-	                            </div>
-	                        </div>
-	                    </div> 
-	                    <div class="col" style="padding:5px;">
-	                        <div class = "card product-card" style="background-color: white;border-radius:18px;">
-	                            <img class="card-img-top" src="assets/img/2.jpg" alt="Card image cap" style = "border-radius:18px;">
-	                            <div class="card-body" style = "border-radius:18px;">
-	                                
-	                                <p class="card-text text-left"><b>Product Title </b></p>
-	                                <p class="card-text text-right inr-price">Rs. 650.00</p>
-	                            </div>
-	                            <div class="btn-group" role="group" aria-label="Basic example" >
-	                                <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="View Product" style = "border-radius:0px 0px 0px 18px;" onclick="location.href='ViewProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">visibility</i></button>
-	                                <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete Product" onclick="location.href='DeleteProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">delete</i></button>
-	                                <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit Product" style = "border-radius:0px 0px 18px 0px;font-size:13px;" onclick="location.href='EditProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style="color:white;">draw</i></button>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>      
-	            </div>
-	            <div class="col-md-4">
-	                <div class="row">
-	                    <div class="col" style="padding:5px;">
-	                        <div class = "card product-card" style="background-color: white;border-radius:18px;">
-	                            <img class="card-img-top" src="assets/img/2.jpg" alt="Card image cap" style = "border-radius:18px;">
-	                            <div class="card-body" style = "border-radius:18px;">
-	                                
-	                                <p class="card-text text-left"><b>Product Title </b></p>
-	                                <p class="card-text text-right inr-price">Rs. 650.00</p>
-	                            </div>
-	                            <div class="btn-group" role="group" aria-label="Basic example" >
-	                                <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="View Product" style = "border-radius:0px 0px 0px 18px;" onclick="location.href='ViewProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">visibility</i></button>
-	                                <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete Product" onclick="location.href='DeleteProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">delete</i></button>
-	                                <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit Product" style = "border-radius:0px 0px 18px 0px;font-size:13px;" onclick="location.href='EditProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style="color:white;">draw</i></button>
-	                            </div>
-	                        </div>
-	                    </div> 
-	                    <div class="col" style="padding:5px;">
-	                        <div class = "card product-card" style="background-color: white;border-radius:18px;">
-	                            <img class="card-img-top" src="assets/img/2.jpg" alt="Card image cap" style = "border-radius:18px;">
-	                            <div class="card-body" style = "border-radius:18px;">
-	                                
-	                                <p class="card-text text-left"><b>Product Title </b></p>
-	                                <p class="card-text text-right inr-price">Rs. 650.00</p>
-	                            </div>
-	                            <div class="btn-group" role="group" aria-label="Basic example" >
-	                                <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="View Product" style = "border-radius:0px 0px 0px 18px;" onclick="location.href='ViewProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">visibility</i></button>
-	                                <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete Product" onclick="location.href='DeleteProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">delete</i></button>
-	                                <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit Product" style = "border-radius:0px 0px 18px 0px;font-size:13px;" onclick="location.href='EditProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style="color:white;">draw</i></button>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>      
-	            </div>  
-	            <div class="col-md-4">
-	                <div class="row">
-	                    <div class="col" style="padding:5px;">
-	                        <div class = "card product-card" style="background-color: white;border-radius:18px;">
-	                            <img class="card-img-top" src="assets/img/2.jpg" alt="Card image cap" style = "border-radius:18px;">
-	                            <div class="card-body" style = "border-radius:18px;">
-	                                
-	                                <p class="card-text text-left"><b>Product Title </b></p>
-	                                <p class="card-text text-right inr-price">Rs. 650.00</p>
-	                            </div>
-	                            <div class="btn-group" role="group" aria-label="Basic example" >
-	                                <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="View Product" style = "border-radius:0px 0px 0px 18px;" onclick="location.href='ViewProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">visibility</i></button>
-	                                <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete Product" onclick="location.href='DeleteProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">delete</i></button>
-	                                <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit Product" style = "border-radius:0px 0px 18px 0px;font-size:13px;" onclick="location.href='EditProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style="color:white;">draw</i></button>
-	                            </div>
-	                        </div>
-	                    </div> 
-	                    <div class="col" style="padding:5px;">
-	                        <div class = "card product-card" style="background-color: white;border-radius:18px;">
-	                            <img class="card-img-top" src="assets/img/2.jpg" alt="Card image cap" style = "border-radius:18px;">
-	                            <div class="card-body" style = "border-radius:18px;">
-	                                
-	                                <p class="card-text text-left"><b>Product Title </b></p>
-	                                <p class="card-text text-right inr-price">Rs. 650.00</p>
-	                            </div>
-	                            <div class="btn-group" role="group" aria-label="Basic example" >
-	                                <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="View Product" style = "border-radius:0px 0px 0px 18px;" onclick="location.href='ViewProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">visibility</i></button>
-	                                <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete Product" onclick="location.href='DeleteProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style ="color:white;">delete</i></button>
-	                                <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit Product" style = "border-radius:0px 0px 18px 0px;font-size:13px;" onclick="location.href='EditProduct'"> <i class="material-icons nav__icon pt-2 pl-2" style="color:white;">draw</i></button>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>      
-	            </div>
-	            
-	            
-	            
-	                  
+<%
+	for(ProductBean product: list)
+	{	
+		
+//		System.out.println(product.getPid() +" :: "+ product.getProdimg1() +" :: "+ product.getProductname() +" :: "+ product.getProductprice());
+%>	        
+	          <div class="col-md-3" style="padding: 5px;">
+				<div class="card product-card"
+					style="background-color: white; border-radius: 18px;">
+					<div class = "card-image mx-auto" style ="border-radius:18px;height:323.25px;padding:15px;">
+						<img class="card-img-top pt-2" src="http://<%=IP.getHostAddress() %>/uploads/<%= product.getProdimg1() %>"
+						alt="Product Image" style="border-radius:18px;height:100%;width:100%;object-fit:contain;margin-left: auto;margin-right: auto;display: block;"><!--  height= "323.25" width = "323.25" -->
+					</div>
+					
+					<div class="card-body" style="border-radius: 18px;">
+
+						<p class="card-text text-left" style = "font-size:11px;">
+							<b><%= product.getProductname().length() > 40? product.getProductname().substring(0, 40)+"...": product.getProductname() %></b>
+						</p>
+						<p class="card-text text-right inr-price">Rs. <%= product.getProductprice() %></p>
+					</div>
+					<div class="btn-group" role="group" aria-label="Basic example">
+						<a href="javascript:void(0)" class="btn btn-success"
+								data-toggle="tooltip" data-placement="top" title="View Product"
+								style="border-radius: 0px 0px 18px 18px;"
+								onclick="location.href='ViewProduct?key=<%= product.getPid() %>'">
+								<i class="material-icons nav__icon pt-2 pl-2"
+									style="color: white;">visibility</i>
+							</a>
+					</div>
+				</div>
+			</div>		
+<%
+	}
+%>	                             
 	        </div>
 	     </div> 
+<%
+if(list.isEmpty())
+	{
+%> 
 	
+	<div class="pageheading text-center p-3 mt-1" style = "background-color: lightgrey;">
+        <b style = "font-size: 14px;">0 Products</b>
+    </div>
+<%
+	}
+%> 	
 	    <br>    
-	    <div class="page-pagination">
-	        <a href="#" class="previous">&laquo; Previous</a>
-	        <a href="#" class="next">Next &raquo;</a>      
-	    </div>
+	    
 	
 	<div class = "main-footer" style = "margin-top:50px;font-size:x-small;font-weight:bolder;text-align:center;bottom:0;">
 		<p class = "main-footer-text">Copyright @ 2021 All Rights Reserved. Terms of Use | Privacy Policy AND Website Design and Developed By <b style = "font-style:oblique;font-weight:bolder;">Suraj Nikam</b></p>

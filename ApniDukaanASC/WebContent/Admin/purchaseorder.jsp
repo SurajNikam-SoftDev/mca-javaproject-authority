@@ -1,3 +1,7 @@
+<%@page import="com.apnidukaanasc.dao.PlaceOrderDao"%>
+<%@page import="com.apnidukaanasc.bean.PurchaseOrderBean"%>
+<%@page import="java.util.List"%>
+<%@page import="java.net.InetAddress"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isErrorPage="true"%>
 <!DOCTYPE html>
@@ -43,6 +47,14 @@ input[type=date], input[type=file]{
 	{
 		response.sendRedirect("./LogIn");
 	}	
+
+	String key = request.getParameter("key") != null || request.getParameter("key") != ""
+	? request.getParameter("key")
+	: "undefined";
+	key = key.isEmpty() ? "undefined" : key; 
+
+	InetAddress IP=InetAddress.getLocalHost();
+	List<PurchaseOrderBean> list = PlaceOrderDao.getPurchaseOrderRecordById(key); 
 %>
 	<!--========== HEADER ==========-->
         <header class="header">
@@ -196,68 +208,37 @@ input[type=date], input[type=file]{
          </div>
          
          <div class = "container-fluid purchaseorder-container">
-         	<a href="javascript:void(0)" onclick="location.href='OrderDetails'" style = "text-decoration: none;color:black;" >                <div class="row"></div>
+<%
+	for(PurchaseOrderBean order: list)
+	{
+%>
+         	<a href="javascript:void(0)" onclick="location.href='OrderDetails?key=<%=order.getParcelid() %>&userid=<%= key %>'" style = "text-decoration: none;color:black;" >                <div class="row"></div>
 	            <div class = "row purchase-bar">
 	                <div class = "col-3 text-left " style = "display:block;margin-left: auto;margin-right: auto;">
-	                    <img src = "assets/img/2.jpg" class = "purchase-img" alt="Product Img"/>
+	                    <img src = "http://<%=IP.getHostAddress() %>/uploads/<%= order.getProdimg1() %>" class = "purchase-img" alt="Product Img"/>
 	                </div>
 	                <div class = "col-9 purchase-header" >
-	                    <b class = "header-title">Delivered</b>
-	                    <p class = "header-subtitle">Product Title and Subtitle</p>
-	                    <p class = "price-title mt-0">Cash On Delivery: Rs. 650.00 </p>
+	                    <b class = "header-title"><%= order.getOpstatus() %></b>
+	                    <p class = "header-subtitle"><%= order.getProducttitle() %></p>
+	                    <p class = "price-title mt-0"><%= order.getPaymenttype() %>: Rs. <%= order.getPrice() %></p>
 	                </div>
 	            </div>
 	        </a>
-	        <a href="javascript:void(0)" onclick="location.href='OrderDetails'" style = "text-decoration: none;color:black;" >                <div class="row"></div>
-	            <div class = "row purchase-bar">
-	                <div class = "col-3 text-left " style = "display:block;margin-left: auto;margin-right: auto;">
-	                    <img src = "assets/img/2.jpg" class = "purchase-img" alt="Product Img"/>
-	                </div>
-	                <div class = "col-9 purchase-header" >
-	                    <b class = "header-title">Delivered</b>
-	                    <p class = "header-subtitle">Product Title and Subtitle</p>
-	                    <p class = "price-title mt-0">Cash On Delivery: Rs. 650.00 </p>
-	                </div>
-	            </div>
-	        </a>
-	        <a href="javascript:void(0)" onclick="location.href='OrderDetails'" style = "text-decoration: none;color:black;" >                <div class="row"></div>
-	            <div class = "row purchase-bar">
-	                <div class = "col-3 text-left " style = "display:block;margin-left: auto;margin-right: auto;">
-	                    <img src = "assets/img/2.jpg" class = "purchase-img" alt="Product Img"/>
-	                </div>
-	                <div class = "col-9 purchase-header" >
-	                    <b class = "header-title">Delivered</b>
-	                    <p class = "header-subtitle">Product Title and Subtitle</p>
-	                    <p class = "price-title mt-0">Cash On Delivery: Rs. 650.00 </p>
-	                </div>
-	            </div>
-	        </a>
-	        <a href="javascript:void(0)" onclick="location.href='OrderDetails'" style = "text-decoration: none;color:black;" >                <div class="row"></div>
-	            <div class = "row purchase-bar">
-	                <div class = "col-3 text-left " style = "display:block;margin-left: auto;margin-right: auto;">
-	                    <img src = "assets/img/2.jpg" class = "purchase-img" alt="Product Img"/>
-	                </div>
-	                <div class = "col-9 purchase-header" >
-	                    <b class = "header-title">Delivered</b>
-	                    <p class = "header-subtitle">Product Title and Subtitle</p>
-	                    <p class = "price-title mt-0">Cash On Delivery: Rs. 650.00 </p>
-	                </div>
-	            </div>
-	        </a>
-	        <a href="javascript:void(0)" onclick="location.href='OrderDetails'" style = "text-decoration: none;color:black;" >                <div class="row"></div>
-	            <div class = "row purchase-bar">
-	                <div class = "col-3 text-left " style = "display:block;margin-left: auto;margin-right: auto;">
-	                    <img src = "assets/img/2.jpg" class = "purchase-img" alt="Product Img"/>
-	                </div>
-	                <div class = "col-9 purchase-header" >
-	                    <b class = "header-title">Delivered</b>
-	                    <p class = "header-subtitle">Product Title and Subtitle</p>
-	                    <p class = "price-title mt-0">Cash On Delivery: Rs. 650.00 </p>
-	                </div>
-	            </div>
-	        </a> 
-         </div>
-        
+<%
+	}
+%>	        
+	   </div>
+<%
+if(list.isEmpty())
+	{
+%> 
+	
+	<div class="pageheading text-center p-3 mt-1" style = "background-color: lightgrey;">
+        <b style = "font-size: 14px;">0 Purchase Order</b>
+    </div>
+<%
+	}
+%>         
         
 	<div class = "main-footer" style = "margin-top:50px;font-size:x-small;font-weight:bolder;text-align:center;bottom:0;">
 		<p class = "main-footer-text">Copyright @ 2021 All Rights Reserved. Terms of Use | Privacy Policy AND Website Design and Developed By <b style = "font-style:oblique;font-weight:bolder;">Suraj Nikam</b></p>

@@ -1,3 +1,5 @@
+<%@page import="com.apnidukaanasc.dao.UserDao"%>
+<%@page import="com.apnidukaanasc.bean.UserBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isErrorPage="true"%>
 <!DOCTYPE html>
@@ -44,6 +46,14 @@ input[type=date], input[type=file]{
 	{
 		response.sendRedirect("./LogIn");
 	}	
+
+	String key = request.getParameter("key") != null || request.getParameter("key") != ""
+	? request.getParameter("key")
+	: "undefined";
+	key = key.isEmpty() ? "undefined" : key; 
+	
+	System.out.println("key :: "+key);
+	UserBean ub = UserDao.getAllRecordsById(key);
 %>
 	<!--========== HEADER ==========-->
         <header class="header">
@@ -201,35 +211,35 @@ input[type=date], input[type=file]{
 	         	<div class="form-row">
 	            	<div class="form-group col-md-12">
 	                    <label for="shopname">Shop Name</label>
-	                    <input type="text" class="form-control" name="shopname" placeholder="Shop Name">
+	                    <input type="text" class="form-control" name="shopname" value = "<%= ub.getShopname().equals("undefined")?"":ub.getShopname() %>" readonly>
 	                </div>
 	               	<div class="form-group col-md-6">
 	                    <label for="ownername">Owner Name</label>
-	                    <input type="text" class="form-control" name="ownername" placeholder="Owner Name">
+	                    <input type="text" class="form-control" name="ownername" value = "<%= ub.getName() %>" placeholder="Owner Name" readonly>
 	                </div>
 	                <div class="form-group col-md-6">
 		                <label for="inputAddress">Contact No</label>
-		                <input type="text" class="form-control" name="contactno" placeholder="Contact No">
+		                <input type="text" class="form-control" name="contactno" value = "<%= ub.getContact() %>" placeholder="Contact No" readonly>
 		            </div>
 	            </div>
 	            <div class="form-row">
 	            	<div class="form-group col-md-6">
 		                <label for="prepaiddiscount">Prepaid Order Discount</label>
-		                <input type="text" class="form-control" name="prepaiddiscount" placeholder="Prepaid Order Discount">
+		                <input type="text" class="form-control" name="prepaiddiscount" value = "<%= ub.getPrepaiddiscount() %>" placeholder="Prepaid Order Discount" readonly>
 		            </div>
 	            	<div class="form-group col-md-6">
 		                <label for="emailid">Email ID</label>
-		                <input type="text" class="form-control" name="emailid" placeholder="Email ID">
+		                <input type="text" class="form-control" name="emailid" value = "<%= ub.getEmailid() %>" placeholder="Email ID" readonly>
 		            </div>
 		        </div>
 	        </form>
         </div>
         <div class = "container-fluid grouplist-container">
         	<ul class="list-group">
-        		<a href="javascript:void(0)" onclick="location.href='ShopProducts'" style = "color:black;text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Shop Products" data-toggle="tooltip" data-placement="bottom" title="View"><li class="list-group-item">Shop Products</li></a>
-        		<a href="javascript:void(0)" onclick="location.href='PurchaseOrder'" style = "color:black;text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Purchase Order" data-toggle="tooltip" data-placement="bottom" title="View"><li class="list-group-item">Purchase Order</li></a>
-        		<a href="javascript:void(0)" onclick="location.href='Payments'" style = "color:black;text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Payments" data-toggle="tooltip" data-placement="bottom" title="View"><li class="list-group-item">Payments</li></a>
-        		<a href="javascript:void(0)" onclick="location.href='Address'" style = "color:black;text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Address" data-toggle="tooltip" data-placement="bottom" title="View"><li class="list-group-item">Address</li></a>
+        		<a href="javascript:void(0)" onclick="location.href='ShopProducts?key=<%= key %>'" style = "color:black;text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Shop Products" data-toggle="tooltip" data-placement="bottom" title="View"><li class="list-group-item">Shop Products</li></a>
+        		<a href="javascript:void(0)" onclick="location.href='PurchaseOrder?key=<%= key %>'" style = "color:black;text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Purchase Order" data-toggle="tooltip" data-placement="bottom" title="View"><li class="list-group-item">Purchase Order</li></a>
+        		<a href="javascript:void(0)" onclick="location.href='Payments?key=<%= key %>'" style = "color:black;text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Payments" data-toggle="tooltip" data-placement="bottom" title="View"><li class="list-group-item">Payments</li></a>
+        		<a href="javascript:void(0)" onclick="location.href='Address?key=<%= key %>'" style = "color:black;text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Address" data-toggle="tooltip" data-placement="bottom" title="View"><li class="list-group-item">Address</li></a>
 			</ul>
         </div>
 	

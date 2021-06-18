@@ -1,4 +1,4 @@
-package com.apnidukaanasc.admin.controller;
+package com.apnidukaanasc.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,29 +8,38 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class NewAddedProductList
+ * Servlet implementation class GetUserServlet
  */
-@WebServlet("/NewAddedProductList")
-public class NewAddedProductList extends HttpServlet {
+@WebServlet("/GetUserServlet")
+public class GetUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NewAddedProductList() {
+    public GetUserServlet() {
         super();
         // TODO Auto-generated constructor stub
-    } 
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("Admin/newaddedproductlist.jsp").forward(request, response);
+		/*String userName = request.getParameter("userName").trim();
+		if(userName == null || "".equals(userName)){
+			userName = "Guest";
+		}
+		
+		String greetings = "Hello " + userName;
+		
+		response.setContentType("text/plain");
+		response.getWriter().write(greetings);*/
+		
 	}
 
-	/** 
+	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

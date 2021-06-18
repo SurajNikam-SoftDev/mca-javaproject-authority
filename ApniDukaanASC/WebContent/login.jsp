@@ -5,7 +5,7 @@
 <head>
 	<meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>ApniDukaanASC :: Login</title>
+    <title>ApniDukaanASC :: LogIn</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
 	 <!-- Bootstrap CSS -->
@@ -19,31 +19,100 @@
     <!-- jquery-ui CSS -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script type = "text/javascript">
-        
     	function validation(){
-    		
+    	
     		var contactexp = /^\d{10}$/;
 			var emailexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 			var zipexp = /^\d{6}$/;
 			var letterexp = /^[A-Za-z]+$/;
-            
+            var numberexp = /^\d+$/;
 			
-			if(document.form.email_id.value == '')
+            if(document.form.sender_name.value=='')
     		{
-    			document.getElementById("errorspan").innerHTML = "Enter Email Id";  
+    			document.getElementById("errorspan").innerHTML = "Enter Sender Name";  
     			return false;
     		}
-    		else if(!document.form.email_id.value.match(emailexp))
+			else if(!document.form.sender_name.value.match(letterexp))
     		{
-    			document.getElementById("errorspan").innerHTML = "Enter Correct Email Id";  
+    			document.getElementById("errorspan").innerHTML = "Enter Correct Sender Name";  
     			return false;
     		}
-    		else if(document.form.password.value == '')
+			else if(document.form.sender_address.value=='')
     		{
-    			document.getElementById("errorspan").innerHTML = "Enter Password";  
+    			document.getElementById("errorspan").innerHTML = "Enter Sender Address";  
     			return false;
     		}
-    		else 
+    		else if(document.form.sender_contact.value=='')
+    		{
+    			document.getElementById("errorspan").innerHTML = "Enter Sender Contact";  
+    			return false;
+    		} 
+    		else if(!document.form.sender_contact.value.match(contactexp))
+    		{
+    			document.getElementById("errorspan").innerHTML = "Enter Correct Sender Contact";  
+    			return false;
+    		}
+    		else if(document.form.recipient_name.value=='')
+    		{
+        		document.getElementById("errorspan").innerHTML = "Enter Recipient Name";  
+        		return false;
+        	}
+    		else if(!document.form.recipient_name.value.match(letterexp))
+        	{
+        		document.getElementById("errorspan").innerHTML = "Enter Correct Recipient Name";  
+        		return false;
+        	}
+        	else if(document.form.recipient_address.value=='')
+        	{
+        		document.getElementById("errorspan").innerHTML = "Enter Recipient Address";  
+        		return false;
+        	}
+        	else if(document.form.recipient_contact.value=='')
+        	{
+        		document.getElementById("errorspan").innerHTML = "Enter Recipient Contact";  
+        		return false;
+        	} 
+        	else if(!document.form.recipient_contact.value.match(contactexp))
+        	{
+        		document.getElementById("errorspan").innerHTML = "Enter Correct Recipient Contact";  
+        		return false;
+        	}
+        	else if(document.form.type.value==-1)
+        	{
+        		document.getElementById("errorspan").innerHTML = "Select Type";  
+        		return false;
+        	}
+        	else if(document.form.weight.value=='')
+        	{
+        		document.getElementById("errorspan").innerHTML = "Enter Weight";  
+        		return false;
+        	} 
+        	else if(!document.form.weight.value.match(numberexp))
+        	{
+        		document.getElementById("errorspan").innerHTML = "Enter Number Only";  
+        		return false;
+        	}
+        	else if(document.form.price.value=='')
+        	{
+        		document.getElementById("errorspan").innerHTML = "Enter Price";  
+        		return false;
+        	} 
+        	else if(!document.form.price.value.match(numberexp))
+        	{
+        		document.getElementById("errorspan").innerHTML = "Enter Number Only";  
+        		return false;
+        	}
+        	else if(document.form.total.value=='')
+        	{
+        		document.getElementById("errorspan").innerHTML = "Enter Total";  
+        		return false;
+        	} 
+        	else if(!document.form.total.value.match(numberexp))
+        	{
+        		document.getElementById("errorspan").innerHTML = "Enter Number Only";  
+        		return false;
+        	} 
+			else
     		{
     			document.getElementById("errorspan").innerHTML = "";
     			return true;

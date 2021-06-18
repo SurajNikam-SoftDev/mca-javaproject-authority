@@ -130,7 +130,7 @@ datalist{
                                 </a>
 								<div class="nav__dropdown-collapse">
                                     <div class="nav__dropdown-content">
-                                        <a href="NewProductList" class="nav__dropdown-item">New Product List</a>
+                                        <a href="NewAddedProductList" class="nav__dropdown-item">New Product List</a>
                                         <a href="ProductDetails" class="nav__dropdown-item">Product Details</a>
                                     </div>
                                 </div>

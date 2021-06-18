@@ -34,20 +34,15 @@
     		
 			if(document.form.searchby.value == -1)
     		{
-    			document.getElementById("errorspan").innerHTML = "Select Search By";  
+    			document.getElementById("errorspan").innerHTML = "Select Shop & Customer Search By";  
     			return false;
     		} 
-			else if(document.form.searchhere.value == '')
-    		{
-    			document.getElementById("errorspan").innerHTML = "Enter Search Here";  
-    			return false;
-    		}
-    		else 
+			else 
     		{
     			document.getElementById("errorspan").innerHTML = "";
-    			return true;
+    			loadXMLDoc();
+    			return false;
     		}
-			
     	} 
     </script>
 </head>
@@ -60,7 +55,7 @@ datalist{
 	max-height: 100px;
 }
 </style>
-<body>
+<body onload = "loadXMLDoc()">
 <%
 	if(session.getAttribute("emailid")==null)
 	{
@@ -220,12 +215,12 @@ datalist{
          </div>
         
         <div class="container-fluid filter-container" style= "" >
-			<form class = "form-body" name = "form">
+			<form class = "form-body" name = "form" method = "POST">
 	            <div class="form-row">
 	                <div class="form-group col-md-6">
 	                    <label for="searchby">Shop & Customer Search By<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
-	                    <select name="searchby" class="form-control" style = "font-size: 12px;">
-		                    <option value = "-1" selected>Choose Search...</option>
+	                    <select name="searchby" id="searchby" class="form-control" style = "font-size: 12px;">
+		                    <option selected>All</option>
 		                    <option>Owner Name</option>
 		                    <option>Shop Name</option>
 		                    <option>Email ID</option>
@@ -234,84 +229,25 @@ datalist{
 	                </div>
 	                <div class="form-group col-md-6">
 	                    <label for="searchhere">Search Here<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
-	                    <input type="text" class="form-control" name="searchhere" placeholder="Search...">
+	                    <input type="text" class="form-control" id="searchhere" name="searchhere" placeholder="Search...">
 	                </div>
 	                <div class="form-group col-md-8">
 	                	<b><span id = "errorspan" style = "font-size:small;font-weight:bolder;color:red"></span></b>
 	                </div>
 	                <div class="form-group col-md-4 text-right">
-	                	<button type="submit" class="btn btn-primary" style = "font-size: 12px;font-weight: bolder;" onclick = "return validation()">Submit</button>
+	                	<button type="submit" class="btn btn-primary" id = "search" style = "font-size: 12px;font-weight: bolder;" onclick = "return validation()">Submit</button>
 	                </div>
-	            </div>	
+	            </div>	 
+	            <!-- Enter Your Name: <input type="text" id="userName" /> -->
         	</form>
 		</div>   
     
 
-		<div class="container-fluid table-container" style= "" >
-			
-        <table class="table table-striped table-bordered myDataTable" style = "width: 100%;">
-            <thead>
-                <tr>
-                    <th class = "search-col">#</th>
-                    <th class = "search-col">Shop Name</th>
-                    <th class = "search-col">Owner Name</th>
-                    <th class = "search-col">Reg. Date</th>
-                    <th class = "search-col">Contact No</th>
-                    <th class = "search-col" >Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>suraj</td>
-                    <td>gajanan</td>
-                    <td>nikam</td>
-                    <td>8788451215</td>
-                    <td>suraj123@gmail.com</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='ViewShop_Customer'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='EditShop_Customer'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class='bx bx-edit nav__icon ' ></i></a>
-                    	
-                    </td>
-                </tr>
-                <tr>
-                    <td>akshay</td>
-                    <td>gajanan</td>
-                    <td>nikam</td>
-                    <td>1846524121</td>
-                    <td>akshay123@gmail.com</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='ViewShop_Customer'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='EditShop_Customer'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class='bx bx-edit nav__icon ' ></i></a>
-                    	
-                    </td>
-                </tr>
-                <tr>
-                    <td>mayur</td> 
-                    <td>a</td>
-                    <td>pawale</td>
-                    <td>2541251215</td>
-                    <td>mayur123@gmail.com</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='ViewShop_Customer'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='EditShop_Customer'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class='bx bx-edit nav__icon ' ></i></a>
-                    	
-                    </td>
-                </tr>
-                
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th class = "search-col">#</th>
-                    <th class = "search-col">Shop Name</th>
-                    <th class = "search-col">Owner Name</th>
-                    <th class = "search-col">Reg. Date</th>
-                    <th class = "search-col">Contact No</th>
-                    <th class = "search-col" >Action</th>
-                </tr>
-            </tfoot>
-        </table>
-    </div> 
-    
+		<div class="container-fluid table-container" id="ajaxResponse" style= "" >
+			<div class = "text-center mt-1">
+				<h4 class = "loading-title">Enter Above Details</h4>
+			</div>
+        </div>
 	<div class = "main-footer" style = "margin-top:50px;font-size:x-small;font-weight:bolder;text-align:center;bottom:0;">
 		<p class = "main-footer-text">Copyright @ 2021 All Rights Reserved. Terms of Use | Privacy Policy AND Website Design and Developed By <b style = "font-style:oblique;font-weight:bolder;">Suraj Nikam</b></p>
 	</div>
@@ -327,6 +263,73 @@ datalist{
     <script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     
+    <script>
+    
+    function loadXMLDoc() {
+        var xmlhttp = new XMLHttpRequest();
+//		alert(document.getElementById('searchby').value + " :: " +document.getElementById('searchhere').value);
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+
+               if (xmlhttp.status == 200) {
+                   document.getElementById("ajaxResponse").innerHTML = xmlhttp.responseText;
+                   
+                   var table = $('.myDataTable').DataTable({
+                       scrollY: 400,
+                       scrollX: true,
+                       scrollCollapse: true,    
+                   });
+               }
+               
+               else if (xmlhttp.status == 400) {
+                   alert('There was an error 400');
+               }
+               else {
+                   alert('something else other than 200 was returned');
+               }
+            }
+        };
+		
+        var url = "GetShopCustomerDetails?searchby="+document.getElementById('searchby').value+"&searchhere="+document.getElementById('searchhere').value;
+ //       alert(url);
+        xmlhttp.open("GET", url , false);
+        xmlhttp.send();
+    }
+    </script>
+    <script>/*
+    $(document).ready(function() {
+    	$('#userName').blur(function() {
+    		$.ajax({
+    			url : 'GetUserServlet',
+    			data : {
+    				userName : $('#userName').val()
+    			},
+    			success : function(responseText) {
+    				$('#ajaxGetUserServletResponse').text(responseText);
+    			}
+    		});
+    	});
+    });
+    
+    $(document).ready(function() {
+    	$('#search').click(function() {
+    		$.ajax({
+    			url : 'GetShopCustomerDetails',
+    			data : {
+    				searchby : $('#searchby').val(),
+    				searchhere : $('#searchhere').val()
+    			},
+    			timeout: 5000,
+    			success : function(responseText) {
+    				$('#ajaxGetUserServletResponse').html(responseText);
+    			}
+    			
+    		});
+    	});
+    },5000);*/
+    </script>
+    
+    
     <script type="text/javascript">
 	//	$('.myDataTable').DataTable();
 		
@@ -336,22 +339,6 @@ datalist{
             scrollCollapse: true,
             
         });
-
-        $('.myDataTable thead .search-col').each(function(){
-            var title = $(this).text();
-            $(this).jsp('<input type = "text" placeholder = "Search '+title+'" />');
-        });
-        
-        table.columns().every(function(){
-            var that = this;
-            $('input', this.header()).on('keyup change', function(){
-                if(that.search() !== this.value)
-                {
-                    that.search(this.value).draw();
-                } 
-            });
-        });
-		
    
         function topFunction() {
         document.body.scrollTop = 0;

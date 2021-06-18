@@ -1,3 +1,7 @@
+<%@page import="com.apnidukaanasc.dao.UserDao"%>
+<%@page import="java.util.List"%>
+<%@page import="com.apnidukaanasc.dao.AddressDao"%>
+<%@page import="com.apnidukaanasc.bean.AddressBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isErrorPage="true"%>
 <!DOCTYPE html>
@@ -43,6 +47,15 @@ input[type=date], input[type=file]{
 	{
 		response.sendRedirect("./LogIn");
 	}	
+
+
+	String key = request.getParameter("key") != null || request.getParameter("key") != ""
+	? request.getParameter("key")
+	: "undefined";
+	key = key.isEmpty() ? "undefined" : key; 
+	
+	System.out.println("key :: "+key);
+	List<AddressBean> list = AddressDao.getAllAddressById(key);
 %>
 	<!--========== HEADER ==========-->
         <header class="header">
@@ -197,67 +210,32 @@ input[type=date], input[type=file]{
         
          <div class="container-fluid address-container">
 	        <div class="row">
+<%
+	int cnt = 1;
+	for(AddressBean address: list)
+	{
+%>	        
 	            <div class="col-md-4 pt-3">
 	                <div class="card ">
 	                    <div class="card-header text-center">
-	                        Address 1
+	                        Address <%= cnt++ %>
 	                    </div>
 	                    <div class="card-body">
-	                        <b>Customer Name</b>
+	                        <b><%= UserDao.getNameById(key) %></b>
 	                        <address>
-	                            Box 564, Disneyland<br>
-	                            USA
-	                        </address>
-	                        <input type = "radio" name ="defaultaddress"><b style = "font-size:smaller;padding-top:-5px;"> Default Address</b>
-	                    </div>
-	                    <div class="btn-group" role="group" aria-label="Basic example">
-	                        <button type="button" class="btn btn-danger deletebutton"  data-toggle="tooltip" data-placement="top" title="Delete Address"  href="javascript:void(0)" onclick="location.href='DeleteAddress'"><i class="material-icons nav__icon pt-2" style ="color:white;">delete</i></button>
-	                        <button type="button" class="btn btn-warning defaultbutton"  data-toggle="tooltip" data-placement="top" title="Default Address" href="javascript:void(0)" onclick="location.href='SetDefaultAddress'" onclick="defaultaddress()"><i class="material-icons nav__icon pt-2" style ="color:white;">pin_drop</i></button>	
-	                        <button type="button" class="btn btn-success editbutton"  data-toggle="tooltip" data-placement="top" title="Edit Address" href="javascript:void(0)" onclick="location.href='EditAddress'"><i class="material-icons nav__icon pt-2" style ="color:white;">draw</i></button>
+	                           	<%= address.getMobilenumber() %>.<br>
+	                           	<%= address.getHousenobuildingname() %>,<br>
+	                           	<%= address.getRoadnameareacolony() %>,<br>
+	                           	<%= address.getLandmark() %>,<br>
+	                           	<%= address.getState() %>, <%= address.getCity() %> - <%= address.getPincode() %>.<br>
+	                        </address> 
 	                    </div>
 	                </div>   
 	            </div>
-	            <div class="col-md-4 pt-3">
-	                <div class="card">
-	                    <div class="card-header text-center">
-	                        Address 2
-	                    </div>
-	                    <div class="card-body">
-	                        <b>Customer Name</b>
-	                        <address>
-	                            Box 564, Disneyland<br>
-	                            USA
-	                        </address>
-	                        <input type = "radio" name ="defaultaddress"><b style = "font-size:smaller;padding-top:-5px;"> Default Address</b>
-	                    </div>
-	                    <div class="btn-group" role="group" aria-label="Basic example">
-	                        <button type="button" class="btn btn-danger deletebutton"  data-toggle="tooltip" data-placement="top" title="Delete Address"  href="javascript:void(0)" onclick="location.href='DeleteAddress'"><i class="material-icons nav__icon pt-2" style ="color:white;">delete</i></button>
-	                        <button type="button" class="btn btn-warning defaultbutton"  data-toggle="tooltip" data-placement="top" title="Default Address" href="javascript:void(0)" onclick="location.href='SetDefaultAddress'" onclick="defaultaddress()"><i class="material-icons nav__icon pt-2" style ="color:white;">pin_drop</i></button>	
-	                        <button type="button" class="btn btn-success editbutton"  data-toggle="tooltip" data-placement="top" title="Edit Address" href="javascript:void(0)" onclick="location.href='EditAddress'"><i class="material-icons nav__icon pt-2" style ="color:white;">draw</i></button>
-	                    </div>
-	                </div>  
-	            </div>
-	            <div class="col-md-4 pt-3">
-	                <div class="card">
-	                    <div class="card-header text-center">
-	                        Address 3
-	                    </div>
-	                    <div class="card-body">
-	                        <b>Customer Name</b>
-	                        <address>
-	                            Box 564, Disneyland<br>
-	                            USA
-	                        </address>
-	                        <input type = "radio" name ="defaultaddress"><b style = "font-size:smaller;padding-top:-5px;"> Default Address</b>
-	                    </div>
-	                    <div class="btn-group" role="group" aria-label="Basic example">
-	                        <button type="button" class="btn btn-danger deletebutton"  data-toggle="tooltip" data-placement="top" title="Delete Address"  href="javascript:void(0)" onclick="location.href='DeleteAddress'"><i class="material-icons nav__icon pt-2" style ="color:white;">delete</i></button>
-	                        <button type="button" class="btn btn-warning defaultbutton"  data-toggle="tooltip" data-placement="top" title="Default Address" href="javascript:void(0)" onclick="location.href='SetDefaultAddress'" onclick="defaultaddress()"><i class="material-icons nav__icon pt-2" style ="color:white;">pin_drop</i></button>	
-	                        <button type="button" class="btn btn-success editbutton"  data-toggle="tooltip" data-placement="top" title="Edit Address" href="javascript:void(0)" onclick="location.href='EditAddress'"><i class="material-icons nav__icon pt-2" style ="color:white;">draw</i></button>
-	                    </div>
-	                </div>  
-	            </div>
-	        </div>
+<%
+	}
+%>
+	       	</div>
 	    </div>
 	<div class = "main-footer" style = "margin-top:50px;font-size:x-small;font-weight:bolder;text-align:center;bottom:0;">
 		<p class = "main-footer-text">Copyright @ 2021 All Rights Reserved. Terms of Use | Privacy Policy AND Website Design and Developed By <b style = "font-style:oblique;font-weight:bolder;">Suraj Nikam</b></p>

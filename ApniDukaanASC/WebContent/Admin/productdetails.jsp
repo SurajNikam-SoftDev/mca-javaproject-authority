@@ -23,6 +23,33 @@
    
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
+    <script type = "text/javascript">
+        
+    	function validation(){
+    		
+    		/*
+    		var contactexp = /^\d{10}$/;
+			var emailexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+			var zipexp = /^\d{6}$/;
+			var letterexp = /^[A-Za-z]+$/;
+    		*/
+			if(document.form.productsearch.value == '')
+    		{
+    			document.getElementById("errorspan").innerHTML = "Enter Product Name In Search...";  
+    			document.form.productsearch.focus();
+    			return false;
+    		}
+    		else 
+    		{
+    			document.getElementById("errorspan").innerHTML = "";
+    			loadXMLDoc();
+    			return false;
+    		}
+    		
+			
+    	} 
+    </script>
 </head>
 <style>
 [list]::-webkit-calendar-picker-indicator {
@@ -193,11 +220,11 @@ datalist{
         </div>
         
         <div class="container-fluid filter-container" style= "" >
-			<form class = "form-body">
+			<form class = "form-body" name = "form">
 	            <div class="form-row">
 	                <div class="form-group col-md-4">
 	                	<label for="productprice">Select Product Category<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
-	                    <select name="productcategory" class="form-control" style = "font-size: 12px;">
+	                    <select name="productcategory" id = "productcategory" class="form-control" style = "font-size: 12px;">
 		                    <option selected>All</option>
 		                    <option>Fashion</option>
 		                    <option>Electronics</option>
@@ -213,120 +240,35 @@ datalist{
 	                
 	                <div class="form-group col-md-4">
 	                    <label for="datefrom">Date From</label>
-	                    <input type="date" class="form-control" name="datefrom">
+	                    <input type="date" class="form-control" id = "datefrom" name="datefrom">
 	                </div>
 	                <div class="form-group col-md-4">
 	                    <label for="dateto">Date To</label>
-	                    <input type="date" class="form-control" name="dateto">
+	                    <input type="date" class="form-control" id = "dateto" name="dateto">
+	                </div>
+	                <div class="form-group col-md-12">
+	                    <input type="text" class="form-control" id = "productsearch" name="productsearch" placeholder = "Search...">
 	                </div>
 	                <div class="form-group col-md-9">
-	                    <input type="text" class="form-control" name="productsearch" placeholder = "Search...">
+	                    <b><span id = "errorspan" style = "font-size:small;font-weight:bolder;color:red"></span></b>
 	                </div>
 	                <div class="form-group col-md-3">
 	                    <div class = "text-right" >
-			                <button type="button" class="btn btn-primary"  style = "font-size: 12px;font-weight: bolder;" >Search</button>
+			                <button type="submit" class="btn btn-primary"  style = "font-size: 12px;font-weight: bolder;" onclick = "return validation()" >Search</button>
 			            </div>
 	                </div>
 	            </div>
-	            
-        	</form>
-        
+	        </form>
 		</div>   
     
-
-		<div class="container-fluid table-container" style= "" >
-		<table class="table table-striped table-bordered myDataTable" style = "width: 100%;">
-            <thead>
-                <tr>
-                    <th class = "search-col">#</th>
-                    <th class = "search-col">Product Name</th>
-                    <th class = "search-col">Shop Name</th>
-                    <th class = "search-col">Price</th>
-                    <th class = "search-col">Category</th>
-                    <th class = "search-col">DateTime</th>
-                    <th class = "search-col" >Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>suraj</td>
-                    <td>gajanan</td>
-                    <td>nikam</td>
-                    <td>8788451215</td>
-                    <td>suraj123@gmail.com</td>
-                    <td>1</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='ViewProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='EditProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class='bx bx-edit nav__icon ' ></i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='DeleteProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class='bx bx-coffee-togo nav__icon' style = "color:red;"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>akshay</td>
-                    <td>gajanan</td>
-                    <td>nikam</td>
-                    <td>1846524121</td>
-                    <td>akshay123@gmail.com</td>
-                    <td>2</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='ViewProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='EditProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class='bx bx-edit nav__icon ' ></i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='DeleteProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class='bx bx-coffee-togo nav__icon' style = "color:red;"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>mayur</td> 
-                    <td>a</td>
-                    <td>pawale</td>
-                    <td>2541251215</td>
-                    <td>mayur123@gmail.com</td>
-                    <td>3</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='ViewProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='EditProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class='bx bx-edit nav__icon ' ></i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='DeleteProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class='bx bx-coffee-togo nav__icon' style = "color:red;"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>suresh</td>
-                    <td>k</td>
-                    <td>choudhary</td>
-                    <td>2463541515</td>
-                    <td>suresh123@gmail.com</td>
-                    <td>4</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='ViewProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='EditProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class='bx bx-edit nav__icon ' ></i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='DeleteProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class='bx bx-coffee-togo nav__icon' style = "color:red;"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>vishal</td>
-                    <td>j</td>
-                    <td>chillal</td>
-                    <td>2168574122</td>
-                    <td>vishal123@gmail.com</td>
-                    <td>5</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='ViewProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='EditProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class='bx bx-edit nav__icon ' ></i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='DeleteProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class='bx bx-coffee-togo nav__icon' style = "color:red;"></i></a>
-                    </td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th class = "search-col">#</th>
-                    <th class = "search-col">Product Name</th>
-                    <th class = "search-col">Shop Name</th>
-                    <th class = "search-col">Price</th>
-                    <th class = "search-col">Category</th>
-                    <th class = "search-col">DateTime</th>
-                    <th class = "search-col" >Action</th>
-                </tr>
-            </tfoot>
-        </table>	
-    </div>
+ 
+ 		<div class="container-fluid table-container" id="ajaxResponse" style= "" >
+			<div class = "text-center mt-1">
+				<h4 class = "loading-title">Enter Above Details</h4>
+			</div>
+        </div>
+        
+		
     
 	<div class = "main-footer" style = "margin-top:50px;font-size:x-small;font-weight:bolder;text-align:center;bottom:0;">
 		<p class = "main-footer-text">Copyright @ 2021 All Rights Reserved. Terms of Use | Privacy Policy AND Website Design and Developed By <b style = "font-style:oblique;font-weight:bolder;">Suraj Nikam</b></p>
@@ -351,7 +293,42 @@ datalist{
     
     <script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
     
+    function loadXMLDoc() {
+    	
+    	
+        
+        var xmlhttp = new XMLHttpRequest();
+//		alert(document.getElementById('productcategory').value + " :: " +document.getElementById('datefrom').value + " :: " +document.getElementById('dateto').value);
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+
+               if (xmlhttp.status == 200) {
+                   document.getElementById("ajaxResponse").innerHTML = xmlhttp.responseText;
+                   
+                   var table = $('.myDataTable').DataTable({
+                       scrollY: 400,
+                       scrollX: true,
+                       scrollCollapse: true,    
+                   });
+               }
+               
+               else if (xmlhttp.status == 400) {
+                   alert('There was an error 400');
+               }
+               else {
+                   alert('something else other than 200 was returned');
+               }
+            }
+        };
+		
+        var url = "GetProductDetails?productcategory="+document.getElementById('productcategory').value+"&productsearch="+document.getElementById('productsearch').value+"&datefrom="+document.getElementById('datefrom').value+"&dateto="+document.getElementById('dateto').value;
+//      alert(url);
+        xmlhttp.open("GET", url , false);
+        xmlhttp.send();
+    }
+    </script>
     <script type="text/javascript">
 	//	$('.myDataTable').DataTable();
 		
