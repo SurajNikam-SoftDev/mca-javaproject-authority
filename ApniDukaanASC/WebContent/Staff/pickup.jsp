@@ -22,6 +22,15 @@
     
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script type = "text/javascript">
+        
+    	function validation(){
+    		
+    		loadXMLDoc();
+    		return false;
+			
+    	} 
+    </script>
 </head>
 <style>
 [list]::-webkit-calendar-picker-indicator {
@@ -32,7 +41,7 @@ datalist{
 	max-height: 100px;
 }
 </style>
-<body>
+<body onload = "loadXMLDoc()">
 <%
 	if(session.getAttribute("emailid")==null)
 	{
@@ -163,166 +172,31 @@ datalist{
         </div>
         
         <div class="container-fluid filter-container" style= "" >
-			<form class = "form-body">
+			<form class = "form-body" name = "form">
 	            <div class="form-row">
-	                <div class="form-group col-md-5">
+	                <div class="form-group col-md-6">
 	                    <label for="datefrom">Date From</label>
-	                    <input type="date" class="form-control" name="datefrom">
+	                    <input type="date" class="form-control" name="datefrom"  id="datefrom">
 	                </div>
-	                <div class="form-group col-md-5">
+	                <div class="form-group col-md-6">
 	                    <label for="dateto">Date To</label>
-	                    <input type="date" class="form-control" name="dateto">
+	                    <input type="date" class="form-control" name="dateto" id="dateto">
 	                </div>
-	                <div class="form-group col-md-2">
-	                    <div class = "text-right mt-4">
+	                <div class="form-group col-md-8">
+	                    <b><span id = "errorspan" style = "font-size:small;font-weight:bolder;color:red"></span></b>
+	                </div>
+	                <div class="form-group col-md-4">
+	                    <div class = "text-right">
 			                <!-- Button trigger modal -->
-			                <button type="button" class="btn btn-primary"  style = "font-size: 12px;font-weight: bolder;" >Search</button>
+			                <button type="button" class="btn btn-primary" onclick = "return validation()" style = "font-size: 12px;font-weight: bolder;" >Search</button>
 			            </div>
 	                </div> 
 	            </div>
         	</form>
-        
 		</div>   
-    
 
-		<div class="container-fluid table-container" style= "" >
-			
-        <table class="table table-striped table-bordered myDataTable" style = "width: 100%;">
-            <thead>
-                <tr>
-                    <th class = "search-col">#</th>
-                    <th class = "search-col">Reference Number</th>
-                    <th class = "search-col">Sender Name</th>
-                    <th class = "search-col">Recipient Name</th>
-                    <th class = "search-col">Status</th>
-                    <th class = "search-col" >Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>suraj</td>
-                    <td>gajanan</td>
-                    <td>nikam</td>
-                    <td>8788451215</td>
-                    <td>suraj123@gmail.com</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='SP_ViewParcel'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>akshay</td>
-                    <td>gajanan</td>
-                    <td>nikam</td>
-                    <td>1846524121</td>
-                    <td>akshay123@gmail.com</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='SP_ViewParcel'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>mayur</td> 
-                    <td>a</td>
-                    <td>pawale</td>
-                    <td>2541251215</td>
-                    <td>mayur123@gmail.com</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='SP_ViewParcel'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>suresh</td>
-                    <td>k</td>
-                    <td>choudhary</td>
-                    <td>2463541515</td>
-                    <td>suresh123@gmail.com</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='SP_ViewParcel'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>vishal</td>
-                    <td>j</td>
-                    <td>chillal</td>
-                    <td>2168574122</td>
-                    <td>vishal123@gmail.com</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='SP_ViewParcel'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>ajay</td>
-                    <td>g</td>
-                    <td>shinde</td>
-                    <td>13525010652</td>
-                    <td>ajay123@gmail.com</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='SP_ViewParcel'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>akash</td>
-                    <td>n</td>
-                    <td>shinde</td>
-                    <td>8416524121</td>
-                    <td>akash123@gmail.com</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='SP_ViewParcel'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>aniket</td> 
-                    <td>a</td>
-                    <td>mandavkar</td>
-                    <td>7524151215</td>
-                    <td>akash123@gmail.com</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='SP_ViewParcel'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>sumesh</td>
-                    <td>k</td>
-                    <td>ojha</td>
-                    <td>8653541515</td>
-                    <td>sumesh123@gmail.com</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='SP_ViewParcel'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>gaurav</td>
-                    <td>n</td>
-                    <td>kaveri</td>
-                    <td>6118574122</td>
-                    <td>gaurav123@gmail.com</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='SP_ViewParcel'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>shubham</td>
-                    <td>p</td>
-                    <td>pawar</td>
-                    <td>8755251215</td>
-                    <td>shubham123@gmail.com</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='SP_ViewParcel'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    </td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th class = "search-col">#</th>
-                    <th class = "search-col">Reference Number</th>
-                    <th class = "search-col">Sender Name</th>
-                    <th class = "search-col">Recipient Name</th>
-                    <th class = "search-col">Status</th>
-                    <th class = "search-col" >Action</th>
-                </tr>
-            </tfoot>
-        </table>
-    </div> 
-    
+		<div class="container-fluid table-container" id="ajaxResponse" style= "" >
+        </div>
     
      <div class = "main-footer" style = "margin-top:50px;font-size:x-small;font-weight:bolder;text-align:center;bottom:0;">
 		<p class = "main-footer-text">Copyright @ 2021 All Rights Reserved. Terms of Use | Privacy Policy AND Website Design and Developed By <b style = "font-style:oblique;font-weight:bolder;">Suraj Nikam</b></p>
@@ -338,6 +212,41 @@ datalist{
     <script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     
+    <script>
+    
+    function loadXMLDoc() {
+    	//alert(document.getElementById("datefrom").value);
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+
+               if (xmlhttp.status == 200) {
+                   document.getElementById("ajaxResponse").innerHTML = xmlhttp.responseText;
+                   
+                   var table = $('.myDataTable').DataTable({
+                       scrollY: 100,
+                       scrollX: true,
+                       scrollCollapse: true,  
+                       
+                   });
+               }
+               
+               else if (xmlhttp.status == 400) {
+                   alert('There was an error 400');
+               }
+               else {
+                   alert('something else other than 200 was returned');
+               }
+            }
+        };
+		
+        var url = "GetParcelListByCategory?status=Delivered&datefrom="+document.getElementById("datefrom").value+"&dateto="+document.getElementById("dateto").value;
+        //alert(url);
+        xmlhttp.open("GET", url , false);
+        xmlhttp.send();
+    }
+    </script>
+    
     <script type="text/javascript">
 	//	$('.myDataTable').DataTable();
 		
@@ -347,32 +256,11 @@ datalist{
             scrollCollapse: true,
             
         });
-
-        $('.myDataTable thead .search-col').each(function(){
-            var title = $(this).text();
-            $(this).jsp('<input type = "text" placeholder = "Search '+title+'" />');
-        });
         
-        table.columns().every(function(){
-            var that = this;
-            $('input', this.header()).on('keyup change', function(){
-                if(that.search() !== this.value)
-                {
-                    that.search(this.value).draw();
-                } 
-            });
-        });
-		
-   
         function topFunction() {
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
         }
-        
-        
-        
-
-        
-        </script>
+     </script>
 </body>
 </html>

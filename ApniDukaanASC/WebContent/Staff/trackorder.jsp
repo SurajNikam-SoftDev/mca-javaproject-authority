@@ -22,6 +22,35 @@
     
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script type = "text/javascript">
+        
+    	function validation(){
+    		
+    		var contactexp = /^\d{10}$/;
+			var emailexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+			var zipexp = /^\d{6}$/;
+			var letterexp = /^[A-Za-z]+$/;
+			var trackid = /^\d{18}$/;
+    		
+			if(document.form.trackid.value == '')
+    		{
+    			document.getElementById("errorspan").innerHTML = "Enter Track Id";  
+    			return false;
+    		}
+			else if(!document.form.trackid.value.match(/\d+/g))
+    		{
+    			document.getElementById("errorspan").innerHTML = "Enter Numbers In Track Id";  
+    			return false;
+    		}
+    		else 
+    		{
+    			document.getElementById("errorspan").innerHTML = "";
+    			loadXMLDoc();
+    			return false;
+    		}
+			
+    	} 
+    </script>
 </head>
 <style>
 [list]::-webkit-calendar-picker-indicator {
@@ -161,97 +190,27 @@ datalist{
         
         </div>
         <div class = "container-fluid form-container">
-        	
-	        <form class = "form-body">
+        	<form class = "form-body" name = "form">
 	            <div class="form-group">
-		        	<label for="" class="control-label text-center">Track Id</label>
+		        	<label for="" class="control-label text-center">Track Id<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
 		            <div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="Track Order ID" aria-label="Track Order ID" aria-describedby="basic-addon2">
+						<input type="text" class="form-control" name = "trackid" id = "trackid" placeholder="Track Order ID" aria-label="Track Order ID" aria-describedby="basic-addon2">
 						<div class="input-group-append">
-							<button type="button" class="btn btn-primary form-control"  data-toggle="modal" data-target="#exampleModalCenter" style = "font-size: 12px;font-weight: bolder;" ><i class="bx bx-search" style = "font-weight:bolder;"></i></button>
+							<button type="submit" class="btn btn-primary form-control" onclick = "return validation()" style = "font-size: 12px;font-weight: bolder;" ><i class="bx bx-search" style = "font-weight:bolder;"></i></button>
 						</div>
 					</div>
 		         </div>
+		         <div class = "text-center mt-2">
+				   	<b><span id = "errorspan" style = "font-size:small;font-weight:bolder;color:red"></span></b>
+				</div>
 		     </form>     
            	<hr>
            	<br>
-           	<div class = "trackorder-container">
-           		<div class="row justify-content-center">
-				    <div class="col-10">
-				    	<p class="paragraph">
-		            			<i class="bx bx-search trackorder-icon"></i>
-		            			<b class = "trackorder-text">Item accepted by Courier</b><small>Nov 27, 2020 02:06 PM</small> 
-		            	</p>
-		            	<div class = "vertical text-center">
-		            		<span class = "vertical-line"></span>
-		            	</div>
-		            	<p class="paragraph">
-		            			<i class="bx bx-search trackorder-icon"></i>
-		            			<b class = "trackorder-text">Collected</b><small>Nov 27, 2020 02:06 PM</small> 
-		            	</p>
-		            	<div class = "vertical text-center">
-		            		<span class = "vertical-line"></span>
-		            	</div>
-		            	<p class="paragraph">
-		            			<i class="bx bx-search trackorder-icon"></i>
-		            			<b class = "trackorder-text">Shipped</b><small>Nov 27, 2020 02:06 PM</small> 
-		            	</p>
-		            	<div class = "vertical text-center">
-		            		<span class = "vertical-line"></span>
-		            	</div>
-		            	<p class="paragraph">
-		            			<i class="bx bx-search trackorder-icon"></i>
-		            			<b class = "trackorder-text">In-Transit</b><small>Nov 27, 2020 02:06 PM</small> 
-		            	</p>
-		            	<div class = "vertical text-center">
-		            		<span class = "vertical-line" style = "height:100px;"></span>
-		            	</div>
-		            	<p class="paragraph">
-		            			<i class="bx bx-search trackorder-icon"></i>
-		            			<b class = "trackorder-text">Arrived At Destination</b><small>Nov 27, 2020 02:06 PM</small> 
-		            	</p>
-		            	<div class = "vertical text-center">
-		            		<span class = "vertical-line"></span>
-		            	</div>
-		            	<p class="paragraph">
-		            			<i class="bx bx-search trackorder-icon"></i>
-		            			<b class = "trackorder-text">Out For Delivery</b><small>Nov 27, 2020 02:06 PM</small> 
-		            	</p>
-		            	<div class = "vertical text-center">
-		            		<span class = "vertical-line"></span>
-		            	</div>
-		            	<p class="paragraph">
-		            			<i class="bx bx-search trackorder-icon"></i>
-		            			<b class = "trackorder-text">Ready To PickUp</b><small>Nov 27, 2020 02:06 PM</small> 
-		            	</p>
-		            	<div class = "vertical text-center">
-		            		<span class = "vertical-line"></span>
-		            	</div>
-		            	<p class="paragraph">
-		            			<i class="bx bx-search trackorder-icon"></i>
-		            			<b class = "trackorder-text">Delivered</b><small>Nov 27, 2020 02:06 PM</small> 
-		            	</p>
-		            	<div class = "vertical text-center">
-		            		<span class = "vertical-line"></span>
-		            	</div>
-		            	<p class="paragraph">
-		   
-		            			<i class="bx bx-search trackorder-icon"></i>
-		            			<b class = "trackorder-text">PickUp</b><small>Nov 27, 2020 02:06 PM</small> 
-		            	</p>
-		            	<div class = "vertical text-center">
-		            		<span class = "vertical-line-process"></span>
-		            	</div>
-		            	<p class="paragraph">
-		            			<i class="bx bx-search trackorder-icon"></i>
-		            			<b class = "trackorder-text">Unsuccessfully Delivery Arrived</b><small>Nov 27, 2020 02:06 PM</small> 
-		            	</p>
-				    </div>
-				</div>
+           	<div class = "trackorder-container" id="ajaxResponse" >
            	</div>
         </div>
-        
-     <div class = "main-footer" style = "margin-top:50px;font-size:x-small;font-weight:bolder;text-align:center;bottom:0;">
+    
+    <div class = "main-footer" style = "margin-top:50px;font-size:x-small;font-weight:bolder;text-align:center;bottom:0;">
 		<p class = "main-footer-text">Copyright @ 2021 All Rights Reserved. Terms of Use | Privacy Policy AND Website Design and Developed By <b style = "font-style:oblique;font-weight:bolder;">Suraj Nikam</b></p>
 	</div>
 	
@@ -265,41 +224,39 @@ datalist{
     <script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     
-    <script type="text/javascript">
-	//	$('.myDataTable').DataTable();
-		
-        var table = $('.myDataTable').DataTable({
-            scrollY: 400,
-            scrollX: true,
-            scrollCollapse: true,
-            
-        });
+    <script>
+    
+    function loadXMLDoc() {
+    	
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == XMLHttpRequest.DONE) {
 
-        $('.myDataTable thead .search-col').each(function(){
-            var title = $(this).text();
-            $(this).jsp('<input type = "text" placeholder = "Search '+title+'" />');
-        });
-        
-        table.columns().every(function(){
-            var that = this;
-            $('input', this.header()).on('keyup change', function(){
-                if(that.search() !== this.value)
-                {
-                    that.search(this.value).draw();
-                } 
-            });
-        });
+               if (xmlhttp.status == 200) {
+                   document.getElementById("ajaxResponse").innerHTML = xmlhttp.responseText;
+                   
+                   var table = $('.myDataTable').DataTable({
+                       scrollY: 100,
+                       scrollX: true,
+                       scrollCollapse: true,  
+                       
+                   });
+               }
+               
+               else if (xmlhttp.status == 400) {
+                   alert('There was an error 400');
+               }
+               else {
+                   alert('something else other than 200 was returned');
+               }
+            }	
+        };
 		
-   
-        function topFunction() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-        }
-        
-        
-        
-
-        
-        </script>
+        var url = "GetTrackOrder?key="+document.getElementById('trackid').value;
+        //alert(url);
+        xmlhttp.open("GET", url , false);
+        xmlhttp.send();
+    }
+    </script>
 </body>
 </html>

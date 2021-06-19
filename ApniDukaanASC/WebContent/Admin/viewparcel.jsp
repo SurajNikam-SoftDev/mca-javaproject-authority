@@ -1,3 +1,6 @@
+<%@page import="com.apnidukaanasc.dao.BranchDao"%>
+<%@page import="com.apnidukaanasc.dao.ParcelDao"%>
+<%@page import="com.apnidukaanasc.bean.ParcelBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isErrorPage="true"%>
 <!DOCTYPE html>
@@ -44,6 +47,15 @@ input[type=date], input[type=file]{
 	{
 		response.sendRedirect("./LogIn");
 	}	
+
+	String key = request.getParameter("key") != null || request.getParameter("key") != ""
+	? request.getParameter("key")
+	: "undefined";
+	key = key.isEmpty() ? "undefined" : key; 
+	
+	//System.out.println(key);
+	
+	ParcelBean pb = ParcelDao.getParcelById(key);
 %>
 	<!--========== HEADER ==========-->
         <header class="header">
@@ -198,107 +210,99 @@ input[type=date], input[type=file]{
         </div>
         
         <div class="container-fluid parcel-container">	
-			<form>
-				<div class="parcel-sub-container">
-					<b class = "parcel-header">Track ID: 505604168988</b>
-				</div>
-				<br>
-	        	<div class = "row">
-	        		<div class = "col-md-6">
-	        			<div class = "parcel-card">
-	        				<b>Sender Information</b>
-			              	<div class="form-group">
-			                	<label for="" class="control-label">Name</label>
-			                	<input type="text" name="sender_name" id="" class="form-control form-control-sm" value="John Smith" required="">
-			              	</div>
-			              	<div class="form-group">
-			                	<label for="" class="control-label">Address</label>
-			                	<input type="text" name="sender_address" id="" class="form-control form-control-sm" value="Sample" required="">
-			              	</div>
-			              	<div class="form-group">
-			                	<label for="" class="control-label">Contact #</label>
-			                	<input type="text" name="sender_contact" id="" class="form-control form-control-sm" value="+123456" required="">
-			              	</div>	
-	        			</div>
-	        		</div>
-	        		<div class = "col-md-6">
-	        			<div class = "parcel-card">
-	        				<b>Recipient Information</b>
-			              	<div class="form-group">
-			                	<label for="" class="control-label">Name</label>
-			                	<input type="text" name="recipient_name" id="" class="form-control form-control-sm" value="Sample" required="">
-			              	</div>
-			              	<div class="form-group">
-			                	<label for="" class="control-label">Address</label>
-			                	<input type="text" name="recipient_address" id="" class="form-control form-control-sm" value="Sample" required="">
-			              	</div>
-			              	<div class="form-group">
-			                	<label for="" class="control-label">Contact #</label>
-			                	<input type="text" name="recipient_contact" id="" class="form-control form-control-sm" value="+12345" required="">
-			              	</div>	
-	        			</div>
-	        		</div>
-	        	</div>
-	        	<div class="parcel-sub-container mt-4">
-					<b class = "parcel-header">Parcel Details:</b>
-					
-					<div class = "row mt-2">
-						<div class = "col-md-2">
-							<div class="form-group">
-			                	<label for="" class="control-label">Weight</label>
-			                	<input type="text" name="weight" id="" class="form-control form-control-sm" placeholder="Weight" required="">
-			              	</div>
-						</div>
-						<div class = "col-md-2">
-							<div class="form-group">
-			                	<label for="" class="control-label">Height</label>
-			                	<input type="text" name="height" id="" class="form-control form-control-sm" placeholder="Height" required="">
-			              	</div>
-						</div>
-						<div class = "col-md-2">
-							<div class="form-group">
-			                	<label for="" class="control-label">Width</label>
-			                	<input type="text" name="width" id="" class="form-control form-control-sm" value="Width" required="">
-			              	</div>
-						</div>
-						<div class = "col-md-2">
-							<div class="form-group">
-			                	<label for="" class="control-label">Length</label>
-			                	<input type="text" name="length" id="" class="form-control form-control-sm" value="Length" required="">
-			              	</div>
-						</div>
-						<div class = "col-md-2">
-							<div class="form-group">
-			                	<label for="" class="control-label">Price</label>
-			                	<input type="text" name="price" id="" class="form-control form-control-sm" value="Price" required="">
-			              	</div>
-						</div>
-						<div class = "col-md-2">
-							<div class="form-group">
-			                	<label for="" class="control-label">Type</label>
-			                	<input type="text" name="type" id="" class="form-control form-control-sm" value="Type" required="">
-			              	</div>
-						</div>
-						<div class = "col-md-12">
-							<div class="form-group">
-			                	<label for="" class="control-label">Branch Accepted the Parcel:</label>
-			                	<p class = "parcel-address">Sample, Sample, Sample, 123456, Philippines</p>
-			              	</div>
-			              	<div class="form-group">
-			                	<label for="" class="control-label">Nearest Branch to Recipient for Pickup:</label>
-			                	<p class = "parcel-address">Branch 1 St., Quiapo, Manila, Metro Manila, 1001, Philippines</p>
-			              	</div>
-						</div>
-					</div>
-				</div>
-				<div class="parcel-sub-container">
-					<b class = "parcel-header">Status: <span class = "parcel-status">Delivered</span></b>
-					
-				</div>
+		<form action = "./SP_ViewParcel" method = "POST">
+			<input type = "hidden" name = "parcel_id" value = "<%= key %>">
+			<div class="parcel-sub-container">
+				<b class = "parcel-header">Track ID: <%= pb.getReferenceno() %></b>
+			</div>
+			<br>
+        	<div class = "row">
+        		<div class = "col-md-6">
+        			<div class = "parcel-card">
+        				<b>Sender Information</b>
+		              	<div class="form-group">
+		                	<label for="" class="control-label">Name</label>
+		                	<input type="text" name="sender_name" id="" class="form-control form-control-sm" value="<%= pb.getSendername() %>" readonly>
+		              	</div>
+		              	<div class="form-group">
+		                	<label for="" class="control-label">Address</label>
+		                	<input type="text" name="sender_address" id="" class="form-control form-control-sm" value="<%= pb.getSenderaddress()%>" readonly>
+		              	</div>
+		              	<div class="form-group">
+		                	<label for="" class="control-label">Contact #</label>
+		                	<input type="text" name="sender_contact" id="" class="form-control form-control-sm" value="<%= pb.getSendercontact()%>" readonly>
+		              	</div>	
+        			</div>
+        		</div>
+        		<div class = "col-md-6">
+        			<div class = "parcel-card">
+        				<b>Recipient Information</b>
+		              	<div class="form-group">
+		                	<label for="" class="control-label">Name</label>
+		                	<input type="text" name="recipient_name" id="" class="form-control form-control-sm" value="<%= pb.getReceipantname() %>" readonly>
+		              	</div>
+		              	<div class="form-group">
+		                	<label for="" class="control-label">Address</label>
+		                	<input type="text" name="recipient_address" id="" class="form-control form-control-sm" value="<%=pb.getReceipantaddress() %>" readonly>
+		              	</div>
+		              	<div class="form-group">
+		                	<label for="" class="control-label">Contact #</label>
+		                	<input type="text" name="recipient_contact" id="" class="form-control form-control-sm" value="<%= pb.getReceipantcontact() %>" readonly>
+		              	</div>	
+        			</div>
+        		</div>
+        	</div>
+        	<div class="parcel-sub-container mt-4">
+				<b class = "parcel-header">Parcel Details:</b>
 				
-	            </form>
-	        </div>   
-        
+				<div class = "form-row mt-2">
+					<div class="form-group col-md-1">
+	                    <label for="productprice">Height<small style = "font-size:9px;font-weight:bolder;color:grey">(inch)</small></label>
+	                    <input type="text" class="form-control" name="height" value = "<%= pb.getProdheight().equals("undefined")?"":pb.getProdheight() %>" placeholder="Height"  readonly>
+	                </div>
+	                <div class="form-group col-md-1">
+	                    <label for="productprice">Weight<small style = "font-size:9px;font-weight:bolder;color:grey">(kg)</small><span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
+	                    <input type="text" class="form-control" name="weight" value = "<%= pb.getProdweight().equals("undefined")?"":pb.getProdweight() %>" placeholder="Weight" readonly>
+	                </div>
+	            	<div class="form-group col-md-1">
+	                    <label for="productprice">Length<small style = "font-size:9px;font-weight:bolder;color:grey">(inch)</small></label>
+	                    <input type="text" class="form-control" name="length" value = "<%= pb.getProdlength().equals("undefined")?"":pb.getProdlength() %>" placeholder="Length" readonly>
+	                </div>
+	                <div class="form-group col-md-1">
+	                    <label for="productprice">Width<small style = "font-size:9px;font-weight:bolder;color:grey">(inch)</small></label>
+	                    <input type="text" class="form-control" name="width" value = "<%= pb.getProdwidth().equals("undefined")?"":pb.getProdwidth() %>" placeholder="Width" readonly>
+	                </div>
+	                <div class="form-group col-md-3">
+	                    <label for="productprice">Price<small style = "font-size:9px;font-weight:bolder;color:grey">(Rs.)</small><span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
+	                    <input type="text" class="form-control" name="price" value = "<%= Float.parseFloat(pb.getPrice()) / Float.parseFloat(pb.getQty()) %>0" placeholder="Price" readonly>
+	                </div>
+	                <div class="form-group col-md-2">
+	                    <label for="productprice">qty<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
+	                    <input type="text" class="form-control" name="qty" value = "<%= pb.getQty() %>" placeholder="Qty" readonly>
+	                </div>
+	                <div class="form-group col-md-3">
+	                    <label for="productprice">Total<small style = "font-size:9px;font-weight:bolder;color:grey">(Rs.)</small><span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
+	                    <input type="text" class="form-control" name="total" value = "<%= pb.getPrice() %>" placeholder="Total" readonly>
+	                </div>
+	                <div class="form-group">
+	                	<div class="col-md-12">
+	                		<label for="" class="control-label">Branch Accepted the Parcel:</label>
+		                	<p class = "parcel-address"><%= BranchDao.getBranchAddressById(pb.getFrombranchid()) %></p>
+	                	</div>
+		                <div class="col-md-12">
+		                	<label for="" class="control-label">Nearest Branch to Recipient for Pickup:</label>
+			                <p class = "parcel-address"><%= BranchDao.getBranchAddressById(pb.getTobranchid()) %></p>
+		                </div>
+	                </div>
+	                
+				</div>
+			</div>
+			<div class="parcel-sub-container">
+				<b class = "parcel-header">Status: <span class = "parcel-status"><%= pb.getOpstatus() %></span></b>
+			</div>
+			</form>
+        </div>   
+    
         
 	<div class = "main-footer" style = "margin-top:50px;font-size:x-small;font-weight:bolder;text-align:center;bottom:0;">
 		<p class = "main-footer-text">Copyright @ 2021 All Rights Reserved. Terms of Use | Privacy Policy AND Website Design and Developed By <b style = "font-style:oblique;font-weight:bolder;">Suraj Nikam</b></p>
