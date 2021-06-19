@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.apnidukaanasc.dao.ProductDao;
 
 /**
- * Servlet implementation class DeleteProduct
- */
-@WebServlet("/DeleteProduct")
-public class DeleteProduct extends HttpServlet {
+ * Servlet implementation class SP_NewAddedProductApproved
+ */ 		  
+@WebServlet("/SP_NewAddedProductApproved")
+public class SP_NewAddedProductApproved extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteProduct() {
+    public SP_NewAddedProductApproved() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +32,14 @@ public class DeleteProduct extends HttpServlet {
 		String key = request.getParameter("key") != null || request.getParameter("key") != ""
 				? request.getParameter("key")
 				: "undefined";
-		key = key.isEmpty() ? "undefined" : key;
-
-		int status = ProductDao.getProductDeclineById(key);
+				key = key.isEmpty() ? "undefined" : key; 
+				
+		int status = ProductDao.getProductApprovedById(key);
 
 		if (status == 1) {
-			response.sendRedirect("./NewAddedProductList");
+			response.sendRedirect("./SP_NewProductList");
 		} else {
-			response.sendRedirect("./NewAddedProductList");
+			response.sendRedirect("./SP_NewProductList");
 		}
 	}
 

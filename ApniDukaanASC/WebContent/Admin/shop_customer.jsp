@@ -248,6 +248,7 @@ datalist{
 				<h4 class = "loading-title">Enter Above Details</h4>
 			</div>
         </div>
+        
 	<div class = "main-footer" style = "margin-top:50px;font-size:x-small;font-weight:bolder;text-align:center;bottom:0;">
 		<p class = "main-footer-text">Copyright @ 2021 All Rights Reserved. Terms of Use | Privacy Policy AND Website Design and Developed By <b style = "font-style:oblique;font-weight:bolder;">Suraj Nikam</b></p>
 	</div>

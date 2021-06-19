@@ -202,7 +202,7 @@ input[type=date], input[type=file]{
         </div>
         <!--========== CONTENTS ==========-->
         
-         <div class = "container-fluid page-header text-center">
+        <div class = "container-fluid page-header text-center">
         	<b>View Shop & Customer</b>
         
         </div>

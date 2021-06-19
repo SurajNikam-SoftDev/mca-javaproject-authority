@@ -338,32 +338,11 @@ datalist{
             scrollCollapse: true,
             
         });
-
-        $('.myDataTable thead .search-col').each(function(){
-            var title = $(this).text();
-            $(this).jsp('<input type = "text" placeholder = "Search '+title+'" />');
-        });
-        
-        table.columns().every(function(){
-            var that = this;
-            $('input', this.header()).on('keyup change', function(){
-                if(that.search() !== this.value)
-                {
-                    that.search(this.value).draw();
-                } 
-            });
-        });
-		
    
         function topFunction() {
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
         }
-        
-        
-        
-
-        
-        </script>
+     </script>
 </body>
 </html>

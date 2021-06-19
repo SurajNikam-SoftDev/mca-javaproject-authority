@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.apnidukaanasc.dao.ProductDao;
 
 /**
- * Servlet implementation class DeleteProduct
+ * Servlet implementation class SP_NewAddedProductDecline
  */
-@WebServlet("/DeleteProduct")
-public class DeleteProduct extends HttpServlet {
+@WebServlet("/SP_NewAddedProductDecline")
+public class SP_NewAddedProductDecline extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteProduct() {
+    public SP_NewAddedProductDecline() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,9 +37,9 @@ public class DeleteProduct extends HttpServlet {
 		int status = ProductDao.getProductDeclineById(key);
 
 		if (status == 1) {
-			response.sendRedirect("./NewAddedProductList");
+			response.sendRedirect("./SP_NewProductList");
 		} else {
-			response.sendRedirect("./NewAddedProductList");
+			response.sendRedirect("./SP_NewProductList");
 		}
 	}
 

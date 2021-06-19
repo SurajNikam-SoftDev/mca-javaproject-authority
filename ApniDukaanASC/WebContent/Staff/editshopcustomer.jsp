@@ -21,6 +21,63 @@
     
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script type = "text/javascript">
+    function validation(){
+    		
+	    	var contactexp = /^\d{10}$/;
+			var emailexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+			var zipexp = /^\d{6}$/;
+			var letterexp = /^[A-Za-z]+$/;	//	single word
+            var letterspaceexp = /^[a-zA-Z\s]*$/g;	//	multiple words
+		//	var numberdashedexp = ^[0-9-]*$;  
+			
+            if(document.form.shopname.value=='')
+    		{
+    			document.getElementById("errorspan").innerHTML = "Enter Shop Name";  
+    			return false;
+    		}
+            else if(!document.form.shopname.value.match(letterspaceexp))
+    		{
+    			document.getElementById("errorspan").innerHTML = "Enter Letters Only";  
+    			return false;
+    		}
+    		else if(document.form.ownername.value=='')
+    		{
+    			document.getElementById("errorspan").innerHTML = "Enter Owner Name";  
+    			return false;
+    		}
+    		else if(!document.form.ownername.value.match(letterspaceexp))
+     		{
+     			document.getElementById("errorspan").innerHTML = "Enter Letters Only";  
+     			return false;
+     		}
+    		else if(document.form.contactno.value=='')
+    		{
+    			document.getElementById("errorspan").innerHTML = "Enter Contact Number";  
+    			return false;
+    		} 
+    		else if(!document.form.contactno.value.match(contactexp))
+     		{
+     			document.getElementById("errorspan").innerHTML = "Enter Correct Contact Number";  
+     			return false;
+     		}
+    		else if(document.form.emailid.value==''){
+    			document.getElementById("errorspan").innerHTML = "Enter Email Id";  
+    			return false;
+    		}
+    		else if(!document.form.emailid.value.match(emailexp))
+     		{
+     			document.getElementById("errorspan").innerHTML = "Enter Correct Email Id";  
+     			return false;
+     		}
+    		else
+    		{
+    			document.getElementById("errorspan").innerHTML = "";
+    			return true;
+    		}
+    		  
+    	} 
+    </script>
 </head>
 <style>
 [list]::-webkit-calendar-picker-indicator {
@@ -29,6 +86,11 @@
 
 datalist{
 	max-height: 100px;
+}
+
+input[type=date], input[type=file]{
+    font-size: 12px;   
+    outline: none;  
 }
 </style>
 <body>
@@ -159,22 +221,22 @@ datalist{
         	<b>Edit Shop & Customer</b>
         
         </div>
-        <div class = "container-fluid form-container">
+       	<div class = "container-fluid form-container">
         	
-        <form class = "form-body">
+        <form class = "form-body" name = "form">
             
            
             <div class="form-row">
             	<div class="form-group col-md-12">
-                    <label for="shopname">Shop Name</label>
+                    <label for="shopname">Shop Name<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
                     <input type="text" class="form-control" name="shopname" placeholder="Shop Name">
                 </div>
                	<div class="form-group col-md-6">
-                    <label for="ownername">Owner Name</label>
+                    <label for="ownername">Owner Name<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
                     <input type="text" class="form-control" name="ownername" placeholder="Owner Name">
                 </div>
                 <div class="form-group col-md-6">
-	                <label for="inputAddress">Contact No</label>
+	                <label for="inputAddress">Contact No<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
 	                <input type="text" class="form-control" name="contactno" placeholder="Contact No">
 	            </div>
             </div>
@@ -184,42 +246,22 @@ datalist{
 	                <input type="text" class="form-control" name="prepaiddiscount" placeholder="Prepaid Order Discount">
 	            </div>
             	<div class="form-group col-md-6">
-	                <label for="emailid">Email ID</label>
+	                <label for="emailid">Email ID<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
 	                <input type="text" class="form-control" name="emailid" placeholder="Email ID">
 	            </div>
 	        </div>
             <div class = "text-center">
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary form-control"  data-toggle="modal" data-target="#exampleModalCenter" style = "font-size: 12px;font-weight: bolder;" >Submit</button>
-            </div>
-            
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header text-center">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Confirmation</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>
-                    <div class="modal-body text-center">
-                   		You Want To Save Data
-                    </div>
-                    <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button> -->
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">No</button>
-                        <button type="button" class="btn btn-primary" >Yes</button>
-                    </div>
-                </div>
-                </div>
+                <button type="submit" class="btn btn-primary form-control" onclick = "return validation()" style = "font-size: 12px;font-weight: bolder;" >Submit</button>
             </div>
             
         </form>
-        
+        	<div class = "text-center mt-2">
+		        <b><span id = "errorspan" style = "font-size:small;font-weight:bolder;color:red"></span></b>
+		    </div>
         
         </div>
-        
+	
      <div class = "main-footer" style = "margin-top:50px;font-size:x-small;font-weight:bolder;text-align:center;bottom:0;">
 		<p class = "main-footer-text">Copyright @ 2021 All Rights Reserved. Terms of Use | Privacy Policy AND Website Design and Developed By <b style = "font-style:oblique;font-weight:bolder;">Suraj Nikam</b></p>
 	</div>

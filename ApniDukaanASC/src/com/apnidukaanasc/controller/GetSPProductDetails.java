@@ -7,19 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.apnidukaanasc.dao.ProductDao;
-
 /**
- * Servlet implementation class DeleteProduct
+ * Servlet implementation class GetSPProductDetails
  */
-@WebServlet("/DeleteProduct")
-public class DeleteProduct extends HttpServlet {
+@WebServlet("/GetSPProductDetails")
+public class GetSPProductDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteProduct() {
+    public GetSPProductDetails() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,18 +27,7 @@ public class DeleteProduct extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String key = request.getParameter("key") != null || request.getParameter("key") != ""
-				? request.getParameter("key")
-				: "undefined";
-		key = key.isEmpty() ? "undefined" : key;
-
-		int status = ProductDao.getProductDeclineById(key);
-
-		if (status == 1) {
-			response.sendRedirect("./NewAddedProductList");
-		} else {
-			response.sendRedirect("./NewAddedProductList");
-		}
+		request.getRequestDispatcher("ASOperation/getspproductdetails.jsp").forward(request, response); 
 	}
 
 	/**

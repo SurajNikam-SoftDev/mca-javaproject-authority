@@ -23,6 +23,15 @@
     
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+     <script type = "text/javascript">
+        
+    	function validation(){
+    		    		
+			loadXMLDoc();
+			return false;
+			
+    	} 
+    </script>
 </head>
 <style>
 [list]::-webkit-calendar-picker-indicator {
@@ -33,7 +42,7 @@ datalist{
 	max-height: 100px;
 }
 </style>
-<body>
+<body onload = "loadXMLDoc()">
 <%
 	if(session.getAttribute("emailid")==null)
 	{
@@ -162,130 +171,48 @@ datalist{
         </div>
         
         <div class="container-fluid filter-container" style= "" >
-			<form class = "form-body">
+			<form class = "form-body" name = "form">
 	            <div class="form-row">
 	                <div class="form-group col-md-4">
-	                    <label for="productprice">Select Product Category</label>
-	                    <select name="productcategory" class="form-control" style = "font-size: 12px;">
-		                    <option selected>Choose Product Category...</option>
-		                    <option>1</option>
-		                    <option>2</option>
-		                    <option>3</option>
-		                    <option>4</option>
+	                    <label for="productprice">Select Product Category<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
+	                    <select name="productcategory" id = "productcategory" class="form-control" style = "font-size: 12px;">
+		                    <option selected>All</option>
+		                    <option>Fashion</option>
+		                    <option>Electronics</option>
+		                    <option>Home Appliances</option>
+		                    <option>Grocery</option>
+		                    <option>Mobile's</option>
+		                    <option>Women's Beauty</option>
+		                    <option>Men's Footwear</option>
+		                    <option>Baby & Kids</option>
+		                    <option>Health Care Essentials</option>
 	                    </select>
 	                </div>
 	                <div class="form-group col-md-4">
-	                    <label for="datefrom">Date From</label>
-	                    <input type="date" class="form-control" name="datefrom">
+	                    <label for="datefrom">Date From<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
+	                    <input type="date" class="form-control" id = "datefrom" name="datefrom">
 	                </div>
 	                <div class="form-group col-md-4">
-	                    <label for="dateto">Date To</label>
-	                    <input type="date" class="form-control" name="dateto">
+	                    <label for="dateto">Date To<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
+	                    <input type="date" class="form-control" id = "dateto" name="dateto">
 	                </div>
 	            </div>
 	            <div class = "text-right">
 	                <!-- Button trigger modal -->
-	                <button type="button" class="btn btn-primary"  style = "font-size: 12px;font-weight: bolder;" >Search</button>
+	                <button type="submit" class="btn btn-primary"  style = "font-size: 12px;font-weight: bolder;" onclick = "return validation()" >Search</button>
 	            </div>
         	</form>
-        
+        	<div class = "text-center mt-2">
+		   		<b><span id = "errorspan" style = "font-size:small;font-weight:bolder;color:red"></span></b>
+			</div>
 		</div>   
     
 
-		<div class="container-fluid table-container" style= "" >
-		<table class="table table-striped table-bordered myDataTable" style = "width: 100%;">
-            <thead>
-                <tr>
-                    <th class = "search-col">#</th>
-                    <th class = "search-col">Product Name</th>
-                    <th class = "search-col">Shop Name</th>
-                    <th class = "search-col">Price</th>
-                    <th class = "search-col">Category</th>
-                    <th class = "search-col">DateTime</th>
-                    <th class = "search-col" >Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>suraj</td>
-                    <td>gajanan</td>
-                    <td>nikam</td>
-                    <td>8788451215</td>
-                    <td>suraj123@gmail.com</td>
-                    <td>1</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='SP_ViewNewAddedProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='SP_EditNewAddedProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class='bx bx-edit nav__icon ' ></i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='SP_DeleteNewAddedProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class='bx bx-coffee-togo nav__icon' style = "color:red;"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>akshay</td>
-                    <td>gajanan</td>
-                    <td>nikam</td>
-                    <td>1846524121</td>
-                    <td>akshay123@gmail.com</td>
-                    <td>2</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='SP_ViewNewAddedProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='SP_EditNewAddedProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class='bx bx-edit nav__icon ' ></i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='SP_DeleteNewAddedProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class='bx bx-coffee-togo nav__icon' style = "color:red;"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>mayur</td> 
-                    <td>a</td>
-                    <td>pawale</td>
-                    <td>2541251215</td>
-                    <td>mayur123@gmail.com</td>
-                    <td>3</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='SP_ViewNewAddedProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='SP_EditNewAddedProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class='bx bx-edit nav__icon ' ></i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='SP_DeleteNewAddedProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class='bx bx-coffee-togo nav__icon' style = "color:red;"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>suresh</td>
-                    <td>k</td>
-                    <td>choudhary</td>
-                    <td>2463541515</td>
-                    <td>suresh123@gmail.com</td>
-                    <td>4</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='SP_ViewNewAddedProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='EditNewAddedProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class='bx bx-edit nav__icon ' ></i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='DeleteNewAddedProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class='bx bx-coffee-togo nav__icon' style = "color:red;"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>vishal</td>
-                    <td>j</td>
-                    <td>chillal</td>
-                    <td>2168574122</td>
-                    <td>vishal123@gmail.com</td>
-                    <td>5</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='SP_ViewNewAddedProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='SP_EditNewAddedProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class='bx bx-edit nav__icon ' ></i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='SP_DeleteNewAddedProduct'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class='bx bx-coffee-togo nav__icon' style = "color:red;"></i></a>
-                    </td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th class = "search-col">#</th>
-                    <th class = "search-col">Product Name</th>
-                    <th class = "search-col">Shop Name</th>
-                    <th class = "search-col">Price</th>
-                    <th class = "search-col">Category</th>
-                    <th class = "search-col">DateTime</th>
-                    <th class = "search-col" >Action</th>
-                </tr>
-            </tfoot>
-        </table>	
-    </div> 
-	
+		<div class="container-fluid table-container" id="ajaxResponse" style= "" >
+			<div class = "text-center mt-1">
+				<h4 class = "loading-title">Enter Above Details</h4>
+			</div>
+        </div>
 
 	<script src="./assets/js/jquery-3.5.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
@@ -295,6 +222,40 @@ datalist{
     
     <script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    <script>
+    
+    function loadXMLDoc() {
+        var xmlhttp = new XMLHttpRequest();
+//		alert(document.getElementById('productcategory').value + " :: " +document.getElementById('datefrom').value + " :: " +document.getElementById('dateto').value);
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+
+               if (xmlhttp.status == 200) {
+                   document.getElementById("ajaxResponse").innerHTML = xmlhttp.responseText;
+                   
+                   var table = $('.myDataTable').DataTable({
+                       scrollY: 400,
+                       scrollX: true,
+                       scrollCollapse: true,    
+                   });
+               }
+               
+               else if (xmlhttp.status == 400) {
+                   alert('There was an error 400');
+               }
+               else {
+                   alert('something else other than 200 was returned');
+               }
+            }
+        };
+		
+        var url = "GetSPNewAddedProductList?productcategory="+document.getElementById('productcategory').value+"&datefrom="+document.getElementById('datefrom').value+"&dateto="+document.getElementById('dateto').value;
+       // alert(url);
+        xmlhttp.open("GET", url , false);
+        xmlhttp.send();
+    }
+    </script>
     
     <script type="text/javascript">
 	//	$('.myDataTable').DataTable();
@@ -306,31 +267,12 @@ datalist{
             
         });
 
-        $('.myDataTable thead .search-col').each(function(){
-            var title = $(this).text();
-            $(this).jsp('<input type = "text" placeholder = "Search '+title+'" />');
-        });
         
-        table.columns().every(function(){
-            var that = this;
-            $('input', this.header()).on('keyup change', function(){
-                if(that.search() !== this.value)
-                {
-                    that.search(this.value).draw();
-                } 
-            });
-        });
-		
    
         function topFunction() {
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
         }
-        
-        
-        
-
-        
-        </script>
+     </script>
 </body>
 </html>

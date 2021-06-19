@@ -25,7 +25,7 @@ public class ProductDao {
 		try {
 			Connection con = DBConnection.getConnection();
 //			System.out.println("select pid, prodimg1, productname, productprice  from products where userid = '"+userid+"'");
-			PreparedStatement ps= con.prepareStatement("select pid, prodimg1, productname, productprice, productsubtitle from products where userid = ? AND status = 1");
+			PreparedStatement ps= con.prepareStatement("select pid, prodimg1, productname, productprice, productsubtitle from products where userid = ? AND status = 0");
 			ps.setString(1, userid);
 			ResultSet rs = ps.executeQuery(); 
 			
@@ -145,35 +145,35 @@ public class ProductDao {
 			
 			if(productcategory.equalsIgnoreCase("All") && datefrom.length() == 0 && dateto.length() == 0 )
 			{
-				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where status = 1 ORDER BY date_creation desc";
+				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where status = 0 ORDER BY date_creation desc";
 			}
 			else if(productcategory.equalsIgnoreCase("All") && datefrom.length() != 0 && dateto.length() == 0)
 			{
-				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where date_creation > '"+datefrom+"' AND status = 1 ORDER BY date_creation desc";
+				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where date_creation > '"+datefrom+"' ORDER BY date_creation desc";
 			}
 			else if(productcategory.equalsIgnoreCase("All") && datefrom.length() == 0 && dateto.length() != 0)
 			{
-				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where date_creation < '"+datefrom+"' AND status = 1 ORDER BY date_creation desc";
+				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where date_creation < '"+datefrom+"' ORDER BY date_creation desc";
 			}
 			else if(productcategory.equalsIgnoreCase("All") && datefrom.length() != 0 && dateto.length() != 0)
 			{
-				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where date_creation BETWEEN '"+datefrom+"' AND '"+dateto+"' AND status = 1 ORDER BY date_creation desc";
+				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where date_creation BETWEEN '"+datefrom+"' AND '"+dateto+"' ORDER BY date_creation desc";
 			}	
 			else if(productcategory != "All" && datefrom.length() == 0 && dateto.length() == 0 )
 			{
-				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid  from products where category = '"+productcategory+"' AND status = 1 ORDER BY date_creation desc";
+				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid  from products where category = '"+productcategory+"' ORDER BY date_creation desc";
 			}
 			else if(productcategory != "All" && datefrom.length() != 0 && dateto.length() == 0)
 			{
-				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where category = '"+productcategory+"' AND date_creation > '"+datefrom+"' AND status = 1 ORDER BY date_creation desc";
+				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where category = '"+productcategory+"' AND date_creation > '"+datefrom+"' ORDER BY date_creation desc";
 			}	
 			else if(productcategory != "All" && datefrom.length() == 0 && dateto.length() != 0)
 			{
-				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where category = '"+productcategory+"' AND date_creation < '"+datefrom+"' AND status = 1 ORDER BY date_creation desc";
+				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where category = '"+productcategory+"' AND date_creation < '"+datefrom+"' ORDER BY date_creation desc";
 			}
 			else if(productcategory != "All" && datefrom.length() != 0 && dateto.length() != 0)
 			{
-				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where category = '"+productcategory+"' AND date_creation BETWEEN '"+datefrom+"' AND '"+dateto+"' AND status = 1 ORDER BY date_creation desc";
+				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where category = '"+productcategory+"' AND date_creation BETWEEN '"+datefrom+"' AND '"+dateto+"' ORDER BY date_creation desc";
 			}
 			
 			
@@ -215,8 +215,8 @@ public class ProductDao {
 		try {
 			Connection con = DBConnection.getConnection(); 
 
-//			System.out.println("update products set status = 1 where pid = '"+id+"'");
-			PreparedStatement ps= con.prepareStatement("update products set status = 1 where pid = ?");
+			System.out.println("update products set status = 0 where pid = '"+id+"'");
+			PreparedStatement ps= con.prepareStatement("update products set status = 0 where pid = ?");
 			ps.setString(1, id);
 			status = ps.executeUpdate();
 			
@@ -237,7 +237,7 @@ public class ProductDao {
 		try {
 			Connection con = DBConnection.getConnection(); 
 
-//			System.out.println("update products set status = 1 where pid = '"+id+"'");
+			System.out.println("update products set status = -1 where pid = '"+id+"'");
 			PreparedStatement ps= con.prepareStatement("update products set status = -1 where pid = ?");
 			ps.setString(1, id);
 			status = ps.executeUpdate();
@@ -264,39 +264,39 @@ public class ProductDao {
 			
 			if(productcategory.equalsIgnoreCase("All") && productname.length() != 0 && datefrom.length() == 0 && dateto.length() == 0 )
 			{
-				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where productname LIKE '%"+productname+"%' OR productsubtitle LIKE '%"+productname+"%' AND status = 1 ORDER BY date_creation desc";
+				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where status = 1 AND productname LIKE '%"+productname+"%' OR productsubtitle LIKE '%"+productname+"%' ORDER BY date_creation desc";
 			}
 			else if(productcategory.equalsIgnoreCase("All") && productname.length() != 0 && datefrom.length() != 0 && dateto.length() == 0)
 			{
-				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where productname LIKE '%"+productname+"%' OR productsubtitle LIKE '%"+productname+"%' AND date_creation > '"+datefrom+"' AND status = 1 ORDER BY date_creation desc";
+				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where status = 1 AND productname LIKE '%"+productname+"%' OR productsubtitle LIKE '%"+productname+"%' AND date_creation > '"+datefrom+"' AND status = 0 ORDER BY date_creation desc";
 			}
 			else if(productcategory.equalsIgnoreCase("All") && productname.length() != 0 && datefrom.length() == 0 && dateto.length() != 0)
 			{
-				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where productname LIKE '%"+productname+"%' OR productsubtitle LIKE '%"+productname+"%' AND date_creation < '"+datefrom+"' AND status = 1 ORDER BY date_creation desc";
+				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where status = 1 AND productname LIKE '%"+productname+"%' OR productsubtitle LIKE '%"+productname+"%' AND date_creation < '"+datefrom+"' AND status = 0 ORDER BY date_creation desc";
 			}
 			else if(productcategory.equalsIgnoreCase("All") && productname.length() != 0 && datefrom.length() != 0 && dateto.length() != 0)
 			{
-				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where productname LIKE '%\"+productname+\"%' OR productsubtitle LIKE '%"+productname+"%' AND date_creation BETWEEN '"+datefrom+"' AND '"+dateto+"' AND status = 1 ORDER BY date_creation desc";
+				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where status = 1 AND productname LIKE '%\"+productname+\"%' OR productsubtitle LIKE '%"+productname+"%' AND date_creation BETWEEN '"+datefrom+"' AND '"+dateto+"' AND status = 0 ORDER BY date_creation desc";
 			}	
 			else if(productcategory != "All" && productname.length() != 0 && datefrom.length() == 0 && dateto.length() == 0 )
 			{
-				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid  from products where productname LIKE '%"+productname+"%' OR productsubtitle LIKE '%"+productname+"%' AND category = '"+productcategory+"' AND status = 1 ORDER BY date_creation desc";
+				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid  from products where status = 1 AND productname LIKE '%"+productname+"%' OR productsubtitle LIKE '%"+productname+"%' AND category = '"+productcategory+"' AND status = 0 ORDER BY date_creation desc";
 			}
 			else if(productcategory != "All" && productname.length() != 0 && datefrom.length() != 0 && dateto.length() == 0)
 			{
-				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where productname LIKE '%"+productname+"%' OR productsubtitle LIKE '%"+productname+"%' AND category = '"+productcategory+"' AND date_creation > '"+datefrom+"' AND status = 1 ORDER BY date_creation desc";
+				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where status = 1 AND productname LIKE '%"+productname+"%' OR productsubtitle LIKE '%"+productname+"%' AND category = '"+productcategory+"' AND date_creation > '"+datefrom+"' AND status = 0 ORDER BY date_creation desc";
 			}
 			else if(productcategory != "All" && productname.length() != 0 && datefrom.length() == 0 && dateto.length() != 0)
 			{
-				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where productname LIKE '%"+productname+"%' OR productsubtitle LIKE '%"+productname+"%' AND category = '"+productcategory+"' AND date_creation < '"+datefrom+"' AND status = 1 ORDER BY date_creation desc";
+				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where status = 1 AND productname LIKE '%"+productname+"%' OR productsubtitle LIKE '%"+productname+"%' AND category = '"+productcategory+"' AND date_creation < '"+datefrom+"' AND status = 0 ORDER BY date_creation desc";
 			}
 			else if(productcategory != "All" && productname.length() != 0 && datefrom.length() != 0 && dateto.length() != 0)
 			{
-				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where productname LIKE '%"+productname+"%' OR productsubtitle LIKE '%"+productname+"%' AND category = '"+productcategory+"' AND date_creation BETWEEN '"+datefrom+"' AND '"+dateto+"' AND status = 1 ORDER BY date_creation desc";
+				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid from products where status = 1 AND productname LIKE '%"+productname+"%' OR productsubtitle LIKE '%"+productname+"%' AND category = '"+productcategory+"' AND date_creation BETWEEN '"+datefrom+"' AND '"+dateto+"' AND status = 0 ORDER BY date_creation desc";
 			}
 			
 			
-//			System.out.println(query);
+			System.out.println(query);
 			PreparedStatement ps= con.prepareStatement(query);
 			
 			ResultSet rs = ps.executeQuery(); 
