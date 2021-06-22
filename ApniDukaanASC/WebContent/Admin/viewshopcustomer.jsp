@@ -25,6 +25,63 @@
    
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script type = "text/javascript">
+    function validation(){
+    		
+	    	var contactexp = /^\d{10}$/;
+			var emailexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+			var zipexp = /^\d{6}$/;
+			var letterexp = /^[A-Za-z]+$/;	//	single word
+            var letterspaceexp = /^[a-zA-Z\s]*$/g;	//	multiple words
+		//	var numberdashedexp = ^[0-9-]*$;  
+			
+            if(document.form.shopname.value=='')
+    		{
+    			document.getElementById("errorspan").innerHTML = "Enter Shop Name";  
+    			return false;
+    		}
+            else if(!document.form.shopname.value.match(letterspaceexp))
+    		{
+    			document.getElementById("errorspan").innerHTML = "Enter Letters Only";  
+    			return false;
+    		}
+    		else if(document.form.ownername.value=='')
+    		{
+    			document.getElementById("errorspan").innerHTML = "Enter Owner Name";  
+    			return false;
+    		}
+    		else if(!document.form.ownername.value.match(letterspaceexp))
+     		{
+     			document.getElementById("errorspan").innerHTML = "Enter Letters Only";  
+     			return false;
+     		}
+    		else if(document.form.contactno.value=='')
+    		{
+    			document.getElementById("errorspan").innerHTML = "Enter Contact Number";  
+    			return false;
+    		} 
+    		else if(!document.form.contactno.value.match(contactexp))
+     		{
+     			document.getElementById("errorspan").innerHTML = "Enter Correct Contact Number";  
+     			return false;
+     		}
+    		else if(document.form.emailid.value==''){
+    			document.getElementById("errorspan").innerHTML = "Enter Email Id";  
+    			return false;
+    		}
+    		else if(!document.form.emailid.value.match(emailexp))
+     		{
+     			document.getElementById("errorspan").innerHTML = "Enter Correct Email Id";  
+     			return false;
+     		}
+    		else
+    		{
+    			document.getElementById("errorspan").innerHTML = "";
+    			return true;
+    		}
+    		  
+    	} 
+    </script>
 </head>
 <style>
 [list]::-webkit-calendar-picker-indicator {
@@ -62,14 +119,16 @@ input[type=date], input[type=file]{
                 <a href="AdminPanel" class="header__logo" style = "text-decoration:none;">ApniDukaanASC - Admin Panel |<small> Welcome, <%= session.getAttribute("emailid") %></small></a>
     
                 <div class="header__search">
-                    <input list="browsers" name="browser" id="browser" placeholder="Search" class="header__input"><i class='bx bx-search header__icon'></i>
+                    <input list="browsers" name="browser" id="browser" placeholder="Search" class="header__input"><button type = "submit" onclick = "return search()" style = "border:none;outline:0px;background-color:lightgrey;border-radius:15%"><i class='bx bx-search header__icon'></i></button>
                     <datalist id="browsers" style = "height: 80vh;">
 					  <option value="Home">
-					  <option value="Add New Branch">
-					  <option value="Branch List">
-					  <option value="Add New Branch Staff">
-					  <option value="Branch Staff List">
-					  <option value="Add New Parcel">
+					  <option value="Add New Staff">
+					  <option value="Staff List">
+					  <option value="List Of Slider ADVT">
+					  <option value="List Of Fixed ADVT">
+					  <option value="Shop & Customer Details">
+					  <option value="New Product List">
+					  <option value="Product Details">
 					  <option value="Parcel List">
 					  <option value="Item Accept By Courier">
 					  <option value="Collected">
@@ -82,9 +141,10 @@ input[type=date], input[type=file]{
 					  <option value="PickUp">
 					  <option value="Unsuccessfully Delivery Attempt">
 					  <option value="Track Order">
+					  <option value="Product Report">
+					  <option value="Parcel Report">
 					  <option value="Manage Account">
 					</datalist>
-                    
                 </div>
     
                 <div class="header__toggle">
@@ -177,10 +237,19 @@ input[type=date], input[type=file]{
                                 <i class='bx bx-current-location nav__icon' ></i>
                                 <span class="nav__name">Track Order</span>
                             </a>
-                            <a href="Reports" class="nav__link ">
-                                <i class='bx bxs-report nav__icon' ></i>
-                                <span class="nav__name">Reports</span>
-                            </a>
+                            <div class="nav__dropdown">
+                                <a href="#" class="nav__link">               
+                                   	<i class='bx bxs-report nav__icon'></i>
+                                    <span class="nav__name">Reports</span>
+                                    <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                                </a>
+								<div class="nav__dropdown-collapse">
+                                    <div class="nav__dropdown-content">
+                                        <a href="ProductReport" class="nav__dropdown-item">Product Report</a>
+                                        <a href="ParcelReport" class="nav__dropdown-item">Parcel Report</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
     
                         <div class="nav__items">
@@ -223,9 +292,13 @@ input[type=date], input[type=file]{
 		            </div>
 	            </div>
 	            <div class="form-row">
-	            	<div class="form-group col-md-6">
+	            	<div class="form-group col-md-3">
 		                <label for="prepaiddiscount">Prepaid Order Discount</label>
 		                <input type="text" class="form-control" name="prepaiddiscount" value = "<%= ub.getPrepaiddiscount() %>" placeholder="Prepaid Order Discount" readonly>
+		            </div>
+		            <div class="form-group col-md-3">
+		                <label for="status">Status</label>
+		                <input type="text" class="form-control" name="status" value = "<%= ub.getStatus().equals("1")?"Active":"Deactive" %>" placeholder="Status" readonly>
 		            </div>
 	            	<div class="form-group col-md-6">
 		                <label for="emailid">Email ID</label>

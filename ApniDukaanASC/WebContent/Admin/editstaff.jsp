@@ -91,14 +91,16 @@ StaffBean sb = StaffDao.getAllRecordsById(key);
                 <a href="AdminPanel" class="header__logo" style = "text-decoration:none;">ApniDukaanASC - Admin Panel |<small> Welcome, <%= session.getAttribute("emailid") %></small></a>
     
                 <div class="header__search">
-                    <input list="browsers" name="browser" id="browser" placeholder="Search" class="header__input"><i class='bx bx-search header__icon'></i>
+                    <input list="browsers" name="browser" id="browser" placeholder="Search" class="header__input"><button type = "submit" onclick = "return search()" style = "border:none;outline:0px;background-color:lightgrey;border-radius:15%"><i class='bx bx-search header__icon'></i></button>
                     <datalist id="browsers" style = "height: 80vh;">
 					  <option value="Home">
-					  <option value="Add New Branch">
-					  <option value="Branch List">
-					  <option value="Add New Branch Staff">
-					  <option value="Branch Staff List">
-					  <option value="Add New Parcel">
+					  <option value="Add New Staff">
+					  <option value="Staff List">
+					  <option value="List Of Slider ADVT">
+					  <option value="List Of Fixed ADVT">
+					  <option value="Shop & Customer Details">
+					  <option value="New Product List">
+					  <option value="Product Details">
 					  <option value="Parcel List">
 					  <option value="Item Accept By Courier">
 					  <option value="Collected">
@@ -111,9 +113,10 @@ StaffBean sb = StaffDao.getAllRecordsById(key);
 					  <option value="PickUp">
 					  <option value="Unsuccessfully Delivery Attempt">
 					  <option value="Track Order">
+					  <option value="Product Report">
+					  <option value="Parcel Report">
 					  <option value="Manage Account">
 					</datalist>
-                    
                 </div>
     
                 <div class="header__toggle">
@@ -206,10 +209,19 @@ StaffBean sb = StaffDao.getAllRecordsById(key);
                                 <i class='bx bx-current-location nav__icon' ></i>
                                 <span class="nav__name">Track Order</span>
                             </a>
-                            <a href="Reports" class="nav__link ">
-                                <i class='bx bxs-report nav__icon' ></i>
-                                <span class="nav__name">Reports</span>
-                            </a>
+                            <div class="nav__dropdown">
+                                <a href="#" class="nav__link">               
+                                   	<i class='bx bxs-report nav__icon'></i>
+                                    <span class="nav__name">Reports</span>
+                                    <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                                </a>
+								<div class="nav__dropdown-collapse">
+                                    <div class="nav__dropdown-content">
+                                        <a href="ProductReport" class="nav__dropdown-item">Product Report</a>
+                                        <a href="ParcelReport" class="nav__dropdown-item">Parcel Report</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
     
                         <div class="nav__items">

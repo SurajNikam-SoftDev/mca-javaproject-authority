@@ -1,3 +1,5 @@
+<%@page import="com.apnidukaanasc.dao.StaffDao"%>
+<%@page import="com.apnidukaanasc.admin.bean.StaffBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isErrorPage="true"%>
 <!DOCTYPE html>
@@ -35,40 +37,6 @@
     			document.getElementById("errorspan").innerHTML = "Enter First Name";  
     			return false;
     		}
-            else if(!document.form.firstname.value.match(letterexp))
-    		{
-    			document.getElementById("errorspan").innerHTML = "Enter Letters Only";  
-    			return false;
-    		}
-    		else if(document.form.middlename.value=='')
-    		{
-    			document.getElementById("errorspan").innerHTML = "Enter Middle Name";  
-    			return false;
-    		}
-    		else if(!document.form.middlename.value.match(letterexp))
-     		{
-     			document.getElementById("errorspan").innerHTML = "Enter Letters Only";  
-     			return false;
-     		}
-    		else if(document.form.lastname.value=='')
-    		{
-    			document.getElementById("errorspan").innerHTML = "Enter Last Name";  
-    			return false;
-    		} 
-    		else if(!document.form.lastname.value.match(letterexp))
-     		{
-     			document.getElementById("errorspan").innerHTML = "Enter Letters Only";  
-     			return false;
-     		}
-    		else if(document.form.email.value==''){
-    			document.getElementById("errorspan").innerHTML = "Enter Email Id";  
-    			return false;
-    		}
-    		else if(!document.form.email.value.match(emailexp))
-     		{
-     			document.getElementById("errorspan").innerHTML = "Enter Correct Email Id";  
-     			return false;
-     		}
     		else
     		{
     			document.getElementById("errorspan").innerHTML = "";
@@ -93,6 +61,10 @@ datalist{
 	{
 		response.sendRedirect("./LogIn");
 	}	
+
+	String emailid = session.getAttribute("emailid").toString();
+	System.out.println("emailid :: "+emailid);
+	StaffBean sb = StaffDao.getAdminAccountByEmailId(emailid); 
 %>
 	<!--========== HEADER ==========-->
         <header class="header">
@@ -101,14 +73,16 @@ datalist{
                 <a href="AdminPanel" class="header__logo" style = "text-decoration:none;">ApniDukaanASC - Admin Panel |<small> Welcome, <%= session.getAttribute("emailid") %></small></a>
     
                 <div class="header__search">
-                    <input list="browsers" name="browser" id="browser" placeholder="Search" class="header__input"><i class='bx bx-search header__icon'></i>
+                    <input list="browsers" name="browser" id="browser" placeholder="Search" class="header__input"><button type = "submit" onclick = "return search()" style = "border:none;outline:0px;background-color:lightgrey;border-radius:15%"><i class='bx bx-search header__icon'></i></button>
                     <datalist id="browsers" style = "height: 80vh;">
 					  <option value="Home">
-					  <option value="Add New Branch">
-					  <option value="Branch List">
-					  <option value="Add New Branch Staff">
-					  <option value="Branch Staff List">
-					  <option value="Add New Parcel">
+					  <option value="Add New Staff">
+					  <option value="Staff List">
+					  <option value="List Of Slider ADVT">
+					  <option value="List Of Fixed ADVT">
+					  <option value="Shop & Customer Details">
+					  <option value="New Product List">
+					  <option value="Product Details">
 					  <option value="Parcel List">
 					  <option value="Item Accept By Courier">
 					  <option value="Collected">
@@ -121,9 +95,10 @@ datalist{
 					  <option value="PickUp">
 					  <option value="Unsuccessfully Delivery Attempt">
 					  <option value="Track Order">
+					  <option value="Product Report">
+					  <option value="Parcel Report">
 					  <option value="Manage Account">
 					</datalist>
-                    
                 </div>
     
                 <div class="header__toggle">
@@ -216,10 +191,19 @@ datalist{
                                 <i class='bx bx-current-location nav__icon' ></i>
                                 <span class="nav__name">Track Order</span>
                             </a>
-                            <a href="Reports" class="nav__link ">
-                                <i class='bx bxs-report nav__icon' ></i>
-                                <span class="nav__name">Reports</span>
-                            </a>
+                            <div class="nav__dropdown">
+                                <a href="#" class="nav__link">               
+                                   	<i class='bx bxs-report nav__icon'></i>
+                                    <span class="nav__name">Reports</span>
+                                    <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                                </a>
+								<div class="nav__dropdown-collapse">
+                                    <div class="nav__dropdown-content">
+                                        <a href="ProductReport" class="nav__dropdown-item">Product Report</a>
+                                        <a href="ParcelReport" class="nav__dropdown-item">Parcel Report</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
     
                         <div class="nav__items">
@@ -248,39 +232,25 @@ datalist{
         <div class = "container-fluid form-container">
         <div class = "row justify-content-center">
         	<div class="col-6">
-        		<form class = "form-body" name = "form">
-		            <div class="form-row justify-content-center">
-		            	<div class="form-group col-md-4">
-		                    <label for="firstname">First Name<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
-		                    <input type="text" class="form-control" name="firstname" placeholder="First Name">
-		                </div>
-		                <div class="form-group col-md-4">
-		                    <label for="middlename">Middle Name<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
-		                    <input type="text" class="form-control" name="middlename" placeholder="Middle Name">
-		                </div>
-		                <div class="form-group col-md-4">
-		                    <label for="lastname">Last Name<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
-		                    <input type="text" class="form-control" name="lastname" placeholder="Last Name">
-		                </div>
+        		<form class = "form-body" action = "./ManageAccount" method = "POST" name = "form">
+		            <div class="form-group col-md-12"> 
+		                    <label for="firstname">Name</label>
+		                    <input type="text" class="form-control" name="name" placeholder="Full Name" value = "<%= sb.getName() %>" style = "text-transform:uppercase">
 		            </div>
-		            <div class="form-group">
-		                <label for="inputAddress">Email<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
-		                <input type="email" class="form-control" name="email" placeholder="Email">
+		            <div class="form-group col-md-12">
+		                <label for="inputAddress">Email</label>
+		                <input type="email" class="form-control" name="email" value = "<%= emailid%>" readonly>
 		            </div>
-		           	<div class="form-group">
+		           	<div class="form-group col-md-12">
 		                <label for="inputAddress">Password</label>
-		                <input type="password" class="form-control" name="password" placeholder="Password">
-		                <div class = "text-center">
-		                	<small style = "font-size:x-small;color:grey;font-style: oblique;">Leave this blank if you dont want to change the password.</small>
-		                </div>
+		                <input type="password" class="form-control" name="password" value = "<%= sb.getPassword() %>" placeholder="Password">
 		            </div>
 		            
 					
-		            <div class = "text-center">
+		            <div class = "text-center  col-md-12">
 		                <!-- Button trigger modal -->
-		                <button type="submit" class="btn btn-primary form-control" onclick = "return validation()" style = "font-size: 12px;font-weight: bolder;" >Submit</button>
-		            </div>
-		            
+		                <button type="submit" class="btn btn-primary form-control " style = "font-size: 12px;font-weight: bolder;" onclick = "return validation()"  >Submit</button>
+		            </div>		            
 		        </form>
 		        <div class = "text-center mt-2">
 		        	<b><span id = "errorspan" style = "font-size:small;font-weight:bolder;color:red"></span></b>

@@ -1,4 +1,4 @@
-package com.apnidukaanasc.staff.controller;
+package com.apnidukaanasc.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class SP_Reports
+ * Servlet implementation class GetProductReport
  */
-@WebServlet("/SP_Reports")
-public class SP_Reports extends HttpServlet {
+@WebServlet("/GetProductReport")
+public class GetProductReport extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SP_Reports() {
+    public GetProductReport() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,9 +27,9 @@ public class SP_Reports extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("Staff/reports.jsp").forward(request, response); 
+		request.getRequestDispatcher("ASOperation/getproductreport.jsp").forward(request, response); 
 	}
-
+ 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

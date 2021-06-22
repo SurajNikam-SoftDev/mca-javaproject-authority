@@ -199,5 +199,32 @@ public class UserDao {
 		}	
 		return ub;
 	}
+	
+	public static int getShopDetailById(UserBean ub)
+	{
+		
+		int status = 0;
+		try {
+			Connection con = DBConnection.getConnection();
+			
+			PreparedStatement ps= con.prepareStatement("update user set username = ?, shopname = ?, emailid = ?, contact = ?, prepaiddiscount = ?, status = ? where userid = ?");
+			ps.setString(1, ub.getName().toUpperCase());
+			ps.setString(2, ub.getShopname());
+			ps.setString(3, ub.getEmailid()); 
+			ps.setString(4, ub.getContact());
+			ps.setString(5, ub.getPrepaiddiscount());
+			ps.setString(6, ub.getStatus());
+			ps.setInt(7, ub.getId());
+			
+			status = ps.executeUpdate();
+			  
+			ps.close();
+			con.close();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}	
+		return status;
+	}
 
 }

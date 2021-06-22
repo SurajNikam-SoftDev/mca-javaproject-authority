@@ -34,8 +34,36 @@ public class SP_EditShop_Customer extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		// TODO Auto-generated method stub 
+
+		String key = request.getParameter("key") != null || request.getParameter("key") != ""
+				? request.getParameter("key")
+				: "undefined";
+				key = key.isEmpty() ? "undefined" : key; 
+			//	shopname ownername contactno prepaiddiscount emailid	
+		
+		String ownername = request.getParameter("ownername") != null || request.getParameter("ownername") != ""
+				? request.getParameter("ownername")
+				: "undefined";
+				ownername = ownername.isEmpty() ? "undefined" : ownername;
+
+		String contactno = request.getParameter("contactno") != null || request.getParameter("contactno") != ""
+				? request.getParameter("contactno")
+				: "undefined";
+				contactno = contactno.isEmpty() ? "undefined" : contactno;
+				
+		String prepaiddiscount = request.getParameter("prepaiddiscount") != null || request.getParameter("prepaiddiscount") != ""
+				? request.getParameter("prepaiddiscount")
+				: "undefined";
+				prepaiddiscount = prepaiddiscount.isEmpty() ? "undefined" : prepaiddiscount;
+
+		String emailid = request.getParameter("emailid") != null || request.getParameter("emailid") != ""
+				? request.getParameter("emailid")
+				: "undefined";
+				emailid = emailid.isEmpty() ? "undefined" : emailid;
+				
+		System.out.println(key + " :: " + ownername + " :: " + contactno + " :: " + prepaiddiscount + " :: " + emailid);
+		
 	}
 
 }

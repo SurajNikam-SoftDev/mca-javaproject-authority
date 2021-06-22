@@ -10,7 +10,7 @@ public class ProductBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private int pid, imglength;
-	private String cid, wid, productname, productsubtitle, productprice, category, cashondelivery, allowreturn, height, weight, width, length, stock, returnperiod, description, ratings, userid, date_creation;
+	private String cid, wid, productname, productsubtitle, productprice, category, cashondelivery, allowreturn, height, weight, width, length, stock, returnperiod, description, ratings, userid, date_creation, status;
 	private String prodimg1, prodimg2, prodimg3, prodimg4, prodimg5, prodimg6, prodimg7, prodimg8, prodimg9, prodimg10;
 	
 	
@@ -193,6 +193,12 @@ public class ProductBean implements Serializable {
 	}
 	public void setDate_creation(String date_creation) {
 		this.date_creation = date_creation;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 	

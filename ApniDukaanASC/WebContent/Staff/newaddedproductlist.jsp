@@ -23,6 +23,7 @@
     
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src = "./assets/js/staffsearch.js"></script>
      <script type = "text/javascript">
         
     	function validation(){
@@ -56,10 +57,12 @@ datalist{
                 <a href="StaffPanel" class="header__logo" style = "text-decoration:none;">ApniDukaanASC - Staff Panel |<small> Welcome, <%= session.getAttribute("emailid") %></small></a>
     
    				<div class="header__search">
-                    <input list="browsers" name="browser" id="browser" placeholder="Search" class="header__input"><i class='bx bx-search header__icon'></i>
+                    <input list="browsers" name="browser" id="browser" placeholder="Search" class="header__input"><button type = "submit" onclick = "return search()" style = "border:none;outline:0px;background-color:lightgrey;border-radius:15%"><i class='bx bx-search header__icon'></i></button>
                     <datalist id="browsers" style = "height: 80vh;">
 					  <option value="Home">
-					  <option value="Add New Parcel">
+					  <option value="Shop & Customer Details">
+					  <option value="New Product List">
+					  <option value="Product Details">
 					  <option value="Parcel List">
 					  <option value="Item Accept By Courier">
 					  <option value="Collected">
@@ -72,9 +75,10 @@ datalist{
 					  <option value="PickUp">
 					  <option value="Unsuccessfully Delivery Attempt">
 					  <option value="Track Order">
+					  <option value="Product Report">
+					  <option value="Parcel Report">
 					  <option value="Manage Account">
 					</datalist>
-                    
                 </div>
     
                 <div class="header__toggle">
@@ -141,10 +145,19 @@ datalist{
                                 <i class='bx bx-current-location nav__icon' ></i>
                                 <span class="nav__name">Track Order</span>
                             </a>
-                            <a href="SP_Reports" class="nav__link ">
-                                <i class='bx bxs-report nav__icon' ></i>
-                                <span class="nav__name">Reports</span>
-                            </a>
+                            <div class="nav__dropdown">
+                                <a href="#" class="nav__link">               
+                                   	<i class='bx bxs-report nav__icon'></i>
+                                    <span class="nav__name">Reports</span>
+                                    <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                                </a>
+								<div class="nav__dropdown-collapse">
+                                    <div class="nav__dropdown-content">
+                                        <a href="SP_ProductReport" class="nav__dropdown-item">Product Report</a>
+                                        <a href="SP_ParcelReport" class="nav__dropdown-item">Parcel Report</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
     
                         <div class="nav__items">

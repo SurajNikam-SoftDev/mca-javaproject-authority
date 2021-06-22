@@ -1,3 +1,7 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.apnidukaanasc.dao.TrackOrderDao"%>
+<%@page import="com.apnidukaanasc.bean.TrackOrderBean"%>
+<%@page import="java.util.List"%>
 <%@page import="com.apnidukaanasc.bean.PlaceOrderBean"%>
 <%@page import="com.apnidukaanasc.bean.PurchaseOrderBean"%>
 <%@page import="com.apnidukaanasc.dao.UserDao"%>
@@ -69,14 +73,16 @@ input[type=date], input[type=file]{
                 <a href="AdminPanel" class="header__logo" style = "text-decoration:none;">ApniDukaanASC - Admin Panel |<small> Welcome, <%= session.getAttribute("emailid") %></small></a>
     
                 <div class="header__search">
-                    <input list="browsers" name="browser" id="browser" placeholder="Search" class="header__input"><i class='bx bx-search header__icon'></i>
+                    <input list="browsers" name="browser" id="browser" placeholder="Search" class="header__input"><button type = "submit" onclick = "return search()" style = "border:none;outline:0px;background-color:lightgrey;border-radius:15%"><i class='bx bx-search header__icon'></i></button>
                     <datalist id="browsers" style = "height: 80vh;">
 					  <option value="Home">
-					  <option value="Add New Branch">
-					  <option value="Branch List">
-					  <option value="Add New Branch Staff">
-					  <option value="Branch Staff List">
-					  <option value="Add New Parcel">
+					  <option value="Add New Staff">
+					  <option value="Staff List">
+					  <option value="List Of Slider ADVT">
+					  <option value="List Of Fixed ADVT">
+					  <option value="Shop & Customer Details">
+					  <option value="New Product List">
+					  <option value="Product Details">
 					  <option value="Parcel List">
 					  <option value="Item Accept By Courier">
 					  <option value="Collected">
@@ -89,9 +95,10 @@ input[type=date], input[type=file]{
 					  <option value="PickUp">
 					  <option value="Unsuccessfully Delivery Attempt">
 					  <option value="Track Order">
+					  <option value="Product Report">
+					  <option value="Parcel Report">
 					  <option value="Manage Account">
 					</datalist>
-                    
                 </div>
     
                 <div class="header__toggle">
@@ -184,10 +191,19 @@ input[type=date], input[type=file]{
                                 <i class='bx bx-current-location nav__icon' ></i>
                                 <span class="nav__name">Track Order</span>
                             </a>
-                            <a href="Reports" class="nav__link ">
-                                <i class='bx bxs-report nav__icon' ></i>
-                                <span class="nav__name">Reports</span>
-                            </a>
+                            <div class="nav__dropdown">
+                                <a href="#" class="nav__link">               
+                                   	<i class='bx bxs-report nav__icon'></i>
+                                    <span class="nav__name">Reports</span>
+                                    <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                                </a>
+								<div class="nav__dropdown-collapse">
+                                    <div class="nav__dropdown-content">
+                                        <a href="ProductReport" class="nav__dropdown-item">Product Report</a>
+                                        <a href="ParcelReport" class="nav__dropdown-item">Parcel Report</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
     
                         <div class="nav__items">
@@ -228,78 +244,463 @@ input[type=date], input[type=file]{
             <span class="fa fa-star staricon"></span>
             3/5.
         </div>
+        
         <div class = "trackorder-section pt-4">
         	<b>Track Order:</b><br> 
+<%
+List<TrackOrderBean> list = TrackOrderDao.getTrackOrderByReferenceNo(TrackOrderDao.getReferenceNoById(key));
+
+SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+%>	
            		<div class="row justify-content-center mt-5">
 				    <div class="col-10">
+<%
+if(list.size() == 0)
+{
+%>
+						<b>0 Results</b>
+<%
+}		
+else if(list.size() == 1)
+{		
+		
+%>				    
 				    	<p class="paragraph">
 		            			<i class="bx bx-search trackorder-icon"></i>
-		            			<b class = "trackorder-text">Item accepted by Courier</b><small>Nov 27, 2020 02:06 PM</small> 
-		            	</p>
-		            	<div class = "vertical text-center">
-		            		<span class = "vertical-line"></span>
-		            	</div>
-		            	<p class="paragraph">
-		            			<i class="bx bx-search trackorder-icon"></i>
-		            			<b class = "trackorder-text">Collected</b><small>Nov 27, 2020 02:06 PM</small> 
-		            	</p>
-		            	<div class = "vertical text-center">
-		            		<span class = "vertical-line"></span>
-		            	</div>
-		            	<p class="paragraph">
-		            			<i class="bx bx-search trackorder-icon"></i>
-		            			<b class = "trackorder-text">Shipped</b><small>Nov 27, 2020 02:06 PM</small> 
-		            	</p>
-		            	<div class = "vertical text-center">
-		            		<span class = "vertical-line"></span>
-		            	</div>
-		            	<p class="paragraph">
-		            			<i class="bx bx-search trackorder-icon"></i>
-		            			<b class = "trackorder-text">In-Transit</b><small>Nov 27, 2020 02:06 PM</small> 
-		            	</p>
-		            	<div class = "vertical text-center">
-		            		<span class = "vertical-line" style = "height:100px;"></span>
-		            	</div>
-		            	<p class="paragraph">
-		            			<i class="bx bx-search trackorder-icon"></i>
-		            			<b class = "trackorder-text">Arrived At Destination</b><small>Nov 27, 2020 02:06 PM</small> 
-		            	</p>
-		            	<div class = "vertical text-center">
-		            		<span class = "vertical-line"></span>
-		            	</div>
-		            	<p class="paragraph">
-		            			<i class="bx bx-search trackorder-icon"></i>
-		            			<b class = "trackorder-text">Out For Delivery</b><small>Nov 27, 2020 02:06 PM</small> 
-		            	</p>
-		            	<div class = "vertical text-center">
-		            		<span class = "vertical-line"></span>
-		            	</div>
-		            	<p class="paragraph">
-		            			<i class="bx bx-search trackorder-icon"></i>
-		            			<b class = "trackorder-text">Ready To PickUp</b><small>Nov 27, 2020 02:06 PM</small> 
-		            	</p>
-		            	<div class = "vertical text-center">
-		            		<span class = "vertical-line"></span>
-		            	</div>
-		            	<p class="paragraph">
-		            			<i class="bx bx-search trackorder-icon"></i>
-		            			<b class = "trackorder-text">Delivered</b><small>Nov 27, 2020 02:06 PM</small> 
-		            	</p>
-		            	<div class = "vertical text-center">
-		            		<span class = "vertical-line"></span>
-		            	</div>
-		            	<p class="paragraph">
-		   
-		            			<i class="bx bx-search trackorder-icon"></i>
-		            			<b class = "trackorder-text">PickUp</b><small>Nov 27, 2020 02:06 PM</small> 
+		            			<b class = "trackorder-text"><%= list.get(0).getStatus() %></b><small><%= format.parse(list.get(0).getDate_created()) %></small> 
 		            	</p>
 		            	<div class = "vertical text-center">
 		            		<span class = "vertical-line-process"></span>
+		            	</div>		            	
+		            	
+<%
+}		
+else if(list.size() == 2)
+{		
+%>		            	
+						<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(0).getStatus() %></b><small><%= format.parse(list.get(0).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
 		            	</div>
 		            	<p class="paragraph">
 		            			<i class="bx bx-search trackorder-icon"></i>
-		            			<b class = "trackorder-text">Unsuccessfully Delivery Arrived</b><small>Nov 27, 2020 02:06 PM</small> 
+		            			<b class = "trackorder-text"><%= list.get(1).getStatus() %></b><small><%= format.parse(list.get(1).getDate_created()) %></small> 
 		            	</p>
+		            	<% if(list.get(1).getStatus().equals("Unsuccessfully Delivery Attempt")) {}
+		            	else{
+		            	%>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line-process"></span>
+		            	</div>
+		            	<%
+		            	}
+		            	%>
+		            	
+<%
+}		
+else if(list.size() == 3)
+{		
+%>		            	
+						<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(0).getStatus() %></b><small><%= format.parse(list.get(0).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(1).getStatus() %></b><small><%= format.parse(list.get(1).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(2).getStatus() %></b><small><%= format.parse(list.get(2).getDate_created()) %></small> 
+		            	</p>
+		            	<% if(list.get(2).getStatus().equals("Unsuccessfully Delivery Attempt")) {}
+		            	else{
+		            	%>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line-process"></span>
+		            	</div>
+		            	<%
+		            	}
+		            	%>
+<%
+}		
+else if(list.size() == 4)
+{		
+%>		            	
+						<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(0).getStatus() %></b><small><%= format.parse(list.get(0).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(1).getStatus() %></b><small><%= format.parse(list.get(1).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(2).getStatus() %></b><small><%= format.parse(list.get(2).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(3).getStatus() %></b><small><%= format.parse(list.get(3).getDate_created()) %></small> 
+		            	</p>
+		            	<% if(list.get(3).getStatus().equals("Unsuccessfully Delivery Attempt")) {}
+		            	else{
+		            	%>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line-process"></span>
+		            	</div>
+		            	<%
+		            	}
+		            	%>
+		            	
+<%
+}		
+else if(list.size() == 5)
+{		
+%>		            	
+						<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(0).getStatus() %></b><small><%= format.parse(list.get(0).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(1).getStatus() %></b><small><%= format.parse(list.get(1).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(2).getStatus() %></b><small><%= format.parse(list.get(2).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(3).getStatus() %></b><small><%= format.parse(list.get(3).getDate_created()) %></small> 
+		            	</p>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(4).getStatus() %></b><small><%= format.parse(list.get(4).getDate_created()) %></small> 
+		            	</p>
+		            	<% if(list.get(4).getStatus().equals("Unsuccessfully Delivery Attempt")) {}
+		            	else{
+		            	%>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line-process"></span>
+		            	</div>
+		            	<%
+		            	}
+		            	%>
+<%
+}		
+else if(list.size() == 6)
+{		
+%>		            	
+						<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(0).getStatus() %></b><small><%= format.parse(list.get(0).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(1).getStatus() %></b><small><%= format.parse(list.get(1).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(2).getStatus() %></b><small><%= format.parse(list.get(2).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(3).getStatus() %></b><small><%= format.parse(list.get(3).getDate_created()) %></small> 
+		            	</p>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(4).getStatus() %></b><small><%= format.parse(list.get(4).getDate_created()) %></small> 
+		            	</p>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(5).getStatus() %></b><small><%= format.parse(list.get(5).getDate_created()) %></small> 
+		            	</p>
+		            	<% if(list.get(5).getStatus().equals("Unsuccessfully Delivery Attempt")) {}
+		            	else{
+		            	%>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line-process"></span>
+		            	</div>
+		            	<%
+		            	}
+		            	%>
+<%
+}		
+else if(list.size() == 7)
+{		
+%>		            	
+						<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(0).getStatus() %></b><small><%= format.parse(list.get(0).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(1).getStatus() %></b><small><%= format.parse(list.get(1).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(2).getStatus() %></b><small><%= format.parse(list.get(2).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(3).getStatus() %></b><small><%= format.parse(list.get(3).getDate_created()) %></small> 
+		            	</p>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(4).getStatus() %></b><small><%= format.parse(list.get(4).getDate_created()) %></small> 
+		            	</p>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(5).getStatus() %></b><small><%= format.parse(list.get(5).getDate_created()) %></small> 
+		            	</p>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text">Ready To PickUp</b><small><%= format.parse(list.get(6).getDate_created()) %></small> 
+		            	</p>
+		            	<% if(list.get(6).getStatus().equals("Unsuccessfully Delivery Attempt")) {}
+		            	else{
+		            	%>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line-process"></span>
+		            	</div>
+		            	<%
+		            	}
+		            	%>
+<%
+}		
+else if(list.size() == 8)
+{		
+%>		            	
+						<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(0).getStatus() %></b><small><%= format.parse(list.get(0).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(1).getStatus() %></b><small><%= format.parse(list.get(1).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(2).getStatus() %></b><small><%= format.parse(list.get(2).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(3).getStatus() %></b><small><%= format.parse(list.get(3).getDate_created()) %></small> 
+		            	</p>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(4).getStatus() %></b><small><%= format.parse(list.get(4).getDate_created()) %></small> 
+		            	</p>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(5).getStatus() %></b><small><%= format.parse(list.get(5).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(6).getStatus() %></b><small><%= format.parse(list.get(6).getDate_created()) %></small> 
+		            	</p>
+<%
+}		
+else if(list.size() == 9)
+{		
+%>		            	
+						<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(0).getStatus() %></b><small><%= format.parse(list.get(0).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(1).getStatus() %></b><small><%= format.parse(list.get(1).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(2).getStatus() %></b><small><%= format.parse(list.get(2).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(3).getStatus() %></b><small><%= format.parse(list.get(3).getDate_created()) %></small> 
+		            	</p>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(4).getStatus() %></b><small><%= format.parse(list.get(4).getDate_created()) %></small> 
+		            	</p>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(5).getStatus() %></b><small><%= format.parse(list.get(5).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(6).getStatus() %></b><small><%= format.parse(list.get(6).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text">PickUp</b><small><%= format.parse(list.get(7).getDate_created()) %></small> 
+		            	</p>
+<%
+}		
+else if(list.size() == 10)
+{		
+%>		            	
+						<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(0).getStatus() %></b><small><%= format.parse(list.get(0).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(1).getStatus() %></b><small><%= format.parse(list.get(1).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(2).getStatus() %></b><small><%= format.parse(list.get(2).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(3).getStatus() %></b><small><%= format.parse(list.get(3).getDate_created()) %></small> 
+		            	</p>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(4).getStatus() %></b><small><%= format.parse(list.get(4).getDate_created()) %></small> 
+		            	</p>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(5).getStatus() %></b><small><%= format.parse(list.get(5).getDate_created()) %></small> 
+		            	</p>
+						<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(6).getStatus() %></b><small><%= format.parse(list.get(6).getDate_created()) %></small> 
+		            	</p>
+		            	<div class = "vertical text-center">
+		            		<span class = "vertical-line"></span>
+		            	</div>
+		            	<p class="paragraph">
+		            			<i class="bx bx-search trackorder-icon"></i>
+		            			<b class = "trackorder-text"><%= list.get(7).getStatus() %></b><small><%= format.parse(list.get(7).getDate_created()) %></small> 
+		            	</p>
+<%
+	}
+%> 				    	
 				    </div>
 				</div>
            	</div>

@@ -50,5 +50,30 @@ public class TrackOrderDao {
 		}	
 		return ltob;
 	}
+	
+	public static String getReferenceNoById(String parcelid)
+	{
+		String referenceno = null;
+		
+		try {
+			Connection con = DBConnection.getConnection();
+			PreparedStatement ps= con.prepareStatement("select referenceno from orderparcel where parcelid = ?");
+			ps.setString(1, parcelid);
+			ResultSet rs = ps.executeQuery(); 
+			
+			if(rs.next())
+			{
+				referenceno = rs.getString("referenceno");
+			}
+			
+			ps.close();
+			con.close();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}	
+		
+		return referenceno;
+	}
 
 }

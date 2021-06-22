@@ -5,7 +5,7 @@
 <head>
 	<meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-   	<title>ApniDukaanASC :: Unsuccessfully Delivery Attempt</title>
+   	<title>ApniDukaanASC :: Parcel Report</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
 	<!-- Bootstrap CSS -->
@@ -27,8 +27,24 @@
         
     	function validation(){
     		
-    		loadXMLDoc();
-    		return false;
+    		var contactexp = /^\d{10}$/;
+			var emailexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+			var zipexp = /^\d{6}$/;
+			var letterexp = /^[A-Za-z]+$/;
+			var trackid = /^\d{18}$/;
+    		
+			
+			if(document.form.category.value == -1)
+    		{
+    			document.getElementById("errorspan").innerHTML = "Select Category";  
+    			return false;
+    		}
+    		else 
+    		{
+    			document.getElementById("errorspan").innerHTML = "";
+    			loadXMLDoc();
+    			return false;
+    		}
 			
     	} 
     </script>
@@ -209,36 +225,52 @@ datalist{
         <!--========== CONTENTS ==========-->
         
          <div class = "container-fluid page-header text-center">
-        	<b>Unsuccessfully Delivery Attempt</b>
+        	<b>Parcel Reports</b>
         
         </div>
         
         <div class="container-fluid filter-container" style= "" >
 			<form class = "form-body" name = "form">
 	            <div class="form-row">
-	                <div class="form-group col-md-6">
-	                    <label for="datefrom">Date From</label>
-	                    <input type="date" class="form-control" name="datefrom"  id="datefrom">
-	                </div>
-	                <div class="form-group col-md-6">
-	                    <label for="dateto">Date To</label>
-	                    <input type="date" class="form-control" name="dateto" id="dateto">
-	                </div>
-	                <div class="form-group col-md-8">
-	                    <b><span id = "errorspan" style = "font-size:small;font-weight:bolder;color:red"></span></b>
+	                <div class="form-group col-md-4"> 
+	                    <label for="productprice">Select Category<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
+	                    <select name="category" id = "category" class="form-control" style = "font-size: 12px;">
+		                    <option selected>All</option>
+		                    <option>Fashion</option>
+		                    <option>Electronics</option>
+		                    <option>Home Appliances</option>
+		                    <option>Grocery</option>
+		                    <option>Mobile's</option>
+		                    <option>Women's Beauty</option>
+		                    <option>Men's Footwear</option>
+		                    <option>Baby & Kids</option>
+		                    <option>Health Care Essentials</option>
+	                    </select>
 	                </div>
 	                <div class="form-group col-md-4">
-	                    <div class = "text-right">
-			                <!-- Button trigger modal -->
-			                <button type="button" class="btn btn-primary" onclick = "return validation()" style = "font-size: 12px;font-weight: bolder;" >Search</button>
-			            </div>
-	                </div> 
+	                    <label for="datefrom">Date From</label>
+	                    <input type="date" class="form-control" id = "datefrom" name="datefrom">
+	                </div>
+	                <div class="form-group col-md-4">
+	                    <label for="dateto">Date To</label>
+	                    <input type="date" class="form-control" id = "dateto" name="dateto">
+	                </div>
+	                <div class="form-group col-md-8">
+	                   	<b><span id = "errorspan" style = "font-size:small;font-weight:bolder;color:red"></span></b>
+	                </div>
+	                <div class="form-group col-md-4 text-right">
+	                    <button type="submit" class="btn btn-primary"  style = "font-size: 12px;font-weight: bolder;" onclick = "return validation()" >Search</button>
+	                </div>
+	                
 	            </div>
+	            
         	</form>
-		</div>   
+        
+		</div>    
+    
 
 		<div class="container-fluid table-container" id="ajaxResponse" style= "" >
-        </div>
+        </div>   
         
 	<div class = "main-footer" style = "margin-top:50px;font-size:x-small;font-weight:bolder;text-align:center;bottom:0;">
 		<p class = "main-footer-text">Copyright @ 2021 All Rights Reserved. Terms of Use | Privacy Policy AND Website Design and Developed By <b style = "font-style:oblique;font-weight:bolder;">Suraj Nikam</b></p>
@@ -267,8 +299,7 @@ datalist{
     <script>
     
     function loadXMLDoc() {
-    	//alert(document.getElementById("datefrom").value);
-        var xmlhttp = new XMLHttpRequest();
+    	var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == XMLHttpRequest.DONE) {
 
@@ -279,7 +310,6 @@ datalist{
                        scrollY: 400,
                        scrollX: true,
                        scrollCollapse: true,  
-                       
                    });
                }
                
@@ -289,22 +319,34 @@ datalist{
                else {
                    alert('something else other than 200 was returned');
                }
-            }
+            }	
         };
-		
-        var url = "GetParcelListByCategory?status=Unsuccessfully Delivery Attempt&datefrom="+document.getElementById("datefrom").value+"&dateto="+document.getElementById("dateto").value;
+
+        var url = "GetParcelReport?productcategory="+document.getElementById("category").value+"&datefrom="+document.getElementById("datefrom").value+"&dateto="+document.getElementById("dateto").value;
         //alert(url);
         xmlhttp.open("GET", url , false);
         xmlhttp.send();
     }
     </script>
-    
+    <script>
+    var myApp = new function () {
+        this.printTable = function () {
+            var tab = document.getElementById('tab');
+      		var win = window.open('', '', 'height=700,width=700');
+            win.document.write(tab.outerHTML);
+            win.document.close();
+            win.print();
+        }
+    }
+	</script>
+	
     <script type="text/javascript">
 	//	$('.myDataTable').DataTable();
+
         function topFunction() {
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
         }
-     </script>
+    </script>
 </body>
 </html>
