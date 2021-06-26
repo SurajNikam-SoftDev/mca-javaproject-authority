@@ -145,35 +145,35 @@ public class ProductDao {
 			
 			if(productcategory.equalsIgnoreCase("All") && datefrom.length() == 0 && dateto.length() == 0 )
 			{
-				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid, status from products ORDER BY date_creation desc";
+				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid, status from products where status = '0' ORDER BY date_creation desc";
 			}
 			else if(productcategory.equalsIgnoreCase("All") && datefrom.length() != 0 && dateto.length() == 0)
 			{
-				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid, status from products where date_creation > '"+datefrom+"' ORDER BY date_creation desc";
+				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid, status from products where status = '0' AND date_creation > '"+datefrom+"' ORDER BY date_creation desc";
 			}
 			else if(productcategory.equalsIgnoreCase("All") && datefrom.length() == 0 && dateto.length() != 0)
 			{
-				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid, status from products where date_creation < '"+dateto+"' ORDER BY date_creation desc";
+				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid, status from products where status = '0' AND date_creation < '"+dateto+"' ORDER BY date_creation desc";
 			}
 			else if(productcategory.equalsIgnoreCase("All") && datefrom.length() != 0 && dateto.length() != 0)
 			{
-				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid, status from products where date_creation BETWEEN '"+datefrom+"' AND '"+dateto+"' ORDER BY date_creation desc";
+				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid, status from products where status = '0' AND date_creation BETWEEN '"+datefrom+"' AND '"+dateto+"' ORDER BY date_creation desc";
 			}	
 			else if(productcategory != "All" && datefrom.length() == 0 && dateto.length() == 0 )
 			{
-				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid, status from products where category = '"+productcategory+"' ORDER BY date_creation desc";
+				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid, status from products where status = '0' AND category = '"+productcategory+"' ORDER BY date_creation desc";
 			}
 			else if(productcategory != "All" && datefrom.length() != 0 && dateto.length() == 0)
 			{
-				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid, status from products where category = '"+productcategory+"' AND date_creation > '"+datefrom+"' ORDER BY date_creation desc";
+				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid, status from products where status = '0' AND category = '"+productcategory+"' AND date_creation > '"+datefrom+"' ORDER BY date_creation desc";
 			}	
 			else if(productcategory != "All" && datefrom.length() == 0 && dateto.length() != 0)
 			{
-				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid, status from products where category = '"+productcategory+"' AND date_creation < '"+dateto+"' ORDER BY date_creation desc";
+				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid, status from products where status = '0' ANDcategory = '"+productcategory+"' AND date_creation < '"+dateto+"' ORDER BY date_creation desc";
 			}
 			else if(productcategory != "All" && datefrom.length() != 0 && dateto.length() != 0)
 			{
-				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid, status from products where category = '"+productcategory+"' AND date_creation BETWEEN '"+datefrom+"' AND '"+dateto+"' ORDER BY date_creation desc";
+				query = "select pid, productname, productsubtitle, productprice, category, date_creation, userid, status from products where status = '0' AND category = '"+productcategory+"' AND date_creation BETWEEN '"+datefrom+"' AND '"+dateto+"' ORDER BY date_creation desc";
 			}
 			
 			
@@ -291,8 +291,8 @@ public class ProductDao {
 		try {
 			Connection con = DBConnection.getConnection(); 
 
-			System.out.println("update products set status = 0 where pid = '"+id+"'");
-			PreparedStatement ps= con.prepareStatement("update products set status = 0 where pid = ?");
+			System.out.println("update products set status = 1 where pid = '"+id+"'");
+			PreparedStatement ps= con.prepareStatement("update products set status = 1 where pid = ?");
 			ps.setString(1, id);
 			status = ps.executeUpdate();
 			
