@@ -1,3 +1,4 @@
+<%@page import="com.apnidukaanasc.dao.HomeDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isErrorPage="true"%>
 <!DOCTYPE html>
@@ -22,7 +23,7 @@
    
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="../assets/js/adminsearch.js"></script> 
+    <script src="./assets/js/adminsearch.js"></script> 
 </head>
 <style>
 [list]::-webkit-calendar-picker-indicator {
@@ -201,76 +202,221 @@ datalist{
         
         <div class = "container-fluid">
         	<div class="row">
-        		<div class="col-md-12">
+        		<div class="col-md-4">
 	                <div class="row">
-	                    <div class="col-md-4" style="padding:5px;">
+	                    <div class="col" style="padding:5px;">
 	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Total Staff">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Total Staff</div>
+							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Total ASC Staff</div>
 							  <div class="card-body">
 							    <b class="card-image"><i class='bx bx-buildings header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
+							    <p class="card-text" style = "color:#002060;"><%= HomeDao.getTotalStaff() %></p>
 							  </div>
 							</div>
 	                    </div>
-	                    <div class="col-md-4" style="padding:5px;">
+	                    <div class="col" style="padding:5px;">
 	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Total Shops And Custmers">
 							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Total Shop&Cust.</div>
 							  <div class="card-body">
 							    <b class="card-image"><i class='bx bxs-group header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
+							    <p class="card-text" style = "color:#002060;"><%= HomeDao.getShopCust() %></p>
 							  </div>
 							</div>
 	                    </div>
-	                    <div class="col-md-4" style="padding:5px;">
+	               </div>
+	          	</div>
+	          	<div class="col-md-4">
+	                <div class="row">
+	                    <div class="col" style="padding:5px;">
+	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Total Products">
+							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Total CMS Branch</div>
+							  <div class="card-body">
+							   	<b class="card-image"><i class='bx bx-box header__icon' style = "color:#002060;"></i></b>
+							    <p class="card-text" style = "color:#002060;"><%= HomeDao.getTotalBranch() %></p>
+							  </div>
+							</div>
+	                    </div>
+	                    <div class="col" style="padding:5px;">
+	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Total Shops And Custmers">
+							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Total CMS Staff</div>
+							  <div class="card-body">
+							    <b class="card-image"><i class='bx bxs-group header__icon' style = "color:#002060;"></i></b>
+							    <p class="card-text" style = "color:#002060;"><%= HomeDao.getTotalBranchStaff() %></p>
+							  </div>
+							</div>
+	                    </div>
+	               </div>
+	          	</div>
+	          	<div class="col-md-4">
+	                <div class="row">
+	                    <div class="col" style="padding:5px;">
 	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Total Products">
 							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Total Products</div>
 							  <div class="card-body">
 							   	<b class="card-image"><i class='bx bx-box header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
+							    <p class="card-text" style = "color:#002060;"><%= HomeDao.getTotalProduct() %></p>
 							  </div>
 							</div>
 	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-6">
-	                <div class="row">
 	                    <div class="col" style="padding:5px;">
 	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Item Accept By Courier">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Buy Order</div>
+							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Approved Products</div>
 							  <div class="card-body">
 							    <b class="card-image"><i class='bx bx-abacus header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
+							    <p class="card-text" style = "color:#002060;"><%= HomeDao.getTotalProductApproved() %></p>
 							  </div> 
 							</div>
 	                    </div>
+	               </div>
+	          	</div>
+	          	<div class="col-md-4">
+	                <div class="row">	                    
 	                	<div class="col" style="padding:5px;">
 	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Collected">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Process Order</div>
+							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Decline Products</div>
 							  <div class="card-body">
 							    <b class="card-image"><i class='bx bx-donate-blood header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
+							    <p class="card-text" style = "color:#002060;"><%= HomeDao.getTotalProductDecline() %></p>
+							  </div>
+							</div>
+	                    </div>
+	                    <div class="col" style="padding:5px;">
+	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Collected">
+							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Total Parcel</div>
+							  <div class="card-body">
+							    <b class="card-image"><i class='bx bx-donate-blood header__icon' style = "color:#002060;"></i></b>
+							    <p class="card-text" style = "color:#002060;"><%= HomeDao.getTotalParcel() %></p>
 							  </div>
 							</div>
 	                    </div>
 	               </div>
 	           </div>
-	           <div class="col-md-6">
+	           <div class="col-md-4">
 	                <div class="row">
 	                    <div class="col" style="padding:5px;">
 	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Shipped">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Pending Order</div>
+							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Decline By Seller</div>
 							  <div class="card-body">
 							    <b class="card-image"><i class='bx bx-trip header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
+							    <p class="card-text" style = "color:#002060;"><%= HomeDao.getParcelDeclineBySeller() %></p>
 							  </div>
 							</div>
 	                    </div>
 	                    <div class="col" style="padding:5px;">
 	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="In-Transit">
-							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Cancel Order</div>
+							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">PreApproval From CMS</div>
 							  <div class="card-body">
 							    <b class="card-image"><i class='bx bxs-truck header__icon' style = "color:#002060;"></i></b>
-							    <p class="card-text" style = "color:#002060;">1</p>
+							    <p class="card-text" style = "color:#002060;"><%= HomeDao.getParcelPreApprovalFromCMS() %></p>
+							  </div>
+							</div>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="col-md-4">
+	                <div class="row">
+	                    <div class="col" style="padding:5px;">
+	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Shipped">
+							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Item Accepted By Seller</div>
+							  <div class="card-body">
+							    <b class="card-image"><i class='bx bx-trip header__icon' style = "color:#002060;"></i></b>
+							    <p class="card-text" style = "color:#002060;"><%= HomeDao.getParcelItemAcceptedBySeller() %></p>
+							  </div>
+							</div>
+	                    </div>
+	                    <div class="col" style="padding:5px;">
+	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="In-Transit">
+							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Collected</div>
+							  <div class="card-body">
+							    <b class="card-image"><i class='bx bxs-truck header__icon' style = "color:#002060;"></i></b>
+							    <p class="card-text" style = "color:#002060;"><%= HomeDao.getParcelCollected() %></p>
+							  </div>
+							</div>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="col-md-4">
+	                <div class="row">
+	                    <div class="col" style="padding:5px;">
+	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Shipped">
+							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Shipped</div>
+							  <div class="card-body">
+							    <b class="card-image"><i class='bx bx-trip header__icon' style = "color:#002060;"></i></b>
+							    <p class="card-text" style = "color:#002060;"><%= HomeDao.getParcelShipped() %></p>
+							  </div>
+							</div>
+	                    </div>
+	                    <div class="col" style="padding:5px;">
+	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="In-Transit">
+							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">In-Transit</div>
+							  <div class="card-body">
+							    <b class="card-image"><i class='bx bxs-truck header__icon' style = "color:#002060;"></i></b>
+							    <p class="card-text" style = "color:#002060;"><%= HomeDao.getParcelInTransit() %></p>
+							  </div>
+							</div>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="col-md-4">
+	                <div class="row">
+	                    <div class="col" style="padding:5px;">
+	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Shipped">
+							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Arrived By Destination</div>
+							  <div class="card-body">
+							    <b class="card-image"><i class='bx bx-trip header__icon' style = "color:#002060;"></i></b>
+							    <p class="card-text" style = "color:#002060;"><%= HomeDao.getParcelArrivedByDestination() %></p>
+							  </div>
+							</div>
+	                    </div>
+	                    <div class="col" style="padding:5px;">
+	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="In-Transit">
+							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Out For Delivery</div>
+							  <div class="card-body">
+							    <b class="card-image"><i class='bx bxs-truck header__icon' style = "color:#002060;"></i></b>
+							    <p class="card-text" style = "color:#002060;"><%= HomeDao.getParcelOutForDelivery() %></p>
+							  </div>
+							</div>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="col-md-4">
+	                <div class="row">
+	                    <div class="col" style="padding:5px;">
+	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Shipped">
+							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Ready To PickUp</div>
+							  <div class="card-body">
+							    <b class="card-image"><i class='bx bx-trip header__icon' style = "color:#002060;"></i></b>
+							    <p class="card-text" style = "color:#002060;"><%= HomeDao.getParcelReadyToPickUp() %></p>
+							  </div>
+							</div>
+	                    </div>
+	                    <div class="col" style="padding:5px;">
+	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="In-Transit">
+							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Delivery</div>
+							  <div class="card-body">
+							    <b class="card-image"><i class='bx bxs-truck header__icon' style = "color:#002060;"></i></b>
+							    <p class="card-text" style = "color:#002060;"><%= HomeDao.getParcelDelivery() %></p>
+							  </div>
+							</div>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="col-md-4">
+	                <div class="row">
+	                    <div class="col" style="padding:5px;">
+	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="Shipped">
+							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">PickUp</div>
+							  <div class="card-body">
+							    <b class="card-image"><i class='bx bx-trip header__icon' style = "color:#002060;"></i></b>
+							    <p class="card-text" style = "color:#002060;"><%= HomeDao.getParcelPickUp() %></p>
+							  </div>
+							</div>
+	                    </div>
+	                    <div class="col" style="padding:5px;">
+	               			<div class="card" data-toggle="tooltip" data-placement="bottom" title="In-Transit">
+							  <div class="card-header text-center" style = "border-radius:18px 18px 0px 0px;">Unsuccessfully Deliver</div>
+							  <div class="card-body">
+							    <b class="card-image"><i class='bx bxs-truck header__icon' style = "color:#002060;"></i></b>
+							    <p class="card-text" style = "color:#002060;"><%= HomeDao.getParcelUnsuccessfullyDelivery() %></p>
 							  </div>
 							</div>
 	                    </div>
@@ -278,7 +424,7 @@ datalist{
 	            </div>
 	         </div>
         </div>
-        
+         
 	
 	
 	<div class = "main-footer" style = "margin-top:50px;font-size:x-small;font-weight:bolder;text-align:center;bottom:0;">

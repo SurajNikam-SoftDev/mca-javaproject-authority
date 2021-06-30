@@ -31,59 +31,9 @@
 			var zipexp = /^\d{6}$/;
 			var letterexp = /^[A-Za-z]+$/;
     		
-			if(document.form.firstname.value == '')
-    		{
-    			document.getElementById("errorspan").innerHTML = "Enter First Name";  
-    			return false;
-    		}
-    		else if(!document.form.firstname.value.match(letterexp))
-    		{
-    			document.getElementById("errorspan").innerHTML = "Enter Letters Only";  
-    			return false;
-    		} 
-    		else if(document.form.middlename.value == '')
-    		{
-    			document.getElementById("errorspan").innerHTML = "Enter Middle Name";  
-    			return false;
-    		}
-    		else if(!document.form.middlename.value.match(letterexp))
-    		{
-    			document.getElementById("errorspan").innerHTML = "Enter Letters Only";  
-    			return false;
-    		}
-    		else if(document.form.lastname.value == '')
-    		{
-    			document.getElementById("errorspan").innerHTML = "Enter Last Name";  
-    			return false;
-    		}
-    		else if(!document.form.lastname.value.match(letterexp))
-    		{
-    			document.getElementById("errorspan").innerHTML = "Enter Letters Only";  
-    			return false;
-    		}
-    		else if(document.form.contactno.value == '')
-    		{
-    			document.getElementById("errorspan").innerHTML = "Enter Contact Number";  
-    			return false;
-    		}
-    		else if(!document.form.contactno.value.match(contactexp))
-    		{
-    			document.getElementById("errorspan").innerHTML = "Enter Correct Contact Number";  
-    			return false;
-    		}
-    		else if(document.form.rank.value == -1)
+			if(document.form.rank.value == -1)
     		{
     			document.getElementById("errorspan").innerHTML = "Select Rank";  
-    			return false;
-    		}
-    		else if(document.form.startdatetime.value == '')
-    		{
-    			document.getElementById("errorspan").innerHTML = "Select Start Date & Time";  
-    			return false;
-    		}
-    		else if(document.form.enddatetime.value == '')
-    		{
-    			document.getElementById("errorspan").innerHTML = "Select End Date & Time";  
     			return false;
     		}
     		else if(document.form.uploadimage.value == '')
@@ -120,6 +70,13 @@ input[type=date], input[type=file]{
 	{
 		response.sendRedirect("./LogIn");
 	}	
+
+	String key = request.getParameter("key") != null || request.getParameter("key") != ""
+	? request.getParameter("key")
+	: "undefined";
+	key = key.isEmpty() ? "undefined" : key; 
+	
+	session.setAttribute("fixedadvt", key); 
 %>
 	<!--========== HEADER ==========-->
         <header class="header">
@@ -286,54 +243,20 @@ input[type=date], input[type=file]{
         </div>
         <div class = "container-fluid form-container">
         	
-        <form class = "form-body" name = "form">
-            
-           
+        <form class = "form-body" name = "form" action = "./EditFixedADVT" method = "POST" enctype = "multipart/form-data">
             <div class="form-row">
-            	<div class="col-md-12">
-                    <label for="productprice">Owner Name<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
-                </div>
-                <div class="form-group col-md-4">
-                    <input type="text" class="form-control" name="firstname" placeholder="First Name">
-                </div>
-                <div class="form-group col-md-4">
-                    <input type="text" class="form-control" name="middlename" placeholder="Middle Name">
-                </div>
-                <div class="form-group col-md-4">
-                    <input type="text" class="form-control" name="lastname" placeholder="Last Name">
-                </div>
-            </div>
-            <div class="form-row">
-	            <div class="form-group col-md-6">
-	                <label for="inputAddress">Contact No<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
-	                <input type="text" class="form-control" name="contactno" placeholder="Contact No">
-	            </div>
 	            <div class="form-group col-md-6">
 	                <label for="inputAddress">Advertisement Rank<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
-	                 <select name="rank" class="form-control" style = "font-size: 12px;">
-	                    <option value = "-1" selected>Choose Ranking...</option>
-	                    <option>1</option>
-	                    <option>2</option>
-	                    <option>3</option>
-	                </select>
-	            </div>
-            </div>
-            <div class="form-row">
-            	<div class="form-group col-md-6">
-	                <label for="inputAddress">Start DateTime<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
-	                <input type="date" class="form-control" name="startdatetime">
+	                <input type="text" class="form-control" value = "<%= key %>" readonly>
 	            </div>
 	            <div class="form-group col-md-6">
-	                <label for="inputAddress">End DateTime<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
-	                <input type="date" class="form-control" name="enddatetime">
+		            <label for="inputAddress">Upload Advertisement Image<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
+		            <input type="file" class="form-control" name="uploadimage" accept="image/*" onchange="loadFile(event)">
 	            </div>
             </div>
-			<div class="form-group">
-	            <label for="inputAddress">Upload Advertisement Image<span style = "color:red;font-size:14px;font-weight:bolder;">*</span></label>
-	            <input type="file" class="form-control" name="uploadimage">
-	        </div>
-            
-            
+            <div class = "form-group text-center">
+            	<img id="output" />	
+            </div>
             <div class = "text-center">
                 <!-- Button trigger modal -->
                 <button type="submit" class="btn btn-primary form-control" style = "font-size: 12px;font-weight: bolder;" onclick = "return validation()">Submit</button>
@@ -359,5 +282,15 @@ input[type=date], input[type=file]{
     
     <script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    <script>
+	  var loadFile = function(event) {
+	    var output = document.getElementById('output');
+	    output.src = URL.createObjectURL(event.target.files[0]);
+	    output.onload = function() {
+	      URL.revokeObjectURL(output.src) // free memory
+	    }
+	  };
+	</script> 
 </body>
 </html>

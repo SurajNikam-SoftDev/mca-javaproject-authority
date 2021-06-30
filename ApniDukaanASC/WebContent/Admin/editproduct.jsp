@@ -349,38 +349,5 @@ datalist{
     
     <script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    
-    <script src="https://transloadit.edgly.net/releases/uppy/v1.6.0/uppy.min.js"></script>
-    
-    <script>
-	    var uppy = Uppy.Core()
-	    .use(Uppy.Dashboard, {
-	      inline: true,
-	      target: '#drag-drop-area'
-	    })
-	    .use(Uppy.Tus, {endpoint: 'https://master.tus.io/files/'}) //you can put upload URL here, where you want to upload images
-	
-		uppy.on('complete', (result) => {
-		  console.log('Upload complete! We’ve uploaded these files:', result.successful)
-		})    
-	  
-	  	uppy.getPlugin('Dashboard').setOptions({
-		  width: 1200
-		})
-		
-		uppy.setOptions({
-		  restrictions: { 
-			  	maxFileSize: null,
-			    minFileSize: null,
-			    maxTotalFileSize: 250,
-			    maxNumberOfFiles: 10,
-			    minNumberOfFiles: null,
-			    allowedFileTypes: null  
-		  },
-		  
-		})
-		
-		
-	</script>
 </body>
 </html>

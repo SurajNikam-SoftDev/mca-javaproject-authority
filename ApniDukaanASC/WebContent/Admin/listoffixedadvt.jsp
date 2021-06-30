@@ -1,3 +1,7 @@
+<%@page import="com.apnidukaanasc.dao.FixedADVTDao"%>
+<%@page import="com.apnidukaanasc.bean.FixedADVTBean"%>
+<%@page import="java.util.List"%>
+<%@page import="java.net.InetAddress"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isErrorPage="true"%>
 <!DOCTYPE html>
@@ -34,10 +38,14 @@ datalist{
 </style>
 <body>
 <%
+	
 	if(session.getAttribute("emailid")==null)
 	{
 		response.sendRedirect("./LogIn");
-	}	
+	}
+
+	InetAddress IP=InetAddress.getLocalHost();
+	List<FixedADVTBean> list = FixedADVTDao.getFixedADVT();
 %>
 	<!--========== HEADER ==========-->
         <header class="header">
@@ -207,65 +215,31 @@ datalist{
         <table class="table table-striped table-bordered myDataTable" style = "width: 100%;">
             <thead>
                 <tr>
-                    <th class = "search-col">#</th>
-                    <th class = "search-col">Owner Name Of ADVT</th>
-                    <th class = "search-col">Contact No</th>
-                    <th class = "search-col">DateTime Start</th>
-                    <th class = "search-col">DateTime End</th>
                     <th class = "search-col" >Rank</th>
+                    <th class = "search-col" >Image</th>
                     <th class = "search-col" >Action</th>
                 </tr>
             </thead>
             <tbody>
+<%
+	for(FixedADVTBean advt: list)
+	{
+%>             
                 <tr>
-                    <td>suraj</td>
-                    <td>gajanan</td>
-                    <td>nikam</td>
-                    <td>8788451215</td>
-                    <td>suraj123@gmail.com</td>
-                    <td>1</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='ViewFixedADVT'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='EditFixedADVT'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class='bx bx-edit nav__icon ' ></i></a>
-                    	
+                    <td><%= advt.getRank() %></td>
+                    <td><img src="http://<%=IP.getHostAddress() %>/uploads/<%= advt.getPhotoimage() %>"/></td>
+					<td class = "text-center">
+                    	<a href="javascript:void(0)" onclick="location.href='EditFixedADVT?key=<%= advt.getFaid() %>'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class='bx bx-edit nav__icon ' ></i></a>
                     </td>
                 </tr>
-                <tr>
-                    <td>akshay</td>
-                    <td>gajanan</td>
-                    <td>nikam</td>
-                    <td>1846524121</td>
-                    <td>akshay123@gmail.com</td>
-                    <td>2</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='ViewFixedADVT'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='EditFixedADVT'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class='bx bx-edit nav__icon ' ></i></a>
-                    	
-                    </td>
-                </tr>
-                <tr>
-                    <td>mayur</td> 
-                    <td>a</td>
-                    <td>pawale</td>
-                    <td>2541251215</td>
-                    <td>mayur123@gmail.com</td>
-                    <td>3</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='ViewFixedADVT'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='EditFixedADVT'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class='bx bx-edit nav__icon ' ></i></a>
-                    	
-                    </td>
-                </tr>
-                
+<%
+	}
+%>                
             </tbody>
             <tfoot>
                 <tr>
-                    <th class = "search-col">#</th>
-                    <th class = "search-col">Owner Name Of ADVT</th>
-                    <th class = "search-col">Contact No</th>
-                    <th class = "search-col">DateTime Start</th>
-                    <th class = "search-col">DateTime End</th>
-                    <th class = "search-col">Rank</th>
+                    <th class = "search-col" >Rank</th>
+                    <th class = "search-col" >Image</th>
                     <th class = "search-col" >Action</th>
                 </tr>
             </tfoot>
@@ -294,8 +268,6 @@ datalist{
     <script src="./assets/js/jquery-3.5.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="./assets/js/bootstrap.min.js"></script>
-    
-    <script src="./assets/js/main.js"></script>
     
     <script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

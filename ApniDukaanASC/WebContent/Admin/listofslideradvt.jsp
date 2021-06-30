@@ -1,3 +1,7 @@
+<%@page import="java.util.List"%>
+<%@page import="com.apnidukaanasc.dao.SliderADVTDao"%>
+<%@page import="com.apnidukaanasc.bean.SliderADVTBean"%>
+<%@page import="java.net.InetAddress"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isErrorPage="true"%>
 <!DOCTYPE html>
@@ -38,6 +42,9 @@ datalist{
 	{
 		response.sendRedirect("./LogIn");
 	}	
+
+	InetAddress IP=InetAddress.getLocalHost();
+	List<SliderADVTBean> list = SliderADVTDao.getSliderADVT();
 %>
 	<!--========== HEADER ==========-->
         <header class="header">
@@ -198,100 +205,41 @@ datalist{
         </div>
         <!--========== CONTENTS ==========-->
         
-         <div class = "container-fluid page-header text-center">
+        <div class = "container-fluid page-header text-center">
         	<b>List Of Slider ADVT</b>
         </div>
 
-		<div class="container-fluid table-container" style= "" >
+		<div class="container-fluid table-container">
 			
         <table class="table table-striped table-bordered myDataTable" style = "width: 100%;">
             <thead>
                 <tr>
-                    <th class = "search-col">#</th>
-                    <th class = "search-col">Owner Name Of ADVT</th>
-                    <th class = "search-col">Contact No</th>
-                    <th class = "search-col">DateTime Start</th>
-                    <th class = "search-col">DateTime End</th>
                     <th class = "search-col" >Rank</th>
+                    <th class = "search-col" >Image</th>
                     <th class = "search-col" >Action</th>
                 </tr>
             </thead>
             <tbody>
+<%
+	for(SliderADVTBean advt: list)
+	{
+%>              
                 <tr>
-                    <td>suraj</td>
-                    <td>gajanan</td>
-                    <td>nikam</td>
-                    <td>8788451215</td>
-                    <td>suraj123@gmail.com</td>
-                    <td>1</td>
+                    <td><%= advt.getRank() %></td>
+                    <td><img src="http://<%=IP.getHostAddress() %>/uploads/<%= advt.getAdvtimage() %>"/></td>
                     <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='ViewSliderADVT'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='EditSliderADVT'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class='bx bx-edit nav__icon ' ></i></a>
-                    	
+                    	<a href="javascript:void(0)" onclick="location.href='EditSliderADVT?key=<%= advt.getSaid() %>'" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class='bx bx-edit nav__icon ' ></i></a>
                     </td>
                 </tr>
-                <tr>
-                    <td>akshay</td>
-                    <td>gajanan</td>
-                    <td>nikam</td>
-                    <td>1846524121</td>
-                    <td>akshay123@gmail.com</td>
-                    <td>2</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='ViewSliderADVT'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='EditSliderADVT'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class='bx bx-edit nav__icon ' ></i></a>
-                    	
-                    </td>
-                </tr>
-                <tr>
-                    <td>mayur</td> 
-                    <td>a</td>
-                    <td>pawale</td>
-                    <td>2541251215</td>
-                    <td>mayur123@gmail.com</td>
-                    <td>3</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='ViewSliderADVT'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='EditSliderADVT'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class='bx bx-edit nav__icon ' ></i></a>
-                    	
-                    </td>
-                </tr>
-                <tr>
-                    <td>suresh</td>
-                    <td>k</td>
-                    <td>choudhary</td>
-                    <td>2463541515</td>
-                    <td>suresh123@gmail.com</td>
-                    <td>4</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='ViewSliderADVT'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='EditSliderADVT'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class='bx bx-edit nav__icon ' ></i></a>
-                    	
-                    </td>
-                </tr>
-                <tr>
-                    <td>vishal</td>
-                    <td>j</td>
-                    <td>chillal</td>
-                    <td>2168574122</td>
-                    <td>vishal123@gmail.com</td>
-                    <td>5</td>
-                    <td class = "text-center">
-                    	<a href="javascript:void(0)" onclick="location.href='ViewSliderADVT'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="View" data-toggle="tooltip" data-placement="bottom" title="View"><i class="material-icons nav__icon">visibility</i></a>
-                    	<a href="javascript:void(0)" onclick="location.href='EditSliderADVT'" class = "" style = "text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class='bx bx-edit nav__icon ' ></i></a>
-                    	
-                    </td>
-                </tr>
+<%
+	}
+%>                
             </tbody>
             <tfoot>
                 <tr>
-                    <th class = "search-col">#</th>
-                    <th class = "search-col">Owner Name Of ADVT</th>
-                    <th class = "search-col">Contact No</th>
-                    <th class = "search-col">DateTime Start</th>
-                    <th class = "search-col">DateTime End</th>
                     <th class = "search-col">Rank</th>
-                    <th class = "search-col" >Action</th>
+                    <th class = "search-col" >Image</th>
+                    <th class = "search-col">Action</th>
                 </tr>
             </tfoot>
         </table>
